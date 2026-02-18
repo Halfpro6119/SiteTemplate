@@ -19,7 +19,8 @@ export default function Footer() {
     <footer
       className="relative overflow-hidden"
       style={{
-        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)'
+        background: 'linear-gradient(180deg, var(--color-bg-surface) 0%, #15181c 100%)',
+        borderTop: '1px solid var(--color-border-subtle)'
       }}
     >
       <div
@@ -38,37 +39,27 @@ export default function Footer() {
 
       <div className="relative z-10">
         {businessConfig.footer.closingCTA.enabled && (
-          <div className="container mx-auto px-4 pt-16">
+          <div className="content-width pt-16">
             <FooterClosingCTA
               title={businessConfig.footer.closingCTA.title}
               subtitle={businessConfig.footer.closingCTA.subtitle}
               primaryText={businessConfig.footer.closingCTA.primaryText}
               primaryHref={businessConfig.footer.closingCTA.primaryHref}
               secondaryText={businessConfig.footer.closingCTA.secondaryText}
-              secondaryHref={`${businessConfig.footer.closingCTA.secondaryHref}${businessConfig.phone}`}
+              secondaryHref={businessConfig.footer.closingCTA.secondaryHref.startsWith('tel:') ? businessConfig.footer.closingCTA.secondaryHref : `${businessConfig.footer.closingCTA.secondaryHref}${businessConfig.phone}`}
             />
           </div>
         )}
 
-        <div className="container mx-auto px-4 pt-16 pb-8">
+        <div className="content-width pt-16 pb-8">
           <div className="hidden lg:grid lg:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
-                  </div>
-                </div>
+                <img
+                  src="/og-image.JPG"
+                  alt={businessConfig.businessName}
+                  className="h-11 w-auto object-contain"
+                />
               </div>
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
@@ -111,7 +102,7 @@ export default function Footer() {
                 ))}
               </div>
               <Link
-                to="/locations"
+                to="/areas"
                 className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
                 style={{ color: 'var(--color-accent)' }}
               >
@@ -144,16 +135,16 @@ export default function Footer() {
                 <li>
                   <div className="flex items-start gap-2.5 text-sm text-white/70">
                     <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--color-accent)' }} />
-                    <span>{businessConfig.city}, {businessConfig.state}</span>
+                    <span>Norfolk & Suffolk</span>
                   </div>
                 </li>
               </ul>
               <p className="text-xs text-white/60 mb-4">{businessConfig.footer.businessHours}</p>
               <div className="flex flex-col gap-2">
-                <PremiumButton variant="primary" size="sm" href="#contact">
+                <PremiumButton variant="primary" size="sm" to="/contact">
                   Get Quote
                 </PremiumButton>
-                <PremiumButton variant="outline" size="sm" href="/contact" className="text-white">
+                <PremiumButton variant="outline" size="sm" to="/contact" className="text-white">
                   Contact Us
                 </PremiumButton>
               </div>
@@ -163,21 +154,11 @@ export default function Footer() {
           <div className="lg:hidden space-y-4 mb-12">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
-                  </div>
-                </div>
+                <img
+                  src="/og-image.JPG"
+                  alt={businessConfig.businessName}
+                  className="h-11 w-auto object-contain"
+                />
               </div>
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
@@ -209,10 +190,10 @@ export default function Footer() {
               </ul>
               <p className="text-xs text-white/60 mb-4">{businessConfig.footer.businessHours}</p>
               <div className="flex flex-col gap-2">
-                <PremiumButton variant="primary" size="sm" href="#contact">
+                <PremiumButton variant="primary" size="sm" to="/contact">
                   Get Quote
                 </PremiumButton>
-                <PremiumButton variant="outline" size="sm" href="/contact" className="text-white">
+                <PremiumButton variant="outline" size="sm" to="/contact" className="text-white">
                   Contact Us
                 </PremiumButton>
               </div>
@@ -282,7 +263,7 @@ export default function Footer() {
                     ))}
                   </div>
                   <Link
-                    to="/locations"
+                    to="/areas"
                     className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
                     style={{ color: 'var(--color-accent)' }}
                   >

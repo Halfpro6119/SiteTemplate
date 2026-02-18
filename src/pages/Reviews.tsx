@@ -1,168 +1,91 @@
-import { useState, useMemo } from 'react';
 import { businessConfig } from '../config';
-import ReviewSnapshotPanel from '../components/ReviewSnapshotPanel';
+import PageHero from '../components/PageHero';
+import Breadcrumb from '../components/Breadcrumb';
 import PremiumReviewCard from '../components/PremiumReviewCard';
-import ReviewFilters from '../components/ReviewFilters';
-import CTASection from '../components/CTASection';
-import TrustFooterStrip from '../components/TrustFooterStrip';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { Star } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Reviews() {
-  const [selectedSort, setSelectedSort] = useState('recent');
-
   const headerRef = useScrollReveal();
   const reviewsRef = useScrollReveal();
-  const statsRef = useScrollReveal();
-
-  const sortedReviews = useMemo(() => {
-    const sorted = [...businessConfig.testimonials];
-
-    switch (selectedSort) {
-      case 'highest':
-        sorted.sort((a, b) => b.rating - a.rating);
-        break;
-      case 'longest':
-        sorted.sort((a, b) => b.text.length - a.text.length);
-        break;
-      case 'recent':
-      default:
-        break;
-    }
-
-    return sorted;
-  }, [selectedSort]);
+  const testimonials = businessConfig.testimonials || [];
+  const hasReviews = testimonials.length > 0;
 
   return (
     <div className="min-h-screen">
-      <section
-        className="pt-32 pb-16"
-        style={{
-          background: 'linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-base) 100%)'
-        }}
-        ref={headerRef}
-      >
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12 scroll-reveal">
-              <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
-                Customer Reviews
-              </h1>
-              <p className="text-xl leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                Real feedback from local customers in {businessConfig.city}
-              </p>
-            </div>
+      <PageHero
+        title="Reviews"
+        subtitle={hasReviews ? `What our customers say about us—Norfolk & Suffolk.` : `We're proud of our reputation. Add your reviews to this page when ready.`}
+      />
 
-            <div className="scroll-reveal">
-              <ReviewSnapshotPanel size="large" />
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={headerRef}>
+        <div className="content-width">
+          <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Reviews' }]} />
+          <div className="max-w-4xl mx-auto scroll-reveal">
+            <div
+              className="rounded-2xl p-8 lg:p-10 text-center"
+              style={{
+                background: 'var(--color-bg-surface)',
+                border: '1px solid var(--color-border-subtle)'
+              }}
+            >
+              <div className="inline-flex items-baseline gap-2 mb-2">
+                <span className="text-5xl font-bold" style={{ color: 'var(--color-accent)' }}>
+                  {businessConfig.rating}
+                </span>
+                <span className="text-2xl" style={{ color: 'var(--color-text-tertiary)' }}>/5</span>
+              </div>
+              <div className="flex justify-center gap-1 mb-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-6 h-6 flex-shrink-0"
+                    style={{
+                      color: i < Math.floor(businessConfig.rating) ? 'var(--color-accent)' : 'var(--color-text-tertiary)',
+                      fill: i < Math.floor(businessConfig.rating) ? 'var(--color-accent)' : 'currentColor'
+                    }}
+                  />
+                ))}
+              </div>
+              <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                {hasReviews ? `${businessConfig.reviewCount} verified reviews` : 'Trusted across Norfolk & Suffolk'}
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={reviewsRef}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-12 scroll-reveal">
-              <ReviewFilters
-                selectedSort={selectedSort}
-                onSortChange={setSelectedSort}
-              />
-            </div>
-
-            <div className="mb-8 scroll-reveal">
-              <p className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>
-                Showing {sortedReviews.length} {sortedReviews.length === 1 ? 'review' : 'reviews'}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 auto-rows-auto">
-              {sortedReviews.map((testimonial, index) => (
-                <div
-                  key={testimonial.id}
-                  className="h-fit scroll-reveal"
-                  style={{ transitionDelay: `${(index % 6) * 80}ms` }}
-                >
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={reviewsRef}>
+        <div className="content-width">
+          {hasReviews ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {testimonials.map((t, index) => (
+                <div key={t.id} className="scroll-reveal" style={{ transitionDelay: `${index * 60}ms` }}>
                   <PremiumReviewCard
-                    name={testimonial.name}
-                    rating={testimonial.rating}
-                    text={testimonial.text}
-                    date={testimonial.date}
-                    serviceTags={testimonial.serviceTags}
-                    verified={testimonial.verified}
-                    ownerReply={testimonial.ownerReply}
+                    name={t.name}
+                    rating={t.rating}
+                    text={t.text}
+                    date={t.date}
+                    serviceTags={t.serviceTags}
+                    verified={t.verified}
+                    ownerReply={t.ownerReply}
                   />
                 </div>
               ))}
             </div>
-
-            <div className="mt-16 scroll-reveal">
-              <TrustFooterStrip />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={statsRef}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto scroll-reveal">
-            <div
-              className="rounded-2xl p-8 lg:p-12 shadow-lg text-center"
-              style={{
-                backgroundColor: 'var(--color-bg-base)',
-                border: '1px solid rgba(6, 182, 212, 0.1)'
-              }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--color-text-primary)' }}>
-                Why Customers Trust Us
-              </h2>
-              <p className="text-lg mb-10 leading-relaxed max-w-2xl mx-auto" style={{ color: 'var(--color-text-secondary)' }}>
-                Our commitment to quality, reliability, and customer satisfaction has earned
-                us a reputation as one of the most trusted {businessConfig.businessType.toLowerCase()} providers
-                in {businessConfig.city}. Every review represents a real customer who trusted
-                us with their needs.
+          ) : (
+            <div className="max-w-xl mx-auto text-center scroll-reveal">
+              <p className="text-lg mb-6" style={{ color: 'var(--color-text-secondary)' }}>
+                We're proud of our reputation for quality and respect. If you've worked with us, we'd love to hear from you—get in touch or ask us about leaving a review.
               </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div
-                    className="text-5xl font-bold mb-3"
-                    style={{ color: 'var(--color-accent)' }}
-                  >
-                    {businessConfig.rating}/5
-                  </div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Average Rating</p>
-                </div>
-                <div className="text-center">
-                  <div
-                    className="text-5xl font-bold mb-3"
-                    style={{ color: 'var(--color-accent)' }}
-                  >
-                    {businessConfig.reviewCount}+
-                  </div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Verified Reviews</p>
-                </div>
-                <div className="text-center">
-                  <div
-                    className="text-5xl font-bold mb-3"
-                    style={{ color: 'var(--color-accent)' }}
-                  >
-                    {businessConfig.yearsExperience}+
-                  </div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Years Experience</p>
-                </div>
-              </div>
+              <Link to="/contact" className="btn-primary">
+                Get in touch
+              </Link>
             </div>
-          </div>
+          )}
         </div>
       </section>
-
-      <CTASection
-        title="Join Our Happy Customers"
-        subtitle="Experience the quality service that has earned us consistent 5-star reviews"
-      />
     </div>
   );
 }

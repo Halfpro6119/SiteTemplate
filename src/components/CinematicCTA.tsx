@@ -1,7 +1,6 @@
 import { Phone, FileText } from 'lucide-react';
-import PremiumButton from './PremiumButton';
-import TrustChipRow from './TrustChipRow';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { Link } from 'react-router-dom';
 
 interface CinematicCTAProps {
   label?: string;
@@ -11,7 +10,7 @@ interface CinematicCTAProps {
   primaryHref?: string;
   secondaryText?: string;
   secondaryHref?: string;
-  trustChips?: Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users'; text: string }>;
+  trustChips?: Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users' | 'mapPin'; text: string }>;
 }
 
 export default function CinematicCTA({
@@ -19,7 +18,7 @@ export default function CinematicCTA({
   headline,
   subtitle,
   primaryText = 'Get a Quote',
-  primaryHref = '#contact',
+  primaryHref = '/contact',
   secondaryText = 'Call Now',
   secondaryHref = 'tel:',
   trustChips = [
@@ -34,70 +33,52 @@ export default function CinematicCTA({
     <section
       className="relative py-24 overflow-hidden"
       style={{
-        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)'
+        background: 'linear-gradient(180deg, var(--color-bg-surface) 0%, var(--color-bg-base) 100%)',
+        borderTop: '1px solid var(--color-border-subtle)'
       }}
       ref={containerRef}
     >
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 -z-0 opacity-30"
         style={{
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="1"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23grid)" /%3E%3C/svg%3E")',
+          background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(91, 124, 153, 0.08), transparent 70%)'
         }}
       />
 
-      <div
-        className="absolute inset-0 -z-0 blur-3xl opacity-20"
-        style={{
-          background: 'radial-gradient(circle at 50% 50%, var(--color-accent), transparent 60%)'
-        }}
-      />
-
-      <div
-        className="h-1 w-full absolute top-0 left-0"
-        style={{
-          background: 'linear-gradient(90deg, transparent, var(--color-accent), transparent)'
-        }}
-      />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center scroll-reveal">
-          <div
-            className="text-sm font-bold uppercase tracking-wider mb-4"
-            style={{ color: 'var(--color-accent)' }}
-          >
-            {label}
-          </div>
-
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+      <div className="content-width relative z-10">
+        <div className="max-w-3xl mx-auto text-center scroll-reveal">
+          <h2 className="section-title text-balance mb-4" style={{ color: 'var(--color-text-primary)' }}>
             {headline}
           </h2>
 
-          <p className="text-xl md:text-2xl mb-12 text-white/80 leading-relaxed">
+          <p className="editorial-subheading mb-10" style={{ color: 'var(--color-text-secondary)' }}>
             {subtitle}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <PremiumButton
-              variant="primary"
-              size="lg"
-              icon={FileText}
-              href={primaryHref}
-            >
-              {primaryText}
-            </PremiumButton>
-            <PremiumButton
-              variant="glass"
-              size="lg"
-              icon={Phone}
-              href={secondaryHref}
-              className="text-white"
-            >
-              {secondaryText}
-            </PremiumButton>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            {primaryHref?.startsWith('http') || primaryHref?.startsWith('tel') || primaryHref?.startsWith('mailto') ? (
+              <a href={primaryHref} className="btn-primary inline-flex items-center gap-2">
+                <FileText className="w-5 h-5" />
+                <span>{primaryText}</span>
+              </a>
+            ) : (
+              <Link to={primaryHref || '/contact'} className="btn-primary inline-flex items-center gap-2">
+                <FileText className="w-5 h-5" />
+                <span>{primaryText}</span>
+              </Link>
+            )}
+            <a href={secondaryHref} className="btn-secondary inline-flex items-center gap-2">
+              <Phone className="w-5 h-5" />
+              <span>{secondaryText}</span>
+            </a>
           </div>
 
           {trustChips && trustChips.length > 0 && (
-            <TrustChipRow chips={trustChips} variant="dark" />
+            <div className="flex flex-wrap justify-center gap-4 text-sm" style={{ color: 'var(--color-text-tertiary)' }}>
+              {trustChips.map((chip, i) => (
+                <span key={i}>{chip.text}</span>
+              ))}
+            </div>
           )}
         </div>
       </div>

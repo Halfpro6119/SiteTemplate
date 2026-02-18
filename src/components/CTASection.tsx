@@ -31,7 +31,7 @@ export default function CTASection({
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="section-title text-white mb-6"
-            style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+            style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
           >
             {title}
           </h2>

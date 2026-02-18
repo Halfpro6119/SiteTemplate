@@ -62,7 +62,7 @@ export default function MiniSitemap({
           {businessConfig.serviceAreas.slice(0, 10).map((area, index) => (
             <Link
               key={index}
-              to="/locations"
+              to="/areas"
               className="px-3 py-1.5 rounded-full text-xs transition-all duration-300"
               style={{
                 background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
@@ -76,7 +76,7 @@ export default function MiniSitemap({
         </div>
         {businessConfig.serviceAreas.length > 10 && (
           <Link
-            to="/locations"
+            to="/areas"
             className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
             style={{ color: 'var(--color-accent)' }}
           >

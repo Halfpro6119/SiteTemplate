@@ -13,7 +13,7 @@ interface HeroCTAProps {
 
 export default function HeroCTA({
   primaryText = 'Get a Quote',
-  primaryHref = '#contact',
+  primaryHref = '/contact',
   secondaryText = 'Explore Services',
   secondaryHref = '#services',
   trustChips = [

@@ -22,7 +22,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         <span
           className="font-bold text-lg pr-4"
           style={{
-            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontFamily: "'DM Sans', sans-serif",
             color: 'var(--color-neutral-950)'
           }}
         >

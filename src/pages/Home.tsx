@@ -1,358 +1,261 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Shield, Clock, Zap, Award, TrendingUp, Image as ImageIcon } from 'lucide-react';
-import * as Icons from 'lucide-react';
 import { businessConfig } from '../config';
-import SignatureServiceCard from '../components/SignatureServiceCard';
-import ReviewSnapshotPanel from '../components/ReviewSnapshotPanel';
-import PremiumReviewCard from '../components/PremiumReviewCard';
-import TrustFooterStrip from '../components/TrustFooterStrip';
-import GlassBadge from '../components/GlassBadge';
-import ImpactBlock from '../components/ImpactBlock';
-import ServiceAreaChip from '../components/ServiceAreaChip';
-import LuxuryDivider from '../components/LuxuryDivider';
-import HeroCTA from '../components/HeroCTA';
-import DecisionPointCTA from '../components/DecisionPointCTA';
-import CinematicCTA from '../components/CinematicCTA';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useHeroReveal } from '../hooks/useHeroReveal';
+import LuxuryDivider from '../components/LuxuryDivider';
+import CinematicCTA from '../components/CinematicCTA';
+import SignatureServiceCard from '../components/SignatureServiceCard';
+import { ArrowRight, Image as ImageIcon } from 'lucide-react';
+import * as Icons from 'lucide-react';
+
+const CRAFT_CARDS = [
+  { title: 'Repairs & Refurbishments', benefit: 'Meticulous attention to every repair.' },
+  { title: 'Full Roof Replacements', benefit: 'Complete replacements built to last.' },
+  { title: 'Commercial & Industrial', benefit: 'Trained, certified, and compliant.' }
+];
 
 export default function Home() {
   const { shouldAnimate, isRevealed } = useHeroReveal();
+  const trustRef = useScrollReveal();
   const servicesRef = useScrollReveal();
-  const impactRef = useScrollReveal();
-  const galleryRef = useScrollReveal();
-  const testimonialsRef = useScrollReveal();
-  const serviceAreasRef = useScrollReveal();
+  const projectsRef = useScrollReveal();
+  const processRef = useScrollReveal();
 
   return (
     <div className="min-h-screen">
+      {/* Hero */}
       <section
         className={`relative overflow-hidden cinematic-hero ${shouldAnimate && !isRevealed ? 'hero-bg-animate' : ''}`}
-        style={{
-          paddingTop: '12rem',
-          paddingBottom: '8rem'
-        }}
+        style={{ paddingTop: '11rem', paddingBottom: '8rem' }}
       >
         <div className="spotlight-glow" />
-
-        <div className="absolute top-20 right-10 float-badge-1 hidden lg:block">
-          <GlassBadge
-            icon={Clock}
-            title="24/7 Emergency"
-            subtitle="Fast Response"
-          />
-        </div>
-        <div className="absolute top-32 left-10 float-badge-2 hidden lg:block">
-          <GlassBadge
-            icon={Zap}
-            title="30-60 min"
-            subtitle="Response Time"
-          />
-        </div>
-        <div className="absolute bottom-32 right-20 float-badge-3 hidden lg:block">
-          <GlassBadge
-            icon={Award}
-            title={`Established ${new Date().getFullYear() - businessConfig.yearsExperience}`}
-            subtitle={`${businessConfig.yearsExperience}+ Years`}
-          />
-        </div>
-
         <div className="content-width relative z-10">
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="relative inline-block">
-              <h1 className={`editorial-heading text-balance mb-8 ${shouldAnimate && !isRevealed ? 'hero-headline-animate' : ''} ${isRevealed ? 'hero-revealed' : ''}`}>
-                {businessConfig.heroHeadline}
+          <div className="hero-split">
+            <div className="relative">
+              <div className={`inline-block mb-6 ${shouldAnimate && !isRevealed ? 'hero-headline-animate' : ''} ${isRevealed ? 'hero-revealed' : ''}`}>
+                <span
+                  className="inline-block px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase"
+                  style={{
+                    color: 'var(--color-accent-light)',
+                    border: '1px solid var(--color-border-medium)',
+                    background: 'rgba(91, 124, 153, 0.08)',
+                    fontFamily: 'DM Sans, sans-serif'
+                  }}
+                >
+                  Trust • Quality • 20-Year Guarantee
+                </span>
+              </div>
+              <h1 className={`editorial-heading text-balance mb-4 max-w-xl ${shouldAnimate && !isRevealed ? 'hero-headline-animate' : ''} ${isRevealed ? 'hero-revealed' : ''}`}>
+                Roofing built on precision.
               </h1>
-              <div className={`accent-line-reveal ${isRevealed ? 'hero-revealed' : ''}`} />
+              <div className="relative inline-block mb-6">
+                <div className={`accent-line-reveal ${isRevealed ? 'hero-revealed' : ''}`} />
+              </div>
+              <p className={`editorial-subheading text-balance mb-8 max-w-xl ${shouldAnimate && !isRevealed ? 'hero-subheadline-animate' : ''} ${isRevealed ? 'hero-revealed' : ''}`}>
+                {businessConfig.positioning.heroSub}
+              </p>
+              <div className={`flex flex-wrap gap-4 mb-8 ${shouldAnimate && !isRevealed ? 'hero-cta-animate' : ''} ${isRevealed ? 'hero-revealed' : ''}`}>
+                <Link to="/contact" className="btn-primary inline-flex items-center gap-2">
+                  <span>Request a Quote</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <a href="tel:01842762719" className="btn-secondary inline-flex items-center gap-2">
+                  <span>Call 01842 762719</span>
+                </a>
+              </div>
+              <div className={`flex flex-wrap gap-6 text-sm ${shouldAnimate && !isRevealed ? 'hero-info-animate' : ''} ${isRevealed ? 'hero-revealed' : ''}`} style={{ color: 'var(--color-text-tertiary)' }}>
+                <span>20-Year Guarantee</span>
+                <span>•</span>
+                <span>Family-Run</span>
+                <span>•</span>
+                <span>Norfolk & Suffolk</span>
+              </div>
             </div>
-            <p className={`editorial-subheading text-balance mb-14 ${shouldAnimate && !isRevealed ? 'hero-subheadline-animate' : ''} ${isRevealed ? 'hero-revealed' : ''}`}>
-              {businessConfig.heroSubheading}
-            </p>
-            <div className={`mb-20 ${shouldAnimate && !isRevealed ? 'hero-cta-animate' : ''} ${isRevealed ? 'hero-revealed' : ''}`}>
-              <HeroCTA
-                primaryText={businessConfig.ctaTemplates.hero.primaryText}
-                primaryHref={businessConfig.ctaTemplates.hero.primaryHref}
-                secondaryText={businessConfig.ctaTemplates.hero.secondaryText}
-                secondaryHref={businessConfig.ctaTemplates.hero.secondaryHref}
-                trustChips={businessConfig.ctaTemplates.hero.trustChips}
-                variant="light"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="py-10" style={{ backgroundColor: 'var(--color-bg-surface)', borderTop: '1px solid var(--color-border-subtle)', borderBottom: '1px solid var(--color-border-subtle)' }}>
-        <div className="content-width">
-          <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16">
-            <div className="flex items-center gap-3">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-5 h-5 ${
-                      i < Math.floor(businessConfig.rating)
-                        ? 'text-yellow-400 fill-yellow-400'
-                        : 'opacity-20'
-                    }`}
-                  />
+            <div className="relative hidden lg:block">
+              <div className="space-y-4">
+                {CRAFT_CARDS.map((card, i) => (
+                  <div
+                    key={card.title}
+                    className={`floating-card-3d p-6 rounded-xl ${shouldAnimate && !isRevealed ? 'hero-cta-animate' : ''} ${isRevealed ? 'hero-revealed' : ''}`}
+                    style={{
+                      marginLeft: i === 1 ? '1.5rem' : i === 2 ? '3rem' : '0',
+                      transitionDelay: `${1.6 + i * 0.15}s`
+                    }}
+                  >
+                    <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--color-text-primary)', fontFamily: 'Instrument Serif, serif' }}>
+                      {card.title}
+                    </h3>
+                    <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                      {card.benefit}
+                    </p>
+                  </div>
                 ))}
               </div>
-              <div>
-                <span className="font-bold text-lg" style={{ color: 'var(--color-text-primary)' }}>{businessConfig.rating}</span>
-                <span className="text-sm ml-2" style={{ color: 'var(--color-text-tertiary)' }}>({businessConfig.reviewCount} reviews)</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Shield className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fully Insured & Certified</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <MapPin className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Serving {businessConfig.city} & Surrounding Areas</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Zap className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fast Response Times</span>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Trust & quality */}
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={trustRef}>
+        <div className="content-width">
+          <div className="text-center mb-16 scroll-reveal">
+            <h2 className="section-title text-balance chapter-heading">
+              A company built on trust and quality
+            </h2>
+            <LuxuryDivider />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {businessConfig.valueTiles.map((tile, index) => {
+              const Icon = (Icons as Record<string, React.ComponentType<{ className?: string }>>)[tile.icon] || Icons.Award;
+              return (
+                <div
+                  key={tile.title}
+                  className="scroll-reveal text-center p-8 rounded-2xl transition-all duration-300 hover-lift"
+                  style={{
+                    transitionDelay: `${index * 80}ms`,
+                    background: 'var(--color-bg-elevated)',
+                    border: '1px solid var(--color-border-subtle)'
+                  }}
+                >
+                  <div className="icon-feature w-14 h-14 mx-auto mb-4 flex items-center justify-center">
+                    <Icon className="w-7 h-7" style={{ color: 'var(--color-accent)' }} />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text-primary)', fontFamily: 'Instrument Serif, serif' }}>
+                    {tile.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                    {tile.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Services preview */}
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={servicesRef}>
         <div className="content-width">
-          <div className="text-center mb-20 scroll-reveal">
+          <div className="text-center mb-16 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Our Services
+              Our services
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              Professional {businessConfig.businessType.toLowerCase()} services tailored to your needs
+              From pitched and flat roofs to timber, uPVC and industrial—each delivered with precision and respect.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {businessConfig.services.slice(0, 6).map((service, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {businessConfig.services.map((service, index) => (
               <div key={service.id} className="scroll-reveal" style={{ transitionDelay: `${index * 80}ms` }}>
                 <SignatureServiceCard
                   number={String(index + 1).padStart(2, '0')}
                   icon={service.icon}
                   title={service.name}
                   description={service.shortDescription}
-                  benefits={service.benefits}
+                  benefits={service.covers?.slice(0, 3)}
+                  href={`/services/${service.slug || service.id}`}
                 />
               </div>
             ))}
           </div>
           <div className="text-center scroll-reveal">
-            <Link
-              to="/services"
-              className="btn-primary btn-shine"
-            >
-              <span>View All Services</span>
-              <span>→</span>
+            <Link to="/services" className="btn-secondary inline-flex items-center gap-2">
+              <span>Explore all services</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-
-          <div className="mt-24 scroll-reveal">
-            <DecisionPointCTA
-              label={businessConfig.ctaTemplates.decisionPoint.fastResponse.label}
-              title={businessConfig.ctaTemplates.decisionPoint.fastResponse.title}
-              subtitle={businessConfig.ctaTemplates.decisionPoint.fastResponse.subtitle}
-              primaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.primaryText}
-              primaryHref="#contact"
-              secondaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.secondaryText}
-              secondaryHref={`tel:${businessConfig.phone}`}
-              tertiaryText="View Our Reviews"
-              tertiaryHref="/reviews"
-            />
-          </div>
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={impactRef}>
+      {/* Projects preview */}
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={projectsRef}>
         <div className="content-width">
-          <div className="text-center mb-20 scroll-reveal">
+          <div className="text-center mb-12 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Results That Matter
+              Projects
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              We deliver fast, reliable solutions that make a real difference
+              A selection of our work—attention to detail and respect for every property.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="scroll-reveal" style={{ transitionDelay: '0ms' }}>
-              <ImpactBlock
-                icon={Zap}
-                title="Fast Emergency Response"
-                description="When emergencies strike, every minute counts. Our rapid response team is ready to help 24/7, arriving within 30-60 minutes to handle urgent situations."
-                index={0}
-              />
-            </div>
-            <div className="scroll-reveal" style={{ transitionDelay: '100ms' }}>
-              <ImpactBlock
-                icon={Shield}
-                title="Reliable Long-Term Solutions"
-                description="We don't just fix problems temporarily. Our expert solutions are built to last, backed by comprehensive warranties and ongoing support."
-                index={1}
-              />
-            </div>
-            <div className="scroll-reveal" style={{ transitionDelay: '200ms' }}>
-              <ImpactBlock
-                icon={TrendingUp}
-                title="Transparent Pricing"
-                description="No hidden fees, no surprises. You'll know exactly what to expect before we start any work, with competitive rates and honest service."
-                index={2}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={galleryRef}>
-        <div className="content-width">
-          <div className="text-center mb-20 scroll-reveal">
-            <h2 className="section-title text-balance chapter-heading">
-              Our Work in Action
-            </h2>
-            <LuxuryDivider />
-            <p className="section-subtitle">
-              See the quality and craftsmanship that sets us apart
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {businessConfig.galleryImages.slice(0, 6).map((image, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {[1, 2, 3].map((i) => (
               <div
-                key={image.id}
-                className="scroll-reveal group relative overflow-hidden rounded-2xl"
+                key={i}
+                className="scroll-reveal rounded-xl overflow-hidden aspect-[4/3] transition-all duration-300 hover-lift"
                 style={{
-                  transitionDelay: `${index * 80}ms`,
-                  aspectRatio: '4/3'
+                  transitionDelay: `${i * 80}ms`,
+                  background: 'var(--color-bg-elevated)',
+                  border: '1px solid var(--color-border-subtle)'
                 }}
               >
-                <img
-                  src={image.url}
-                  alt={image.caption}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <p className="font-semibold">{image.caption}</p>
-                  </div>
+                <div className="w-full h-full flex items-center justify-center" style={{ color: 'var(--color-text-tertiary)' }}>
+                  <ImageIcon className="w-16 h-16 opacity-40" />
                 </div>
               </div>
             ))}
           </div>
           <div className="text-center scroll-reveal">
-            <Link
-              to="/gallery"
-              className="btn-primary btn-shine"
-            >
+            <Link to="/projects" className="btn-secondary inline-flex items-center gap-2">
               <ImageIcon className="w-5 h-5" />
-              <span>View Full Gallery</span>
+              <span>View Projects</span>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={testimonialsRef}>
-        <div className="content-width">
-          <div className="text-center mb-20 scroll-reveal">
+      {/* Process teaser */}
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={processRef}>
+        <div className="content-width max-w-3xl mx-auto">
+          <div className="text-center mb-12 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Trusted by Local Customers
+              What happens after you contact us
             </h2>
             <LuxuryDivider />
-            <p className="section-subtitle">
-              Real feedback from real customers in {businessConfig.city}
-            </p>
           </div>
-
-          <div className="mb-16 scroll-reveal">
-            <ReviewSnapshotPanel />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {businessConfig.testimonials.slice(0, 6).map((testimonial, index) => (
-              <div key={testimonial.id} className="scroll-reveal" style={{ transitionDelay: `${index * 80}ms` }}>
-                <PremiumReviewCard
-                  name={testimonial.name}
-                  rating={testimonial.rating}
-                  text={testimonial.text}
-                  date={testimonial.date}
-                  serviceTags={testimonial.serviceTags}
-                  verified={testimonial.verified}
-                  ownerReply={testimonial.ownerReply}
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="mb-16 scroll-reveal">
-            <TrustFooterStrip />
-          </div>
-
-          <div className="text-center scroll-reveal">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                to="/reviews"
-                className="btn-primary btn-shine"
-              >
-                <span>Read All Reviews</span>
-                <span>→</span>
-              </Link>
-              <Link
-                to="/contact"
-                className="btn-secondary"
-              >
-                <span>Get a Quote</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={serviceAreasRef}>
-        <div className="content-width">
-          <div className="text-center mb-20 scroll-reveal">
-            <h2 className="section-title text-balance chapter-heading">
-              Areas We Serve
-            </h2>
-            <LuxuryDivider />
-            <p className="section-subtitle">
-              Providing expert {businessConfig.businessType.toLowerCase()} services throughout the region
-            </p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-4 mb-16 scroll-reveal">
-            {businessConfig.serviceAreas.slice(0, 10).map((area, index) => (
-              <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-                <ServiceAreaChip
-                  area={area}
-                  isPrimary={index === 0}
-                />
+          <div className="space-y-6 mb-12">
+            {businessConfig.processSteps.map((item, index) => (
+              <div key={item.step} className="scroll-reveal flex gap-4 items-start" style={{ transitionDelay: `${index * 60}ms` }}>
+                <span
+                  className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold"
+                  style={{
+                    background: 'rgba(91, 124, 153, 0.15)',
+                    color: 'var(--color-accent-light)',
+                    fontFamily: 'DM Sans, sans-serif'
+                  }}
+                >
+                  {item.step}
+                </span>
+                <div>
+                  <h3 className="font-semibold" style={{ color: 'var(--color-text-primary)' }}>{item.title}</h3>
+                  <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>{item.description}</p>
+                </div>
               </div>
             ))}
           </div>
           <div className="text-center scroll-reveal">
-            <Link
-              to="/locations"
-              className="btn-secondary"
-            >
-              <MapPin className="w-5 h-5" />
-              <span>View All Service Areas</span>
+            <Link to="/process" className="btn-primary">
+              Start your quote
             </Link>
           </div>
         </div>
       </section>
 
       <CinematicCTA
-        label={businessConfig.ctaTemplates.cinematic.fastResponse.label}
-        headline={businessConfig.ctaTemplates.cinematic.fastResponse.headline}
-        subtitle={businessConfig.ctaTemplates.cinematic.fastResponse.subtitle}
-        primaryText={businessConfig.ctaTemplates.cinematic.fastResponse.primaryText}
-        primaryHref="#contact"
-        secondaryText={businessConfig.ctaTemplates.cinematic.fastResponse.secondaryText}
-        secondaryHref={`tel:${businessConfig.phone}`}
-        trustChips={businessConfig.ctaTemplates.contact.trustChips}
+        headline={businessConfig.ctaTemplates.cinematic.headline}
+        subtitle="Request a quote or call us. We operate throughout Norfolk and Suffolk and treat every property with respect."
+        primaryText={businessConfig.ctaTemplates.cinematic.primaryText}
+        primaryHref={businessConfig.ctaTemplates.cinematic.primaryHref}
+        secondaryText={businessConfig.ctaTemplates.cinematic.secondaryText}
+        secondaryHref={businessConfig.ctaTemplates.cinematic.secondaryHref}
+        trustChips={[
+          { icon: 'shield', text: '20-Year Guarantee' },
+          { icon: 'mapPin', text: 'Norfolk & Suffolk' }
+        ]}
       />
     </div>
   );

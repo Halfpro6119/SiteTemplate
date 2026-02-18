@@ -1,5 +1,5 @@
 import { Phone, FileText } from 'lucide-react';
-import PremiumButton from './PremiumButton';
+import { Link } from 'react-router-dom';
 
 interface FooterClosingCTAProps {
   title: string;
@@ -18,51 +18,48 @@ export default function FooterClosingCTA({
   secondaryText,
   secondaryHref
 }: FooterClosingCTAProps) {
+  const isExternal = primaryHref.startsWith('http') || primaryHref.startsWith('tel') || primaryHref.startsWith('mailto');
+
   return (
     <div className="relative pb-12">
       <div
-        className="absolute inset-0 -z-10 blur-3xl opacity-20"
+        className="max-w-4xl mx-auto rounded-2xl p-8 md:p-10 relative overflow-hidden"
         style={{
-          background: 'radial-gradient(circle at center, var(--color-accent), transparent 70%)'
+          background: 'var(--color-bg-elevated)',
+          border: '1px solid var(--color-border-subtle)'
         }}
-      />
-
-      <div
-        className="max-w-4xl mx-auto backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 md:p-10 relative overflow-hidden"
       >
         <div
-          className="h-1 w-full absolute top-0 left-0"
+          className="h-px w-full absolute top-0 left-0"
           style={{
             background: 'linear-gradient(90deg, transparent, var(--color-accent), transparent)'
           }}
         />
 
         <div className="text-center">
-          <h3 className="text-2xl md:text-3xl font-bold mb-3 text-white">
+          <h3 className="section-title mb-2" style={{ color: 'var(--color-text-primary)' }}>
             {title}
           </h3>
-          <p className="text-lg text-white/80 mb-8">
+          <p className="text-base mb-8" style={{ color: 'var(--color-text-secondary)' }}>
             {subtitle}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <PremiumButton
-              variant="primary"
-              size="lg"
-              icon={FileText}
-              href={primaryHref}
-            >
-              {primaryText}
-            </PremiumButton>
-            <PremiumButton
-              variant="glass"
-              size="lg"
-              icon={Phone}
-              href={secondaryHref}
-              className="text-white"
-            >
-              {secondaryText}
-            </PremiumButton>
+            {isExternal ? (
+              <a href={primaryHref} className="btn-primary inline-flex items-center gap-2">
+                <FileText className="w-5 h-5" />
+                <span>{primaryText}</span>
+              </a>
+            ) : (
+              <Link to={primaryHref} className="btn-primary inline-flex items-center gap-2">
+                <FileText className="w-5 h-5" />
+                <span>{primaryText}</span>
+              </Link>
+            )}
+            <a href={secondaryHref} className="btn-secondary inline-flex items-center gap-2">
+              <Phone className="w-5 h-5" />
+              <span>{secondaryText}</span>
+            </a>
           </div>
         </div>
       </div>

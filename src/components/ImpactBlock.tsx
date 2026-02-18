@@ -19,7 +19,7 @@ export default function ImpactBlock({ icon: Icon, title, description, index = 0 
       <h3
         className="text-2xl font-bold mb-4"
         style={{
-          fontFamily: 'Plus Jakarta Sans, sans-serif',
+          fontFamily: "'Instrument Serif', Georgia, serif",
           color: 'var(--color-text-primary)',
           letterSpacing: '0.01em'
         }}

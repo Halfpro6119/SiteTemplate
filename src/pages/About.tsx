@@ -1,252 +1,95 @@
-import { Users, Target, Heart, Shield, Award, TrendingUp } from 'lucide-react';
+import { Users, Target, Heart, Shield } from 'lucide-react';
 import { businessConfig } from '../config';
-import CTASection from '../components/CTASection';
 import PageHero from '../components/PageHero';
 import Breadcrumb from '../components/Breadcrumb';
-import PremiumValueCard from '../components/PremiumValueCard';
-import StatCard from '../components/StatCard';
 import LuxuryDivider from '../components/LuxuryDivider';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { Link } from 'react-router-dom';
+
+const valueIcons = [Target, Heart, Shield];
 
 export default function About() {
   const storyRef = useScrollReveal();
-  const statsRef = useScrollReveal();
   const valuesRef = useScrollReveal();
-  const missionRef = useScrollReveal();
+
+  const { about } = businessConfig;
 
   return (
     <div className="min-h-screen">
       <PageHero
-        title={`Your Local ${businessConfig.businessType} Experts`}
-        subtitle="Building trust and delivering excellence, one customer at a time"
-      >
-        <div className="mt-8">
-          <Breadcrumb items={[
-            { label: 'Home', href: '/' },
-            { label: 'About' }
-          ]} />
-        </div>
-      </PageHero>
+        title="About TRC Roofing"
+        subtitle="Family-run, with over 40 years combined experience. Precision, integrity, and respect for every property."
+      />
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={storyRef}>
         <div className="content-width">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
-              <div className="scroll-reveal">
-                <div
-                  className="inline-block px-4 py-2 rounded-full mb-6"
-                  style={{
-                    background: 'rgba(6, 182, 212, 0.1)',
-                    border: '1px solid rgba(6, 182, 212, 0.2)',
-                    color: 'var(--color-accent)',
-                    fontSize: '0.875rem',
-                    fontWeight: 600
-                  }}
-                >
-                  Our Story
-                </div>
-                <h2
-                  className="text-4xl font-bold mb-6"
-                  style={{
-                    color: 'var(--color-text-primary)',
-                    fontFamily: 'Plus Jakarta Sans, sans-serif',
-                    letterSpacing: '-0.02em'
-                  }}
-                >
-                  Building Trust Since {new Date().getFullYear() - businessConfig.yearsExperience}
-                </h2>
-                <div className="prose prose-lg leading-relaxed space-y-4" style={{ color: 'var(--color-text-secondary)' }}>
-                  {businessConfig.aboutStory.split('\n\n').map((paragraph, index) => (
-                    <p key={index} style={{ fontSize: '1.0625rem', lineHeight: '1.8' }}>{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-              <div className="scroll-reveal" style={{ transitionDelay: '100ms' }}>
-                <div
-                  className="relative rounded-2xl aspect-square flex items-center justify-center overflow-hidden group"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-elevated) 100%)',
-                    border: '1px solid var(--color-border-subtle)',
-                    boxShadow: 'var(--shadow-luxury-lg)'
-                  }}
-                >
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                    style={{
-                      background: 'radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 70%)'
-                    }}
-                  />
-                  <Users className="w-32 h-32 relative z-10 transition-transform duration-500 group-hover:scale-110" style={{ color: 'var(--color-text-tertiary)' }} />
-                </div>
+          <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
+          <div className="max-w-3xl mx-auto">
+            <div className="scroll-reveal">
+              <p className="text-lg leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                {about.story}
+              </p>
+            </div>
+            <div className="mt-16 scroll-reveal flex justify-center">
+              <div
+                className="rounded-2xl aspect-square w-64 flex items-center justify-center"
+                style={{
+                  background: 'var(--color-bg-surface)',
+                  border: '1px solid var(--color-border-subtle)'
+                }}
+              >
+                <Users className="w-24 h-24" style={{ color: 'var(--color-text-tertiary)' }} />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={statsRef}>
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={valuesRef}>
         <div className="content-width">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16 scroll-reveal">
-              <h2
-                className="text-3xl md:text-4xl font-bold mb-4"
-                style={{
-                  color: 'var(--color-text-primary)',
-                  fontFamily: 'Plus Jakarta Sans, sans-serif',
-                  letterSpacing: '-0.02em'
-                }}
-              >
-                Trusted by the Community
-              </h2>
-              <LuxuryDivider />
-              <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>
-                Our track record speaks for itself
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <StatCard
-                value={`${businessConfig.yearsExperience}+`}
-                label="Years Experience"
-                description="Trusted expertise you can count on"
-                delay={0}
-              />
-              <StatCard
-                value={businessConfig.rating}
-                label="Star Rating"
-                description={`Based on ${businessConfig.reviewCount} reviews`}
-                delay={100}
-              />
-              <StatCard
-                value="100%"
-                label="Local"
-                description={`Owned and operated in ${businessConfig.city}`}
-                delay={200}
-              />
-            </div>
+          <div className="text-center mb-16 scroll-reveal">
+            <h2 className="section-title">Our values</h2>
+            <LuxuryDivider />
           </div>
-        </div>
-      </section>
-
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={valuesRef}>
-        <div className="content-width">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-20 scroll-reveal">
-              <h2
-                className="text-3xl md:text-4xl font-bold mb-4"
-                style={{
-                  color: 'var(--color-text-primary)',
-                  fontFamily: 'Plus Jakarta Sans, sans-serif',
-                  letterSpacing: '-0.02em'
-                }}
-              >
-                Our Core Values
-              </h2>
-              <LuxuryDivider />
-              <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--color-text-secondary)' }}>
-                The principles that guide everything we do
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {businessConfig.values.map((value, index) => {
-                const icons = [Target, Heart, Shield];
-                const IconComponent = icons[index % icons.length];
-
-                return (
-                  <div key={index} className="scroll-reveal" style={{ transitionDelay: `${index * 100}ms` }}>
-                    <PremiumValueCard
-                      icon={IconComponent}
-                      title={value.title}
-                      description={value.description}
-                      index={index}
-                    />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {about.values.map((value, index) => {
+              const Icon = valueIcons[index % valueIcons.length];
+              return (
+                <div
+                  key={value.title}
+                  className="scroll-reveal text-center p-8 rounded-2xl hover-lift"
+                  style={{
+                    transitionDelay: `${index * 80}ms`,
+                    background: 'var(--color-bg-elevated)',
+                    border: '1px solid var(--color-border-subtle)'
+                  }}
+                >
+                  <div className="icon-feature w-14 h-14 mx-auto mb-4 flex items-center justify-center">
+                    <Icon className="w-7 h-7" style={{ color: 'var(--color-accent)' }} />
                   </div>
-                );
-              })}
-            </div>
+                  <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text-primary)', fontFamily: 'Instrument Serif, serif' }}>
+                    {value.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                    {value.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={missionRef}>
-        <div className="content-width">
-          <div className="max-w-4xl mx-auto">
-            <div
-              className="relative overflow-hidden rounded-3xl p-12 md:p-16 scroll-reveal"
-              style={{
-                background: 'linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg-surface) 100%)',
-                border: '1px solid var(--color-border-medium)',
-                boxShadow: 'var(--shadow-luxury-xl)'
-              }}
-            >
-              <div
-                className="absolute top-0 left-0 right-0 h-1"
-                style={{
-                  background: 'linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-light) 100%)'
-                }}
-              />
-
-              <div
-                className="absolute inset-0 opacity-30 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle at 30% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 60%)'
-                }}
-              />
-
-              <div className="relative z-10 text-center">
-                <div
-                  className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)',
-                    boxShadow: '0 8px 32px -8px var(--color-accent-glow)'
-                  }}
-                >
-                  <Award className="w-8 h-8" style={{ color: 'var(--color-text-inverse)' }} />
-                </div>
-
-                <h2
-                  className="text-3xl md:text-4xl font-bold mb-6"
-                  style={{
-                    color: 'var(--color-text-primary)',
-                    fontFamily: 'Plus Jakarta Sans, sans-serif',
-                    letterSpacing: '-0.02em'
-                  }}
-                >
-                  Why We Do What We Do
-                </h2>
-
-                <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--color-text-secondary)' }}>
-                  We believe that exceptional {businessConfig.businessType.toLowerCase()} service should
-                  be accessible to everyone in {businessConfig.city}. That is why we have built our
-                  business on transparency, reliability, and genuine care for our customers.
-                </p>
-
-                <p className="text-lg leading-relaxed mb-8" style={{ color: 'var(--color-text-secondary)' }}>
-                  When you work with us, you are not just getting a service provider. You are getting a
-                  partner who is invested in your success and satisfaction.
-                </p>
-
-                <div
-                  className="inline-block px-6 py-3 rounded-xl font-semibold"
-                  style={{
-                    background: 'rgba(6, 182, 212, 0.15)',
-                    border: '1px solid rgba(6, 182, 212, 0.3)',
-                    color: 'var(--color-accent)'
-                  }}
-                >
-                  Serving {businessConfig.city} with Pride & Excellence
-                </div>
-              </div>
-            </div>
-          </div>
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }}>
+        <div className="content-width max-w-2xl mx-auto text-center">
+          <p className="text-lg mb-8" style={{ color: 'var(--color-text-secondary)' }}>
+            Operating throughout Norfolk and Suffolk—including Bury St Edmunds and surrounding towns. When you choose TRC, you're choosing a partner that goes above and beyond.
+          </p>
+          <Link to="/contact" className="btn-primary">
+            Request a Quote
+          </Link>
         </div>
       </section>
-
-      <CTASection
-        title="Experience the Difference"
-        subtitle="Join hundreds of satisfied customers in {businessConfig.city}"
-      />
     </div>
   );
 }

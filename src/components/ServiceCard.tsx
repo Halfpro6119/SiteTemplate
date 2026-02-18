@@ -22,7 +22,7 @@ export default function ServiceCard({ icon, title, description }: ServiceCardPro
         <h3
           className="text-xl font-bold mb-4"
           style={{
-            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontFamily: "'DM Sans', sans-serif",
             color: 'var(--color-text-primary)',
             letterSpacing: '0.01em'
           }}

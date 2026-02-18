@@ -1,4 +1,4 @@
-import { Shield, Clock, Award, CheckCircle2, Star, Users } from 'lucide-react';
+import { Shield, Clock, Award, CheckCircle2, Star, Users, MapPin } from 'lucide-react';
 
 const iconMap = {
   shield: Shield,
@@ -6,7 +6,8 @@ const iconMap = {
   award: Award,
   check: CheckCircle2,
   star: Star,
-  users: Users
+  users: Users,
+  mapPin: MapPin
 };
 
 interface TrustChip {
@@ -43,8 +44,8 @@ export default function TrustChipRow({ chips, variant = 'light', size = 'md' }: 
               hover:scale-105
               ${
                 variant === 'light'
-                  ? 'bg-white/80 border-cyan-200/50 text-slate-700'
-                  : 'bg-white/5 border-white/20 text-white/90'
+                  ? 'bg-white/80 border border-black/10 text-[var(--color-text-inverse)]'
+                  : 'bg-white/5 border border-white/20 text-white/90'
               }
             `}
           >

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { LucideIcon } from 'lucide-react';
 
 interface PremiumButtonProps {
@@ -7,6 +8,7 @@ interface PremiumButtonProps {
   icon?: LucideIcon;
   iconPosition?: 'left' | 'right';
   href?: string;
+  to?: string;
   onClick?: () => void;
   className?: string;
 }
@@ -18,10 +20,12 @@ export default function PremiumButton({
   icon: Icon,
   iconPosition = 'right',
   href,
+  to,
   onClick,
   className = ''
 }: PremiumButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-300 whitespace-nowrap';
+  const baseStyles =
+    'inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-300 whitespace-nowrap font-[inherit]';
 
   const sizeStyles = {
     sm: 'px-4 py-2 text-sm',
@@ -29,49 +33,15 @@ export default function PremiumButton({
     lg: 'px-8 py-4 text-lg'
   };
 
-  const variantStyles = {
-    primary: `
-      bg-gradient-to-r from-cyan-500 to-cyan-600
-      hover:from-cyan-400 hover:to-cyan-500
-      text-white
-      shadow-lg shadow-cyan-500/25
-      hover:shadow-xl hover:shadow-cyan-500/40
-      hover:-translate-y-1
-      active:translate-y-0
-    `,
-    secondary: `
-      bg-gradient-to-r from-slate-700 to-slate-800
-      hover:from-slate-600 hover:to-slate-700
-      text-white
-      shadow-lg shadow-slate-900/30
-      hover:shadow-xl hover:shadow-slate-900/50
-      hover:-translate-y-1
-      active:translate-y-0
-    `,
-    outline: `
-      border-2 border-current
-      hover:bg-white/5
-      relative overflow-hidden
-      group
-      before:absolute before:inset-0
-      before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent
-      before:translate-x-[-200%]
-      hover:before:translate-x-[200%]
-      before:transition-transform before:duration-700
-    `,
-    glass: `
-      backdrop-blur-xl
-      bg-white/10
-      border border-white/20
-      hover:bg-white/15
-      hover:border-white/30
-      shadow-lg
-      hover:shadow-xl
-      hover:-translate-y-0.5
-    `
+  const variantClass = {
+    primary: 'btn-primary',
+    secondary: 'btn-secondary',
+    outline: 'btn-secondary',
+    glass:
+      'backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 hover:border-white/30 shadow-lg hover:shadow-xl hover:-translate-y-0.5'
   };
 
-  const combinedClassName = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
+  const combinedClassName = `${baseStyles} ${sizeStyles[size]} ${variantClass[variant]} ${className}`.trim();
 
   const content = (
     <>
@@ -80,6 +50,14 @@ export default function PremiumButton({
       {Icon && iconPosition === 'right' && <Icon className="w-5 h-5" />}
     </>
   );
+
+  if (to) {
+    return (
+      <Link to={to} className={combinedClassName}>
+        {content}
+      </Link>
+    );
+  }
 
   if (href) {
     return (
@@ -90,7 +68,7 @@ export default function PremiumButton({
   }
 
   return (
-    <button onClick={onClick} className={combinedClassName}>
+    <button type="button" onClick={onClick} className={combinedClassName}>
       {content}
     </button>
   );

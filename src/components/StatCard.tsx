@@ -22,7 +22,7 @@ export default function StatCard({ value, label, description, delay = 0 }: StatC
         <span
           className="text-3xl font-bold"
           style={{
-            fontFamily: 'Plus Jakarta Sans, sans-serif'
+            fontFamily: "'DM Sans', sans-serif"
           }}
         >
           {value}
@@ -40,7 +40,7 @@ export default function StatCard({ value, label, description, delay = 0 }: StatC
         className="text-xl font-bold mb-2"
         style={{
           color: 'var(--color-text-primary)',
-          fontFamily: 'Plus Jakarta Sans, sans-serif'
+          fontFamily: "'DM Sans', sans-serif"
         }}
       >
         {label}

@@ -1,370 +1,212 @@
-const city = '[City]';
-const businessName = '[Business Name]';
+/**
+ * TRC Roofing – Business configuration
+ * Norfolk & Suffolk | Bury St Edmunds and surrounding areas
+ */
 
 export const businessConfig = {
-  businessName: businessName,
-  businessType: '[Service Type]',
-  city: city,
-  state: '[State]',
+  businessName: 'TRC Roofing',
+  businessType: 'roofing',
+  tagline: 'Precision roofing across Norfolk & Suffolk',
+  phone: '01842 762719',
+  phoneRaw: '01842762719',
+  email: 'enquiries@trcroofing.co.uk',
+  city: 'Norfolk & Suffolk',
+  state: '',
 
-  tagline: 'Your Trusted Local Experts',
-  heroHeadline: 'Premium [Service] Services in [City]',
-  heroSubheading: 'Reliable, Professional, and Trusted by Your Community',
+  yearsExperience: 40,
+  rating: 5,
+  reviewCount: 0, // placeholder – update when reviews added
 
-  phone: '(555) 123-4567',
-  whatsapp: '5551234567',
-  email: 'hello@business.com',
+  /* Core positioning (verbatim / close) */
+  positioning: {
+    full: `At TRC Roofing, our unwavering focus on precision and top-tier craftsmanship sets us apart. From roof repairs and refurbishments to complete roof replacements, each task receives meticulous attention to detail. Our 20-year guarantee underscores our commitment to quality and durability. Operating throughout Norfolk and Suffolk, we treat both you and your property with the utmost respect. When you choose TRC, you're choosing a partner that goes above and beyond.`,
+    short: 'Meticulous attention to detail on every job. A 20-year guarantee. Operating throughout Norfolk and Suffolk—treating you and your property with the utmost respect.',
+    heroSub: 'From repairs and refurbishments to full replacements, each task receives meticulous attention. Our 20-year guarantee and respect for your property set us apart.'
+  },
 
-  yearsExperience: 15,
-  rating: 4.9,
-  reviewCount: 127,
-
+  /* Services – 4 premium offerings */
   services: [
     {
-      id: 1,
-      name: 'Service One',
-      icon: 'Wrench',
-      shortDescription: 'Quick and reliable service that delivers results',
-      fullDescription: 'Comprehensive service description that explains the benefits and what customers can expect from this specific service offering.',
-      benefits: ['Fast response time', 'Quality guaranteed', 'Experienced team'],
-      idealFor: 'Homeowners and businesses looking for reliable solutions'
+      id: 'pitched',
+      slug: 'pitched-roofs',
+      name: 'Pitched Roofs',
+      icon: 'Home',
+      shortDescription: 'Clay, concrete, slate, pan, plain tiles and shingles—replacement, new build, repair and restoration.',
+      fullDescription: 'We handle all aspects of pitched roofing: clay and concrete tiles, natural slate, pan and plain tiles, and shingles. Whether you need a full replacement, new build, repair or full restoration, we bring the same precision and craftsmanship to every project.',
+      outcome: 'A roof built to last, with materials and workmanship you can trust.',
+      covers: ['Clay & concrete tiles', 'Natural slate', 'Pan & plain tiles', 'Shingles', 'New build & replacement', 'Repair & restoration'],
+      materialsNote: 'We work with clay, concrete, natural slate, and quality shingles. We’ll advise on the best option for your property and budget.',
+      repairVsReplacement: 'We’ll assess whether repair or replacement is the right choice—no pressure, just clear advice based on condition and long-term value.'
     },
     {
-      id: 2,
-      name: 'Service Two',
-      icon: 'Shield',
-      shortDescription: 'Professional service backed by years of expertise',
-      fullDescription: 'Detailed explanation of this service, highlighting the value proposition and why customers should choose this option.',
-      benefits: ['Licensed and insured', 'Competitive pricing', 'Satisfaction guaranteed'],
-      idealFor: 'Anyone needing professional, trustworthy service'
+      id: 'flat',
+      slug: 'flat-roofs',
+      name: 'Flat Roofs',
+      icon: 'Square',
+      shortDescription: 'Standard and highly insulated flat roofs—recover, removal and new structures.',
+      fullDescription: 'From standard flat roofing to highly insulated systems, we offer full recover, strip and replacement, and new flat roof structures. We’ll recommend the right specification for your building and use.',
+      outcome: 'A flat roof that performs and lasts, with options to improve insulation where needed.',
+      covers: ['Standard flat roofing', 'Highly insulated systems', 'Recover & refurbishment', 'Full removal & replacement', 'New flat roof structures'],
+      materialsNote: 'We use quality membranes and insulation systems suited to your project. We can discuss build-up and U-values for better energy efficiency.',
+      repairVsReplacement: 'We’ll advise honestly on whether a recover is sufficient or a full replacement is the better long-term option.'
     },
     {
-      id: 3,
-      name: 'Service Three',
-      icon: 'Clock',
-      shortDescription: 'Emergency service available when you need it most',
-      fullDescription: 'Complete overview of emergency service capabilities and availability for urgent situations.',
-      benefits: ['24/7 availability', 'Rapid response', 'Emergency specialists'],
-      idealFor: 'Urgent situations requiring immediate attention'
+      id: 'timber-upvc',
+      slug: 'timber-upvc',
+      name: 'Timber & uPVC',
+      icon: 'Layout',
+      shortDescription: 'Fascias, soffits, barge boards and structural carpentry for new roofs and reinforcement.',
+      fullDescription: 'We provide fascias, soffits and barge boards in timber and uPVC, plus structural carpentry for new roofs and reinforcement. A complete roofline and structural service from one trusted team.',
+      outcome: 'A tidy, durable roofline and a structure that’s built to last.',
+      covers: ['Fascias & soffits', 'Barge boards', 'Timber & uPVC', 'Structural carpentry', 'New roof structures', 'Reinforcement'],
+      materialsNote: 'We offer both timber and uPVC roofline products and will recommend what’s best for your property and maintenance preferences.',
+      repairVsReplacement: 'We’ll tell you when repair is enough and when replacement of fascias, soffits or structure is the right call.'
     },
     {
-      id: 4,
-      name: 'Service Four',
-      icon: 'Star',
-      shortDescription: 'Premium service for discerning customers',
-      fullDescription: 'Premium service offering with enhanced features and priority support for customers who expect the best.',
-      benefits: ['Premium quality', 'Priority scheduling', 'Extended warranty'],
-      idealFor: 'Customers seeking the highest quality service'
-    },
-    {
-      id: 5,
-      name: 'Service Five',
-      icon: 'Heart',
-      shortDescription: 'Maintenance plans to keep everything running smoothly',
-      fullDescription: 'Regular maintenance service plans designed to prevent problems and ensure optimal performance over time.',
-      benefits: ['Preventive care', 'Cost savings', 'Peace of mind'],
-      idealFor: 'Homeowners wanting ongoing protection'
-    },
-    {
-      id: 6,
-      name: 'Service Six',
-      icon: 'Award',
-      shortDescription: 'Specialized service for complex situations',
-      fullDescription: 'Advanced service for complex requirements, handled by experienced specialists with proven expertise.',
-      benefits: ['Expert specialists', 'Advanced techniques', 'Proven results'],
-      idealFor: 'Complex projects requiring specialized knowledge'
+      id: 'industrial',
+      slug: 'industrial-roofs',
+      name: 'Industrial Roofs',
+      icon: 'Building2',
+      shortDescription: 'Commercial and industrial repairs and maintenance; trained and certified for heavy machinery and safety equipment.',
+      fullDescription: 'We carry out repairs and maintenance on commercial and industrial roofs. Our team is trained and certified to work with heavy machinery and safety equipment, and we can provide guidance and supervision for specialised safety equipment where required.',
+      outcome: 'Safe, compliant and reliable roofing with the right expertise and kit.',
+      covers: ['Commercial & industrial repairs', 'Planned maintenance', 'Heavy machinery & safety equipment', 'Guidance & supervision for specialist equipment'],
+      materialsNote: 'We work with the systems and specifications appropriate to your building type and insurer requirements.',
+      repairVsReplacement: 'We’ll advise on repair vs replacement and on scheduling to minimise disruption.'
     }
   ],
 
-  whyChooseUs: [
-    {
-      title: 'Locally Owned & Operated',
-      description: 'We live and work in [City]. Your neighbors trust us, and we take that responsibility seriously.',
-      icon: 'MapPin'
-    },
-    {
-      title: 'Fast Response Times',
-      description: 'We understand urgency. Count on us for quick, reliable service when you need it most.',
-      icon: 'Zap'
-    },
-    {
-      title: 'Quality Guaranteed',
-      description: 'We stand behind our work with comprehensive warranties and a commitment to excellence.',
-      icon: 'CheckCircle'
-    },
-    {
-      title: 'Transparent Pricing',
-      description: 'No surprises, no hidden fees. You will know the cost upfront before we start any work.',
-      icon: 'DollarSign'
-    }
+  /* Value tiles for trust section */
+  valueTiles: [
+    { title: 'Precision Craftsmanship', description: 'Every job receives meticulous attention to detail—no shortcuts.', icon: 'Award' },
+    { title: 'Respect for your property', description: 'We treat your home and site with the utmost care and leave them tidy.', icon: 'Heart' },
+    { title: 'Built to last', description: 'Our 20-year guarantee underscores our commitment to quality and durability.', icon: 'Shield' }
   ],
 
-  testimonials: [
-    {
-      id: 1,
-      name: 'Sarah Johnson',
-      rating: 5,
-      text: 'Absolutely outstanding service! They arrived on time, were professional, and did an excellent job. The technician explained everything clearly and answered all my questions. The pricing was transparent with no hidden fees, and they completed the work faster than expected without compromising quality. I would definitely recommend them to anyone in [City].',
-      date: '2 weeks ago',
-      serviceTags: ['Service One'],
-      verified: true,
-      ownerReply: 'Thank you Sarah! We truly appreciate your kind words and are thrilled we could exceed your expectations. Customer satisfaction is our top priority.'
-    },
-    {
-      id: 2,
-      name: 'Michael Chen',
-      rating: 5,
-      text: 'I have used several companies over the years, but this is by far the best. Great communication throughout the entire process, fair and competitive pricing, and top-quality work that speaks for itself. They really go above and beyond what you would expect from a service company.',
-      date: '1 month ago',
-      serviceTags: ['Service Two'],
-      verified: true
-    },
-    {
-      id: 3,
-      name: 'Emily Rodriguez',
-      rating: 5,
-      text: 'Very impressed with their professionalism and attention to detail. They exceeded my expectations in every way. The team was courteous, respectful of my home, and cleaned up thoroughly after completing the job.',
-      date: '1 month ago',
-      serviceTags: ['Service Three'],
-      verified: true,
-      ownerReply: 'Emily, thank you for trusting us with your project! We take pride in treating every home with the utmost care and respect.'
-    },
-    {
-      id: 4,
-      name: 'David Thompson',
-      rating: 5,
-      text: 'Quick response, excellent service, and reasonable prices. What more could you ask for? They were able to fit me in on short notice and resolved my issue efficiently. The technician was knowledgeable and friendly. Highly recommended!',
-      date: '2 months ago',
-      serviceTags: ['Service Three'],
-      verified: true
-    },
-    {
-      id: 5,
-      name: 'Jennifer Martinez',
-      rating: 5,
-      text: 'These guys are the real deal. Professional, knowledgeable, and genuinely care about doing the job right. They did not try to upsell me on services I did not need, which I really appreciated. Honest and trustworthy company.',
-      date: '2 months ago',
-      serviceTags: ['Service Four'],
-      verified: true
-    },
-    {
-      id: 6,
-      name: 'Robert Wilson',
-      rating: 5,
-      text: 'I am so glad I found this company. They were courteous, efficient, and their work quality is exceptional. The entire experience from initial contact to project completion was seamless and stress-free.',
-      date: '3 months ago',
-      serviceTags: ['Service Five'],
-      verified: true,
-      ownerReply: 'We appreciate your trust in us, Robert! Making the experience seamless for our customers is always our goal.'
-    },
-    {
-      id: 7,
-      name: 'Amanda Foster',
-      rating: 5,
-      text: 'Exceptional service from start to finish! The team was punctual, professional, and incredibly skilled. They took the time to explain the work process and made sure I was comfortable with everything before proceeding. The results exceeded my expectations.',
-      date: '3 months ago',
-      serviceTags: ['Service One'],
-      verified: true
-    },
-    {
-      id: 8,
-      name: 'Carlos Rivera',
-      rating: 4,
-      text: 'Very good experience overall. The work was completed on schedule and the quality was solid. Communication could have been slightly better during the project, but the end result was worth it. Would use them again.',
-      date: '4 months ago',
-      serviceTags: ['Service Six'],
-      verified: true,
-      ownerReply: 'Thank you for your feedback, Carlos. We are always working to improve our communication and appreciate you bringing this to our attention. Glad you are happy with the results!'
-    },
-    {
-      id: 9,
-      name: 'Lisa Wang',
-      rating: 5,
-      text: 'Outstanding company! They handled a complex project with expertise and professionalism. The team was knowledgeable, respectful, and delivered exactly what they promised. Pricing was fair and there were no surprise charges.',
-      date: '4 months ago',
-      serviceTags: ['Service Two'],
-      verified: true
-    }
+  /* Process steps – “What happens after you contact us” */
+  processSteps: [
+    { step: 1, title: 'Site visit & discuss your needs', description: 'We arrange a convenient visit to understand your project and your priorities.' },
+    { step: 2, title: 'Written quote in clear language', description: 'You receive a written quote with no jargon—so you know exactly what you’re getting.' },
+    { step: 3, title: 'Options to meet your needs', description: 'We look for savings where we can, but cheapest isn’t always best. We discuss options for your situation.' },
+    { step: 4, title: 'Work completed with respect & detail', description: 'We complete the work to our high standard, with respect for your property and a tidy finish.' }
   ],
 
-  trustChips: [
-    'Professional Service',
-    'Fast Response',
-    'Transparent Pricing',
-    'Quality Workmanship'
+  /* Process page reassurance copy */
+  processCopy: {
+    writtenQuote: 'Written quote, clear language.',
+    valueLed: 'We look for savings but cheapest isn’t always best. We discuss options for your situation.',
+    reassurance: 'From first contact to final clean-up, we keep you informed and your property respected.'
+  },
+
+  /* FAQ – Process / general */
+  faq: [
+    { question: 'How long does a typical job take?', answer: 'It depends on the scope—from a single repair to a full replacement. We’ll give you a clear timeline in your quote and keep you updated.' },
+    { question: 'How do I get a quote?', answer: 'Contact us by phone or the quote form. We’ll arrange a site visit and send you a written quote in clear language.' },
+    { question: 'What does the 20-year guarantee cover?', answer: 'Our guarantee covers the workmanship and materials we install. We’ll confirm the exact terms when you receive your quote.' },
+    { question: 'Do you use specific materials?', answer: 'We use quality materials suited to each project—clay, concrete, slate, membranes, and roofline products. We’ll recommend the best option for your property.' },
+    { question: 'Are you safe and compliant on industrial jobs?', answer: 'Yes. We’re trained and certified for heavy machinery and safety equipment, and can provide guidance and supervision for specialist equipment.' },
+    { question: 'Do you leave the site tidy?', answer: 'Yes. A tidy finish and respect for your property are part of our standard—we clear up and leave the area as we found it.' }
   ],
 
+  /* Areas – Norfolk & Suffolk, Bury St Edmunds key */
   serviceAreas: [
-    '[City] (Primary)',
-    '[Nearby Town 1]',
-    '[Nearby Town 2]',
-    '[Nearby Town 3]',
-    '[Nearby Town 4]',
-    '[Nearby Town 5]',
-    '[Nearby Town 6]',
-    '[Nearby Town 7]',
-    '[Nearby Town 8]',
-    '[Nearby Town 9]'
+    'Norfolk',
+    'Suffolk',
+    'Bury St Edmunds',
+    'Thetford',
+    'Diss',
+    'Norwich',
+    'Ipswich',
+    'Stowmarket',
+    'Bungay',
+    'Attleborough',
+    'Mildenhall',
+    'Newmarket',
+    'Haverhill',
+    'Sudbury'
   ],
 
-  aboutStory: `With over ${15} years of experience serving the [City] community, [Business Name] has built a reputation for reliability, quality, and exceptional customer service. We started with a simple mission: to provide honest, professional [service] services that local families and businesses can trust.
+  areasPage: {
+    primaryRegions: ['Norfolk', 'Suffolk'],
+    keyTowns: [
+      { name: 'Bury St Edmunds', description: 'A key area we serve—domestic and commercial roofing across the town and surrounding villages.' },
+      { name: 'Thetford', description: 'Full range of roofing services for Thetford and the surrounding area.' },
+      { name: 'Norwich', description: 'Pitched, flat, and roofline work throughout Norwich and outskirts.' },
+      { name: 'Ipswich', description: 'Serving Ipswich and nearby—repairs, replacements and new roofing.' },
+      { name: 'Diss', description: 'Local roofing expertise for Diss and the Norfolk–Suffolk border.' }
+    ],
+    checkAreaPlaceholder: 'Enter your postcode or town'
+  },
 
-Today, we are proud to be one of the most trusted names in [City] for [service] services. Our team of experienced professionals is dedicated to delivering outstanding results on every project, big or small.`,
+  /* About */
+  about: {
+    story: 'TRC Roofing is a family-run business with over 40 years of combined experience. Our focus has always been on precision, quality and treating every customer and their property with respect.',
+    values: [
+      { title: 'Precision', description: 'We take pride in getting the details right—every time.' },
+      { title: 'Integrity', description: 'Honest advice, clear quotes, no pressure.' },
+      { title: 'Respect', description: 'For your property, your time, and your trust.' }
+    ]
+  },
 
-  values: [
-    {
-      title: 'Integrity',
-      description: 'We do what we say we will do, every single time. Your trust is our most valuable asset.'
-    },
-    {
-      title: 'Excellence',
-      description: 'Good enough is never good enough. We strive for excellence in every aspect of our work.'
-    },
-    {
-      title: 'Community',
-      description: 'We are part of this community and committed to making [City] an even better place to live.'
-    }
+  /* Reviews – placeholder array for easy future input */
+  testimonials: [
+    // Add real reviews here when available, e.g.:
+    // { id: 1, name: 'Homeowner, Bury St Edmunds', rating: 5, text: '...', date: '...', serviceTags: ['Pitched Roofs'], verified: true, ownerReply: '...' },
   ],
 
-  galleryImages: [
-    {
-      id: 1,
-      url: 'https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Recent project completion in [City]',
-      category: 'recent'
-    },
-    {
-      id: 2,
-      url: 'https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Professional service delivery',
-      category: 'recent'
-    },
-    {
-      id: 3,
-      url: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Quality workmanship you can trust',
-      category: 'before-after'
-    },
-    {
-      id: 4,
-      url: 'https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Attention to detail in every project',
-      category: 'recent'
-    },
-    {
-      id: 5,
-      url: 'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Transforming spaces in [City]',
-      category: 'before-after'
-    },
-    {
-      id: 6,
-      url: 'https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Expert team at work',
-      category: 'recent'
-    }
-  ],
+  trustChips: ['20-Year Guarantee', 'Family-Run', 'Norfolk & Suffolk'],
 
+  /* CTAs */
   ctaTemplates: {
     hero: {
-      primaryText: 'Get a Quote',
-      primaryHref: '#contact',
-      secondaryText: 'Explore Services',
-      secondaryHref: '#services',
-      trustChips: [
-        { icon: 'shield', text: 'Certified & Insured' },
-        { icon: 'clock', text: 'Fast Response' },
-        { icon: 'award', text: 'Trusted Locally' }
-      ]
-    },
-    decisionPoint: {
-      fastResponse: {
-        label: 'Need help today?',
-        title: 'Fast, Professional Service',
-        subtitle: 'Get clear pricing and expert service you can trust.',
-        primaryText: 'Get Free Quote',
-        secondaryText: 'Call Now'
-      },
-      premiumQuality: {
-        label: 'Ready to upgrade?',
-        title: 'Premium Quality That Lasts',
-        subtitle: 'Trusted workmanship backed by our satisfaction guarantee.',
-        primaryText: 'Get Started',
-        secondaryText: 'Learn More'
-      },
-      localTrust: {
-        label: 'Join our happy customers',
-        title: `Trusted in [City] Since [Year]`,
-        subtitle: 'Reliable service with no hassle and no inflated quotes.',
-        primaryText: 'Get Quote',
-        secondaryText: 'Speak to Us'
-      }
+      primaryText: 'Request a Quote',
+      primaryHref: '/contact',
+      secondaryText: 'Call 01842 762719',
+      secondaryHref: 'tel:01842762719',
+      trustRow: ['20-Year Guarantee', 'Family-Run', 'Norfolk & Suffolk']
     },
     cinematic: {
-      fastResponse: {
-        label: 'Get Started Today',
-        headline: 'Ready to Experience the Difference?',
-        subtitle: 'Join hundreds of satisfied customers who trust us with their needs.',
-        primaryText: 'Get a Quote',
-        secondaryText: 'Call Now'
-      },
-      premiumQuality: {
-        label: 'Transform Your Space',
-        headline: 'Quality Service You Can Count On',
-        subtitle: 'Professional results delivered with integrity and care.',
-        primaryText: 'Start Your Project',
-        secondaryText: 'Contact Us'
-      },
-      localTrust: {
-        label: 'Choose Local Excellence',
-        headline: `[City]'s Most Trusted Service Provider`,
-        subtitle: 'Serving our community with pride and professionalism.',
-        primaryText: 'Get Free Quote',
-        secondaryText: 'Call Today'
-      }
+      headline: 'Ready to protect your property the right way?',
+      primaryText: 'Request a Quote',
+      primaryHref: '/contact',
+      secondaryText: 'Call 01842 762719',
+      secondaryHref: 'tel:01842762719',
+      trustChips: ['20-Year Guarantee', 'Norfolk & Suffolk']
     },
     contact: {
-      title: 'Speak to a Specialist',
-      responseTime: 'We usually respond within 1 hour',
-      trustChips: [
-        { icon: 'shield', text: 'Certified' },
-        { icon: 'users', text: 'Local' },
-        { icon: 'star', text: 'Trusted' }
-      ]
+      title: 'Get in touch',
+      responseTime: 'We typically respond within one working day.',
+      phone: '01842 762719',
+      email: 'enquiries@trcroofing.co.uk',
+      serviceArea: 'Norfolk & Suffolk'
     }
   },
 
   footer: {
     closingCTA: {
       enabled: true,
-      title: 'Ready to Get Started?',
-      subtitle: 'Fast, clear advice and a no-obligation quote.',
-      primaryText: 'Get a Quote',
-      primaryHref: '#contact',
-      secondaryText: 'Call Now',
-      secondaryHref: 'tel:'
+      title: 'Ready to protect your property the right way?',
+      subtitle: 'Request a quote or call us for a no-obligation conversation.',
+      primaryText: 'Request a Quote',
+      primaryHref: '/contact',
+      secondaryText: 'Call 01842 762719',
+      secondaryHref: 'tel:01842762719'
     },
-    brandStatement: 'Your trusted local experts delivering quality service with integrity and professionalism.',
+    brandStatement: 'TRC Roofing—precision roofing across Norfolk and Suffolk. Family-run, 40+ years combined experience, 20-year guarantee.',
     brandTrustChips: [
-      { icon: 'shield', text: 'Certified' },
-      { icon: 'users', text: 'Trusted Locally' },
-      { icon: 'check', text: 'Transparent Pricing' }
+      { icon: 'shield', text: '20-Year Guarantee' },
+      { icon: 'users', text: 'Family-Run' },
+      { icon: 'mapPin', text: 'Norfolk & Suffolk' }
     ],
     servicesTitle: 'Our Services',
-    areasTitle: 'Service Areas',
-    areasDescription: `Proudly serving ${city} and surrounding communities`,
-    contactTitle: 'Get In Touch',
-    businessHours: 'Mon-Fri: 8am-6pm, Sat: 9am-4pm',
-    trustBadges: [
-      'Fully Insured',
-      'Qualified Team',
-      'Quality Workmanship',
-      'Satisfaction Guaranteed'
-    ],
+    areasTitle: 'Areas We Cover',
+    areasDescription: 'Operating throughout Norfolk and Suffolk, including Bury St Edmunds and surrounding towns.',
+    contactTitle: 'Contact',
+    businessHours: 'Mon–Fri: 8am–6pm (approx.)',
+    trustBadges: ['20-Year Guarantee', 'Family-Run', 'Fully Insured', 'Norfolk & Suffolk'],
     legalLinks: [
       { label: 'Privacy Policy', href: '#privacy' },
-      { label: 'Terms of Service', href: '#terms' },
-      { label: 'Cookie Policy', href: '#cookies' }
+      { label: 'Terms of Service', href: '#terms' }
     ],
     sitemap: {
       enabled: true,
@@ -373,31 +215,40 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
           title: 'Pages',
           links: [
             { label: 'Home', href: '/' },
-            { label: 'About', href: '/about' },
             { label: 'Services', href: '/services' },
+            { label: 'Projects', href: '/projects' },
+            { label: 'Process', href: '/process' },
+            { label: 'Areas', href: '/areas' },
+            { label: 'About', href: '/about' },
             { label: 'Reviews', href: '/reviews' },
-            { label: 'Gallery', href: '/gallery' },
-            { label: 'Locations', href: '/locations' },
             { label: 'Contact', href: '/contact' }
           ]
         },
         {
           title: 'Help',
           links: [
-            { label: 'Request a Quote', href: '#contact' },
-            { label: 'Contact Us', href: '/contact' },
-            { label: 'Privacy Policy', href: '#privacy' },
-            { label: 'Terms of Service', href: '#terms' }
+            { label: 'Request a Quote', href: '/contact' },
+            { label: 'Call 01842 762719', href: 'tel:01842762719' }
           ]
         }
       ]
     }
   },
 
+  /* Contact form */
+  contactForm: {
+    serviceTypes: ['Pitched Roofs', 'Flat Roofs', 'Timber & uPVC', 'Industrial Roofs'],
+    uploadPhotosLabel: 'Upload photos (optional)'
+  },
+
+  /* Projects / Gallery */
+  projectCategories: ['Pitched', 'Flat', 'uPVC', 'Industrial'],
+  galleryImages: [] as Array<{ id: number; url: string; caption: string; category: string }>,
+
   theme: {
-    primary: '#2563eb',
-    primaryHover: '#1d4ed8',
-    accent: '#10b981',
-    accentHover: '#059669'
+    primary: '#5b7c99',
+    primaryHover: '#4a6b85',
+    accent: '#b87333',
+    accentMuted: 'rgba(184, 115, 51, 0.25)'
   }
 };

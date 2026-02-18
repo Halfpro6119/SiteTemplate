@@ -37,7 +37,7 @@ function highlightKeywords(text: string): JSX.Element[] {
           key={index}
           className="inline-block px-1.5 py-0.5 rounded transition-all duration-300"
           style={{
-            backgroundColor: 'rgba(6, 182, 212, 0.12)',
+            backgroundColor: 'rgba(91, 124, 153, 0.15)',
             color: 'var(--color-accent)'
           }}
         >
@@ -79,7 +79,7 @@ export default function PremiumReviewCard({
       className="group rounded-xl shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 relative overflow-hidden"
       style={{
         backgroundColor: 'var(--color-bg-surface)',
-        border: '1px solid rgba(6, 182, 212, 0.06)'
+        border: '1px solid var(--color-border-subtle)'
       }}
     >
       <div
@@ -92,7 +92,7 @@ export default function PremiumReviewCard({
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{
-          background: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(6, 182, 212, 0.06), transparent 40%)'
+          background: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(91, 124, 153, 0.06), transparent 40%)'
         }}
       />
 
@@ -104,7 +104,7 @@ export default function PremiumReviewCard({
                 {name}
               </h3>
               {verified && (
-                <div className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium" style={{ backgroundColor: 'rgba(6, 182, 212, 0.1)', color: 'var(--color-accent)' }}>
+                <div className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium" style={{ backgroundColor: 'rgba(91, 124, 153, 0.12)', color: 'var(--color-accent)' }}>
                   <BadgeCheck className="w-3 h-3" />
                   <span>Verified</span>
                 </div>
@@ -116,11 +116,11 @@ export default function PremiumReviewCard({
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className={`w-4 h-4 ${
-                  i < rating
-                    ? 'fill-yellow-400 text-yellow-400'
-                    : 'fill-gray-300 text-gray-300'
-                }`}
+                className="w-4 h-4 flex-shrink-0"
+                style={{
+                  color: i < rating ? 'var(--color-accent)' : 'var(--color-text-tertiary)',
+                  fill: i < rating ? 'var(--color-accent)' : 'currentColor'
+                }}
               />
             ))}
           </div>
@@ -188,8 +188,8 @@ export default function PremiumReviewCard({
                 <div
                   className="p-4 rounded-lg border relative"
                   style={{
-                    backgroundColor: 'rgba(6, 182, 212, 0.04)',
-                    borderColor: 'rgba(6, 182, 212, 0.2)',
+                    backgroundColor: 'rgba(91, 124, 153, 0.06)',
+                    borderColor: 'rgba(91, 124, 153, 0.2)',
                     borderLeftWidth: '3px'
                   }}
                 >
@@ -220,7 +220,7 @@ export default function PremiumReviewCard({
                 style={{
                   backgroundColor: 'var(--color-bg-base)',
                   color: 'var(--color-text-secondary)',
-                  border: '1px solid rgba(6, 182, 212, 0.12)'
+                  border: '1px solid var(--color-border-medium)'
                 }}
               >
                 {tag}

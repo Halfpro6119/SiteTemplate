@@ -21,7 +21,7 @@ export default function DecisionPointCTA({
   title,
   subtitle,
   primaryText = 'Get Free Quote',
-  primaryHref = '#contact',
+  primaryHref = '/contact',
   secondaryText = 'Speak to Us',
   secondaryHref = 'tel:',
   tertiaryText,

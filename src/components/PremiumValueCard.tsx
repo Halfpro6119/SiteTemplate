@@ -60,7 +60,7 @@ export default function PremiumValueCard({ icon: Icon, title, description, index
         <h3
           className="text-2xl font-bold mb-4"
           style={{
-            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontFamily: "'Instrument Serif', Georgia, serif",
             color: 'var(--color-text-primary)',
             letterSpacing: '-0.01em'
           }}

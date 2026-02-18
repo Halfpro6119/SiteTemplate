@@ -110,7 +110,7 @@ export default function Locations() {
               className="text-3xl md:text-4xl font-bold mb-6"
               style={{
                 color: 'var(--color-text-primary)',
-                fontFamily: 'Plus Jakarta Sans, sans-serif',
+                fontFamily: "'DM Sans', sans-serif",
                 letterSpacing: '-0.02em'
               }}
             >

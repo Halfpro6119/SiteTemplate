@@ -37,7 +37,7 @@ export default function SignatureServiceCard({
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 70%)'
+            background: 'radial-gradient(circle at 50% 50%, var(--color-accent-glow) 0%, transparent 70%)'
           }}
         />
 
@@ -53,7 +53,7 @@ export default function SignatureServiceCard({
             <div
               className="relative flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-110"
               style={{
-                background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                background: 'linear-gradient(135deg, rgba(91, 124, 153, 0.15) 0%, rgba(91, 124, 153, 0.08) 100%)',
                 border: '1px solid var(--color-border-medium)',
                 boxShadow: '0 0 24px -8px var(--color-accent-glow)'
               }}
@@ -70,7 +70,7 @@ export default function SignatureServiceCard({
                 background: 'rgba(255, 255, 255, 0.03)',
                 border: '1px solid var(--color-border-subtle)',
                 color: 'var(--color-text-tertiary)',
-                fontFamily: 'Plus Jakarta Sans, sans-serif'
+                fontFamily: "'DM Sans', sans-serif"
               }}
             >
               {number}
@@ -80,7 +80,7 @@ export default function SignatureServiceCard({
           <h3
             className="text-xl font-bold mb-3 transition-colors duration-300"
             style={{
-              fontFamily: 'Plus Jakarta Sans, sans-serif',
+              fontFamily: "'Instrument Serif', Georgia, serif",
               color: 'var(--color-text-primary)',
               letterSpacing: '0.01em'
             }}

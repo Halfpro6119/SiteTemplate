@@ -12,7 +12,7 @@ interface ServiceCTABarProps {
 export default function ServiceCTABar({
   question = 'Need help with this service?',
   primaryText = 'Get Quote',
-  primaryHref = '#contact',
+  primaryHref = '/contact',
   callText = 'Call Now',
   callHref = 'tel:'
 }: ServiceCTABarProps) {

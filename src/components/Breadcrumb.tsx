@@ -7,16 +7,16 @@ interface BreadcrumbProps {
 
 export default function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <nav className="breadcrumb">
+    <nav className="breadcrumb flex flex-wrap items-center gap-2">
       {items.map((item, index) => (
-        <div key={index} className="flex items-center gap-2">
-          {index > 0 && <ChevronRight className="w-3 h-3 breadcrumb-separator" />}
+        <span key={index} className="flex items-center gap-2">
+          {index > 0 && <ChevronRight className="w-3 h-3 breadcrumb-separator flex-shrink-0" />}
           {item.href ? (
             <Link to={item.href}>{item.label}</Link>
           ) : (
-            <span style={{ color: 'var(--color-neutral-900)' }}>{item.label}</span>
+            <span style={{ color: 'var(--color-text-primary)' }}>{item.label}</span>
           )}
-        </div>
+        </span>
       ))}
     </nav>
   );
