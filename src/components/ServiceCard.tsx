@@ -1,5 +1,4 @@
 import * as Icons from 'lucide-react';
-import { businessConfig } from '../config';
 
 interface ServiceCardProps {
   icon: string;

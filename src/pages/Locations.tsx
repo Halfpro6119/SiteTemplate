@@ -2,6 +2,7 @@ import { MapPin, Phone, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
+import ServiceAreaChecker from '../components/ServiceAreaChecker';
 
 export default function Locations() {
   return (
@@ -15,10 +16,10 @@ export default function Locations() {
         <div className="content-width">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="section-title">
-              Areas We Serve
+              Areas we cover
             </h1>
             <p className="section-subtitle">
-              Providing exceptional {businessConfig.businessType.toLowerCase()} services throughout {businessConfig.city} and surrounding communities
+              Stoke-on-Trent and 15-mile radius: Derbyshire, Stafford, Stone, Rugeley, Cannock and surrounding areas
             </p>
           </div>
         </div>
@@ -30,17 +31,16 @@ export default function Locations() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
               <div>
                 <h2 className="text-3xl font-bold mb-6" style={{ color: 'var(--color-text-primary)' }}>
-                  Local Service You Can Trust
+                  We cover Stoke and 15 miles
                 </h2>
                 <p className="text-lg mb-6 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                  As a locally owned and operated business, we are proud to serve {businessConfig.city} and
-                  the surrounding areas. Being local means we understand the community, we are invested
-                  in its success, and we are here when you need us.
+                  Flo Utilities serves {businessConfig.city} and a 15-mile radius, including Derbyshire,
+                  Stafford, Stone, Rugeley, Cannock and surrounding areas. We prioritise fast response
+                  and same-day repair when possible.
                 </p>
                 <p className="text-lg mb-6 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                  We have been serving this area for over {businessConfig.yearsExperience} years, building
-                  relationships and earning trust one customer at a time. When you choose us, you are
-                  choosing a partner who lives and works right here in your community.
+                  Check your postcode or town below to confirm we cover your area. For locations just
+                  outside the radius, contact us and we&apos;ll let you know if we can help.
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
@@ -79,9 +79,9 @@ export default function Locations() {
               </div>
             </div>
 
-            <div>
+            <div className="mb-16">
               <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: 'var(--color-text-primary)' }}>
-                Service Areas
+                Towns and areas we cover
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {businessConfig.serviceAreas.map((area, index) => (
@@ -99,6 +99,13 @@ export default function Locations() {
                 ))}
               </div>
             </div>
+
+            <div className="max-w-lg mx-auto">
+              <h2 className="text-xl font-bold text-center mb-6" style={{ color: 'var(--color-text-primary)' }}>
+                Check if we cover your area
+              </h2>
+              <ServiceAreaChecker />
+            </div>
           </div>
         </div>
       </section>
@@ -114,15 +121,14 @@ export default function Locations() {
                 letterSpacing: '-0.02em'
               }}
             >
-              Don't See Your Area Listed?
+              Not sure if we cover you?
             </h2>
             <p className="section-subtitle mb-10">
-              We may still be able to help! Give us a call to discuss your location and needs.
-              We are always looking to expand our service area for the right projects.
+              Contact us to confirm. We mainly serve a 15-mile radius from Stoke and may be able to help just outside.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href={`tel:${businessConfig.phone}`}
+                href={`tel:${businessConfig.phone.replace(/\s/g, '')}`}
                 className="btn-primary"
                 style={{ fontSize: '1.125rem', padding: '1.125rem 2rem' }}
               >
@@ -147,11 +153,11 @@ export default function Locations() {
             <div
               className="rounded-2xl p-8 md:p-12 text-center"
               style={{
-                background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(6, 182, 212, 0.12) 100%)'
+                background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(220, 38, 38, 0.12) 100%)'
               }}
             >
               <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>
-                Why Local Matters
+                Why local matters
               </h2>
               <p className="text-lg mb-6 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                 When you hire a local business, you are not just getting a service provider. You are
@@ -169,8 +175,8 @@ export default function Locations() {
       </section>
 
       <CTASection
-        title="Serving Your Community with Pride"
-        subtitle="Contact us today to see how we can help with your project"
+        title="Book a free, no-obligation survey"
+        subtitle="We often detect and repair in one visit. 24hr response. Watersafe accredited."
       />
     </div>
   );

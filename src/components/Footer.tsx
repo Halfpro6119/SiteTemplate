@@ -45,7 +45,7 @@ export default function Footer() {
               primaryText={businessConfig.footer.closingCTA.primaryText}
               primaryHref={businessConfig.footer.closingCTA.primaryHref}
               secondaryText={businessConfig.footer.closingCTA.secondaryText}
-              secondaryHref={`${businessConfig.footer.closingCTA.secondaryHref}${businessConfig.phone}`}
+              secondaryHref={businessConfig.footer.closingCTA.secondaryHref.includes('tel:') && businessConfig.footer.closingCTA.secondaryHref.length > 5 ? businessConfig.footer.closingCTA.secondaryHref : `tel:${businessConfig.phone.replace(/\s/g, '')}`}
             />
           </div>
         )}
@@ -54,16 +54,11 @@ export default function Footer() {
           <div className="hidden lg:grid lg:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
+                <img
+                  src="/flogo.png"
+                  alt={businessConfig.businessName}
+                  className="h-11 w-auto object-contain"
+                />
                 <div>
                   <div className="font-bold text-lg text-white">
                     {businessConfig.businessName}
@@ -73,7 +68,7 @@ export default function Footer() {
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
               </p>
-              <TrustChipRow chips={businessConfig.footer.brandTrustChips} variant="dark" size="sm" />
+              <TrustChipRow chips={businessConfig.footer.brandTrustChips as Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users'; text: string }>} variant="dark" size="sm" />
             </div>
 
             <div>
@@ -82,7 +77,7 @@ export default function Footer() {
                 {businessConfig.services.slice(0, 8).map((service) => (
                   <li key={service.id}>
                     <Link
-                      to="/services"
+                      to={'slug' in service && service.slug ? `/services/${service.slug}` : '/services'}
                       className="text-sm text-white/70 hover:text-white transition-all duration-300 relative inline-block group"
                     >
                       <span className="relative">
@@ -163,16 +158,11 @@ export default function Footer() {
           <div className="lg:hidden space-y-4 mb-12">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
+                <img
+                  src="/flogo.png"
+                  alt={businessConfig.businessName}
+                  className="h-11 w-auto object-contain"
+                />
                 <div>
                   <div className="font-bold text-lg text-white">
                     {businessConfig.businessName}
@@ -182,7 +172,7 @@ export default function Footer() {
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
               </p>
-              <TrustChipRow chips={businessConfig.footer.brandTrustChips} variant="dark" size="sm" />
+              <TrustChipRow chips={businessConfig.footer.brandTrustChips as Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users'; text: string }>} variant="dark" size="sm" />
             </div>
 
             <div>

@@ -1,4 +1,4 @@
-import { Users, Target, Heart, Shield, Award, TrendingUp } from 'lucide-react';
+import { Users, Target, Heart, Shield, Award } from 'lucide-react';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
 import PageHero from '../components/PageHero';
@@ -17,8 +17,8 @@ export default function About() {
   return (
     <div className="min-h-screen">
       <PageHero
-        title={`Your Local ${businessConfig.businessType} Experts`}
-        subtitle="Building trust and delivering excellence, one customer at a time"
+        title="About Flo Utilities"
+        subtitle="Watersafe-accredited water infrastructure specialists across Stoke and 15 miles"
       >
         <div className="mt-8">
           <Breadcrumb items={[
@@ -36,14 +36,14 @@ export default function About() {
                 <div
                   className="inline-block px-4 py-2 rounded-full mb-6"
                   style={{
-                    background: 'rgba(6, 182, 212, 0.1)',
-                    border: '1px solid rgba(6, 182, 212, 0.2)',
+                    background: 'rgba(220, 38, 38, 0.1)',
+                    border: '1px solid rgba(220, 38, 38, 0.2)',
                     color: 'var(--color-accent)',
                     fontSize: '0.875rem',
                     fontWeight: 600
                   }}
                 >
-                  Our Story
+                  Our story
                 </div>
                 <h2
                   className="text-4xl font-bold mb-6"
@@ -73,7 +73,7 @@ export default function About() {
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                     style={{
-                      background: 'radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 70%)'
+                      background: 'radial-gradient(circle at 50% 50%, var(--color-accent-glow) 0%, transparent 70%)'
                     }}
                   />
                   <Users className="w-32 h-32 relative z-10 transition-transform duration-500 group-hover:scale-110" style={{ color: 'var(--color-text-tertiary)' }} />

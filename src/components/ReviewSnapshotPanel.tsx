@@ -14,7 +14,7 @@ export default function ReviewSnapshotPanel({ size = 'default' }: ReviewSnapshot
         className={`rounded-2xl p-8 ${isLarge ? 'lg:p-12' : ''} shadow-lg`}
         style={{
           backgroundColor: 'var(--color-bg-surface)',
-          border: '1px solid rgba(6, 182, 212, 0.1)'
+          border: '1px solid rgba(220, 38, 38, 0.15)'
         }}
       >
         <div className={`grid ${isLarge ? 'lg:grid-cols-2' : 'md:grid-cols-2'} gap-8 lg:gap-12 items-center`}>
@@ -48,10 +48,11 @@ export default function ReviewSnapshotPanel({ size = 'default' }: ReviewSnapshot
             className={`${isLarge ? 'text-xl' : 'text-lg'} font-semibold mb-2`}
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Trusted by Local Customers
+            Trusted by homeowners, loved for results
           </p>
           <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-            <span className="font-medium">{businessConfig.reviewCount}</span> verified reviews • Consistent 5★ service
+            <span className="font-medium">{(businessConfig as { repairsCount?: number }).repairsCount != null ? (businessConfig as { repairsCount: number }).repairsCount + '+' : businessConfig.reviewCount}</span>
+            {(businessConfig as { repairsCount?: number }).repairsCount != null ? ' successful repairs' : ' verified reviews'} • Watersafe accredited
           </p>
           </div>
 
@@ -68,8 +69,8 @@ export default function ReviewSnapshotPanel({ size = 'default' }: ReviewSnapshot
                 key={index}
                 className="flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-300 hover:scale-105"
                 style={{
-                  backgroundColor: 'rgba(6, 182, 212, 0.08)',
-                  border: '1px solid rgba(6, 182, 212, 0.15)'
+                  backgroundColor: 'rgba(220, 38, 38, 0.08)',
+                  border: '1px solid rgba(220, 38, 38, 0.15)'
                 }}
               >
                 <CheckCircle2
@@ -86,7 +87,7 @@ export default function ReviewSnapshotPanel({ size = 'default' }: ReviewSnapshot
         </div>
       </div>
 
-      <div className="h-1 w-full mt-8 rounded-full overflow-hidden" style={{ backgroundColor: 'rgba(6, 182, 212, 0.1)' }}>
+      <div className="h-1 w-full mt-8 rounded-full overflow-hidden" style={{ backgroundColor: 'rgba(220, 38, 38, 0.15)' }}>
         <div
           className="h-full signature-divider-animate"
           style={{

@@ -48,10 +48,10 @@ export default function Reviews() {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
                 style={{ color: 'var(--color-text-primary)' }}
               >
-                Customer Reviews
+                Trusted by homeowners, loved for results
               </h1>
               <p className="text-xl leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                Real feedback from local customers in {businessConfig.city}
+                Real feedback from customers across {businessConfig.city} and the 15-mile radius
               </p>
             </div>
 
@@ -92,7 +92,7 @@ export default function Reviews() {
                     date={testimonial.date}
                     serviceTags={testimonial.serviceTags}
                     verified={testimonial.verified}
-                    ownerReply={testimonial.ownerReply}
+                    ownerReply={(testimonial as { ownerReply?: string }).ownerReply}
                   />
                 </div>
               ))}

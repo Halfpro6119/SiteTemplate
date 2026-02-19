@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
 import * as Icons from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
-import ServiceCTABar from '../components/ServiceCTABar';
-import DecisionPointCTA from '../components/DecisionPointCTA';
+import TrustFooterStrip from '../components/TrustFooterStrip';
+import type { ServiceConfig } from '../config';
 
 export default function Services() {
   return (
@@ -16,12 +18,10 @@ export default function Services() {
         <div className="content-width">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="section-title">
-              Our Services
+              Your water infrastructure specialists
             </h1>
             <p className="section-subtitle">
-              We offer a comprehensive range of {businessConfig.businessType.toLowerCase()} services
-              designed to meet your needs. Every service is delivered with professionalism,
-              expertise, and a commitment to excellence.
+              From leak detection to lead replacement and moling—one team, one visit when possible
             </p>
           </div>
         </div>
@@ -29,99 +29,67 @@ export default function Services() {
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }}>
         <div className="content-width">
-          <div className="space-y-12">
-            {businessConfig.services.map((service, index) => {
-              const IconComponent = (Icons as any)[service.icon] || Icons.Star;
-              const isEven = index % 2 === 0;
-
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {businessConfig.services.map((service) => {
+              const IconComponent = (Icons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[service.icon] ?? Icons.Star;
+              const slug = (service as ServiceConfig & { slug?: string }).slug ?? String(service.id);
               return (
-                <div
+                <Link
                   key={service.id}
-                  className={`flex flex-col ${
-                    isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                  } gap-8 items-center`}
+                  to={`/services/${slug}`}
+                  className="group block"
                 >
-                  <div className="flex-1">
+                  <div
+                    className="relative h-full overflow-hidden rounded-2xl p-8 transition-all duration-500"
+                    style={{
+                      background: 'linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-elevated) 100%)',
+                      border: '1px solid var(--color-border-subtle)',
+                      boxShadow: 'var(--shadow-luxury-md)'
+                    }}
+                  >
                     <div
-                      className="w-20 h-20 rounded-xl flex items-center justify-center mb-6"
-                      style={{ backgroundColor: 'rgba(6, 182, 212, 0.12)' }}
+                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0.08) 100%)',
+                        border: '1px solid var(--color-border-medium)'
+                      }}
                     >
-                      <IconComponent
-                        className="w-10 h-10"
-                        style={{ color: 'var(--color-accent)' }}
-                      />
+                      <IconComponent className="w-7 h-7 text-[var(--color-accent)]" />
                     </div>
-                    <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>
+                    <h2 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-primary)' }}>
                       {service.name}
                     </h2>
-                    <p className="text-lg mb-6 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                      {service.fullDescription}
+                    <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--color-text-secondary)' }}>
+                      {service.shortDescription}
                     </p>
-
-                    <div className="mb-6">
-                      <h3 className="text-lg font-bold mb-3" style={{ color: 'var(--color-text-primary)' }}>Key Benefits:</h3>
-                      <ul className="space-y-2">
-                        {service.benefits.map((benefit, idx) => (
-                          <li key={idx} className="flex items-start space-x-2">
-                            <Icons.CheckCircle
-                              className="w-5 h-5 mt-0.5 flex-shrink-0"
-                              style={{ color: 'var(--color-accent)' }}
-                            />
-                            <span style={{ color: 'var(--color-text-secondary)' }}>{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div
-                      className="p-4 rounded-lg mb-6"
-                      style={{ backgroundColor: 'rgba(6, 182, 212, 0.12)' }}
-                    >
-                      <p className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-secondary)' }}>Ideal For:</p>
-                      <p style={{ color: 'var(--color-text-tertiary)' }}>{service.idealFor}</p>
-                    </div>
-
-                    <ServiceCTABar
-                      question={`Interested in ${service.name}?`}
-                      primaryText="Get Quote"
-                      primaryHref="#contact"
-                      callText="Call Now"
-                      callHref={`tel:${businessConfig.phone}`}
-                    />
-                  </div>
-
-                  <div className="flex-1">
-                    <div className="bg-gradient-to-br rounded-2xl aspect-square flex items-center justify-center" style={{ backgroundColor: 'var(--color-bg-surface)' }}>
-                      <IconComponent
-                        className="w-32 h-32"
-                        style={{ color: 'var(--color-text-tertiary)' }}
-                      />
+                    <div className="flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all duration-300" style={{ color: 'var(--color-accent)' }}>
+                      <span>Learn more</span>
+                      <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
+          </div>
+
+          <div className="mt-16">
+            <TrustFooterStrip />
+          </div>
+
+          <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link to="/contact" className="btn-primary">
+              Get a quote
+            </Link>
+            <a href={`tel:${businessConfig.phone.replace(/\s/g, '')}`} className="btn-secondary">
+              Call {businessConfig.phone}
+            </a>
           </div>
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }}>
-        <div className="content-width">
-          <DecisionPointCTA
-            label="Not sure which service you need?"
-            title="We'll Help You Find the Perfect Solution"
-            subtitle="Our friendly team is here to provide expert guidance and free consultations."
-            primaryText="Get Free Consultation"
-            primaryHref="#contact"
-            secondaryText="Call Us Now"
-            secondaryHref={`tel:${businessConfig.phone}`}
-          />
-        </div>
-      </section>
-
       <CTASection
-        title="Request Your Free Quote Today"
-        subtitle="No obligation, no pressure. Just honest advice and competitive pricing."
+        title="Book a free, no-obligation survey"
+        subtitle="We often detect and repair in one visit. 24hr response. Watersafe accredited."
       />
     </div>
   );

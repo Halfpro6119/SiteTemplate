@@ -1,228 +1,206 @@
-const city = '[City]';
-const businessName = '[Business Name]';
+const city = 'Stoke-on-Trent';
+const businessName = 'Flo Utilities';
 
 export const businessConfig = {
-  businessName: businessName,
-  businessType: '[Service Type]',
-  city: city,
-  state: '[State]',
+  businessName,
+  businessType: 'Water leak detection & repair',
+  city,
+  state: 'Staffordshire',
 
-  tagline: 'Your Trusted Local Experts',
-  heroHeadline: 'Premium [Service] Services in [City]',
-  heroSubheading: 'Reliable, Professional, and Trusted by Your Community',
+  tagline: 'Expert water pipe solutions for your property',
+  heroHeadline: 'Leak detection and repair in one visit.',
+  heroSubheading: 'Watersafe-accredited specialists across Stoke and 15 miles. Same-day repair often. 24hr response.',
 
-  phone: '(555) 123-4567',
-  whatsapp: '5551234567',
-  email: 'hello@business.com',
+  phone: '0782 784 7003',
+  whatsapp: '447827847003',
+  email: 'Enquiries@floutilities.co.uk',
 
   yearsExperience: 15,
-  rating: 4.9,
-  reviewCount: 127,
+  rating: 5,
+  reviewCount: 1000,
+  repairsCount: 1000,
 
   services: [
     {
       id: 1,
-      name: 'Service One',
-      icon: 'Wrench',
-      shortDescription: 'Quick and reliable service that delivers results',
-      fullDescription: 'Comprehensive service description that explains the benefits and what customers can expect from this specific service offering.',
-      benefits: ['Fast response time', 'Quality guaranteed', 'Experienced team'],
-      idealFor: 'Homeowners and businesses looking for reliable solutions'
+      slug: 'lead-pipe-replacement',
+      name: 'Lead Pipe Replacement',
+      icon: 'Droplets',
+      shortDescription: 'Safe replacement with modern MDPE. Better water quality, compliance, and no garden dug up with moling where possible.',
+      fullDescription: 'We safely remove and replace outdated lead piping with modern materials, improving water quality and ensuring compliance with current regulations. Our Watersafe and WIAPS accredited specialists use trenchless technology wherever possible.',
+      benefits: ['Better water quality & taste', 'Compliance with regulations', 'Trenchless moling where possible', 'Enhanced water pressure'],
+      idealFor: 'Properties built before 1970 or anyone with lead supply pipes'
     },
     {
       id: 2,
-      name: 'Service Two',
-      icon: 'Shield',
-      shortDescription: 'Professional service backed by years of expertise',
-      fullDescription: 'Detailed explanation of this service, highlighting the value proposition and why customers should choose this option.',
-      benefits: ['Licensed and insured', 'Competitive pricing', 'Satisfaction guaranteed'],
-      idealFor: 'Anyone needing professional, trustworthy service'
+      slug: 'leak-repair',
+      name: 'Leak Repair',
+      icon: 'Wrench',
+      shortDescription: 'We find and fix leaks—often in one visit. No second contractor, no delay. Full insurance and warranty.',
+      fullDescription: 'Swift, professional repairs for all types of water leaks, completed to the highest standard with full insurance and warranty coverage. We often detect and repair on the same day.',
+      benefits: ['Detection and repair in one visit', 'Full insurance & warranty', 'Same-day repair often', 'Minimal disruption'],
+      idealFor: 'Anyone with a water leak or Severn Trent notice'
     },
     {
       id: 3,
-      name: 'Service Three',
-      icon: 'Clock',
-      shortDescription: 'Emergency service available when you need it most',
-      fullDescription: 'Complete overview of emergency service capabilities and availability for urgent situations.',
-      benefits: ['24/7 availability', 'Rapid response', 'Emergency specialists'],
-      idealFor: 'Urgent situations requiring immediate attention'
+      slug: 'leak-detection',
+      name: 'Leak Detection',
+      icon: 'Search',
+      shortDescription: 'Pinpoint hidden leaks with specialist kit. Minimal disruption, then we repair—same team, same day when possible.',
+      fullDescription: 'Using advanced specialist equipment and trained technicians, we precisely locate hidden leaks with minimal disruption to your property. We then repair—same team, same day when possible.',
+      benefits: ['Acoustic, thermal & pressure testing', 'Precise location', 'Same team repairs', 'Minimal excavation'],
+      idealFor: 'Unexplained high bills, damp patches, or Severn Trent notice'
     },
     {
       id: 4,
-      name: 'Service Four',
-      icon: 'Star',
-      shortDescription: 'Premium service for discerning customers',
-      fullDescription: 'Premium service offering with enhanced features and priority support for customers who expect the best.',
-      benefits: ['Premium quality', 'Priority scheduling', 'Extended warranty'],
-      idealFor: 'Customers seeking the highest quality service'
+      slug: 'impact-moling',
+      name: 'Impact Moling',
+      icon: 'Mountain',
+      shortDescription: 'New pipes under your garden or drive without trenches. Less mess, faster finish, your landscaping preserved.',
+      fullDescription: 'Our trenchless technology allows us to install new pipes underground with minimal excavation, preserving your property\'s appearance. Ideal for gardens, driveways, and patios.',
+      benefits: ['No trenches through gardens', 'Faster installation', 'Lower restoration costs', 'Preserves landscaping'],
+      idealFor: 'Lead replacement or new pipes under driveways and gardens'
     },
     {
       id: 5,
-      name: 'Service Five',
-      icon: 'Heart',
-      shortDescription: 'Maintenance plans to keep everything running smoothly',
-      fullDescription: 'Regular maintenance service plans designed to prevent problems and ensure optimal performance over time.',
-      benefits: ['Preventive care', 'Cost savings', 'Peace of mind'],
-      idealFor: 'Homeowners wanting ongoing protection'
+      slug: 'insurance-companies',
+      name: 'Insurance Companies',
+      icon: 'FileCheck',
+      shortDescription: 'We work with insurers and handle the paperwork. Swift, documented repairs so your claim runs smoothly.',
+      fullDescription: 'Seamless water leak repairs for insurance claims with minimal hassle. Flo Utilities works directly with insurance companies to deliver swift, professional solutions with full documentation.',
+      benefits: ['Direct insurer liaison', 'Full documentation', 'Compliant repairs', 'Single point of contact'],
+      idealFor: 'Insurance claims and trace-and-access work'
     },
     {
       id: 6,
-      name: 'Service Six',
-      icon: 'Award',
-      shortDescription: 'Specialized service for complex situations',
-      fullDescription: 'Advanced service for complex requirements, handled by experienced specialists with proven expertise.',
-      benefits: ['Expert specialists', 'Advanced techniques', 'Proven results'],
-      idealFor: 'Complex projects requiring specialized knowledge'
+      slug: 'landlords',
+      name: 'Landlords',
+      icon: 'Building2',
+      shortDescription: 'Leak response and prevention for rental properties. One point of contact, less hassle, tenant-friendly.',
+      fullDescription: 'Protect your property investments with professional water system management. We deliver reliable solutions for landlords that prevent costly damage and ensure tenant satisfaction.',
+      benefits: ['Portfolio management', 'Compliance documentation', 'Tenant-considerate', 'Emergency response'],
+      idealFor: 'Landlords and letting agents across the 15-mile radius'
     }
   ],
 
   whyChooseUs: [
     {
-      title: 'Locally Owned & Operated',
-      description: 'We live and work in [City]. Your neighbors trust us, and we take that responsibility seriously.',
-      icon: 'MapPin'
-    },
-    {
-      title: 'Fast Response Times',
-      description: 'We understand urgency. Count on us for quick, reliable service when you need it most.',
-      icon: 'Zap'
-    },
-    {
-      title: 'Quality Guaranteed',
-      description: 'We stand behind our work with comprehensive warranties and a commitment to excellence.',
+      title: 'Fully Accredited Service',
+      description: 'Watersafe and WIAPS certified with full insurance coverage, giving you complete peace of mind when we work on your property.',
       icon: 'CheckCircle'
     },
     {
-      title: 'Transparent Pricing',
-      description: 'No surprises, no hidden fees. You will know the cost upfront before we start any work.',
-      icon: 'DollarSign'
+      title: 'Detection and Repair in Just One Visit',
+      description: 'Unlike companies that only find leaks, we provide both detection and repair services—often on the same day—saving you time and hassle.',
+      icon: 'Zap'
+    },
+    {
+      title: '24hr Response',
+      description: 'When you receive a Severn Trent notice or have an urgent leak, we prioritise your call and can typically arrange an assessment within 1–3 working days.',
+      icon: 'Clock'
+    },
+    {
+      title: '15-Mile Service Radius',
+      description: 'We serve Stoke-on-Trent and surrounding areas including Derbyshire, Stafford, Stone, Rugeley, and Cannock.',
+      icon: 'MapPin'
     }
   ],
 
   testimonials: [
     {
       id: 1,
-      name: 'Sarah Johnson',
+      name: 'Sarah T.',
       rating: 5,
-      text: 'Absolutely outstanding service! They arrived on time, were professional, and did an excellent job. The technician explained everything clearly and answered all my questions. The pricing was transparent with no hidden fees, and they completed the work faster than expected without compromising quality. I would definitely recommend them to anyone in [City].',
-      date: '2 weeks ago',
-      serviceTags: ['Service One'],
-      verified: true,
-      ownerReply: 'Thank you Sarah! We truly appreciate your kind words and are thrilled we could exceed your expectations. Customer satisfaction is our top priority.'
+      text: 'Flo Utilities detected and repaired a difficult leak under our driveway in just one day. Professional service from start to finish.',
+      date: 'Stafford',
+      serviceTags: ['Leak Detection', 'Leak Repair'],
+      verified: true
     },
     {
       id: 2,
-      name: 'Michael Chen',
+      name: 'James H.',
       rating: 5,
-      text: 'I have used several companies over the years, but this is by far the best. Great communication throughout the entire process, fair and competitive pricing, and top-quality work that speaks for itself. They really go above and beyond what you would expect from a service company.',
-      date: '1 month ago',
-      serviceTags: ['Service Two'],
+      text: 'After receiving a notice from Severn Trent, I was worried about costs. Flo Utilities explained everything clearly and completed the work well within the deadline.',
+      date: 'Stone',
+      serviceTags: ['Leak Repair'],
       verified: true
     },
     {
       id: 3,
-      name: 'Emily Rodriguez',
+      name: 'Carol D.',
       rating: 5,
-      text: 'Very impressed with their professionalism and attention to detail. They exceeded my expectations in every way. The team was courteous, respectful of my home, and cleaned up thoroughly after completing the job.',
-      date: '1 month ago',
-      serviceTags: ['Service Three'],
-      verified: true,
-      ownerReply: 'Emily, thank you for trusting us with your project! We take pride in treating every home with the utmost care and respect.'
+      text: 'From the initial phone call to the completed repair, Flo Utilities were professional, knowledgeable and efficient.',
+      date: 'Derby',
+      serviceTags: ['Leak Repair'],
+      verified: true
     },
     {
       id: 4,
-      name: 'David Thompson',
+      name: 'Thomas B.',
       rating: 5,
-      text: 'Quick response, excellent service, and reasonable prices. What more could you ask for? They were able to fit me in on short notice and resolved my issue efficiently. The technician was knowledgeable and friendly. Highly recommended!',
-      date: '2 months ago',
-      serviceTags: ['Service Three'],
+      text: 'I appreciated their transparent pricing and detailed explanation of the work required. No surprise costs and excellent workmanship.',
+      date: 'Stoke-on-Trent',
+      serviceTags: ['Leak Repair'],
       verified: true
     },
     {
       id: 5,
-      name: 'Jennifer Martinez',
+      name: 'Margaret W.',
       rating: 5,
-      text: 'These guys are the real deal. Professional, knowledgeable, and genuinely care about doing the job right. They did not try to upsell me on services I did not need, which I really appreciated. Honest and trustworthy company.',
-      date: '2 months ago',
-      serviceTags: ['Service Four'],
+      text: 'The team used their moling equipment to install a new pipe without digging up our newly laid garden. Excellent service.',
+      date: 'Rugeley',
+      serviceTags: ['Impact Moling'],
       verified: true
     },
     {
       id: 6,
-      name: 'Robert Wilson',
+      name: 'Robert L.',
       rating: 5,
-      text: 'I am so glad I found this company. They were courteous, efficient, and their work quality is exceptional. The entire experience from initial contact to project completion was seamless and stress-free.',
-      date: '3 months ago',
-      serviceTags: ['Service Five'],
-      verified: true,
-      ownerReply: 'We appreciate your trust in us, Robert! Making the experience seamless for our customers is always our goal.'
-    },
-    {
-      id: 7,
-      name: 'Amanda Foster',
-      rating: 5,
-      text: 'Exceptional service from start to finish! The team was punctual, professional, and incredibly skilled. They took the time to explain the work process and made sure I was comfortable with everything before proceeding. The results exceeded my expectations.',
-      date: '3 months ago',
-      serviceTags: ['Service One'],
-      verified: true
-    },
-    {
-      id: 8,
-      name: 'Carlos Rivera',
-      rating: 4,
-      text: 'Very good experience overall. The work was completed on schedule and the quality was solid. Communication could have been slightly better during the project, but the end result was worth it. Would use them again.',
-      date: '4 months ago',
-      serviceTags: ['Service Six'],
-      verified: true,
-      ownerReply: 'Thank you for your feedback, Carlos. We are always working to improve our communication and appreciate you bringing this to our attention. Glad you are happy with the results!'
-    },
-    {
-      id: 9,
-      name: 'Lisa Wang',
-      rating: 5,
-      text: 'Outstanding company! They handled a complex project with expertise and professionalism. The team was knowledgeable, respectful, and delivered exactly what they promised. Pricing was fair and there were no surprise charges.',
-      date: '4 months ago',
-      serviceTags: ['Service Two'],
+      text: 'Very impressed with their leak detection equipment. They found an issue that two other companies had missed.',
+      date: 'Cannock',
+      serviceTags: ['Leak Detection'],
       verified: true
     }
   ],
 
   trustChips: [
-    'Professional Service',
-    'Fast Response',
-    'Transparent Pricing',
-    'Quality Workmanship'
+    'Watersafe accredited',
+    '24hr response',
+    '1000+ repairs',
+    'Fully insured',
+    'Same-day repair often',
+    'WIAPS certified',
+    '15-mile radius',
+    'No obligation survey'
   ],
 
   serviceAreas: [
-    '[City] (Primary)',
-    '[Nearby Town 1]',
-    '[Nearby Town 2]',
-    '[Nearby Town 3]',
-    '[Nearby Town 4]',
-    '[Nearby Town 5]',
-    '[Nearby Town 6]',
-    '[Nearby Town 7]',
-    '[Nearby Town 8]',
-    '[Nearby Town 9]'
+    'Stoke-on-Trent (Primary)',
+    'Derbyshire',
+    'Stafford',
+    'Stone',
+    'Rugeley',
+    'Cannock',
+    'Staffordshire',
+    'Surrounding areas (15-mile radius)'
   ],
 
-  aboutStory: `With over ${15} years of experience serving the [City] community, [Business Name] has built a reputation for reliability, quality, and exceptional customer service. We started with a simple mission: to provide honest, professional [service] services that local families and businesses can trust.
+  aboutStory: `Flo Utilities combines advanced equipment with comprehensive accreditation to deliver superior water infrastructure solutions across Stoke-on-Trent and surrounding areas. We specialise in leak detection and repair—often in one visit—so you don't have to coordinate multiple contractors.
 
-Today, we are proud to be one of the most trusted names in [City] for [service] services. Our team of experienced professionals is dedicated to delivering outstanding results on every project, big or small.`,
+Our team is Watersafe and WIAPS accredited, NPORS and EUSR certified, and fully insured. When you receive a notice from Severn Trent or suspect a leak, we provide prompt, professional service to help you avoid premium charges while delivering lasting solutions.`,
 
   values: [
     {
       title: 'Integrity',
-      description: 'We do what we say we will do, every single time. Your trust is our most valuable asset.'
+      description: 'We do what we say we will do. Transparent quotes, no hidden costs, and work completed to the highest standard.'
     },
     {
       title: 'Excellence',
-      description: 'Good enough is never good enough. We strive for excellence in every aspect of our work.'
+      description: 'We invest in specialist equipment and training so we can locate and repair leaks that others miss.'
     },
     {
       title: 'Community',
-      description: 'We are part of this community and committed to making [City] an even better place to live.'
+      description: 'We serve Stoke-on-Trent and the 15-mile radius with pride. Your neighbours trust us—and we take that seriously.'
     }
   ],
 
@@ -230,13 +208,13 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
     {
       id: 1,
       url: 'https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Recent project completion in [City]',
+      caption: 'Professional leak detection and repair',
       category: 'recent'
     },
     {
       id: 2,
       url: 'https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Professional service delivery',
+      caption: 'Water pipe solutions across Stoke and beyond',
       category: 'recent'
     },
     {
@@ -248,88 +226,88 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
     {
       id: 4,
       url: 'https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Attention to detail in every project',
+      caption: 'Minimal disruption, maximum results',
       category: 'recent'
     },
     {
       id: 5,
       url: 'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Transforming spaces in [City]',
+      caption: 'Trenchless moling preserves your property',
       category: 'before-after'
     },
     {
       id: 6,
       url: 'https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Expert team at work',
+      caption: 'Accredited specialists at work',
       category: 'recent'
     }
   ],
 
   ctaTemplates: {
     hero: {
-      primaryText: 'Get a Quote',
-      primaryHref: '#contact',
-      secondaryText: 'Explore Services',
-      secondaryHref: '#services',
+      primaryText: 'Book a survey',
+      primaryHref: '/contact',
+      secondaryText: 'See services',
+      secondaryHref: '/services',
       trustChips: [
-        { icon: 'shield', text: 'Certified & Insured' },
-        { icon: 'clock', text: 'Fast Response' },
-        { icon: 'award', text: 'Trusted Locally' }
+        { icon: 'shield', text: 'Watersafe accredited' },
+        { icon: 'clock', text: '24hr response' },
+        { icon: 'award', text: '1000+ repairs' }
       ]
     },
     decisionPoint: {
       fastResponse: {
         label: 'Need help today?',
         title: 'Fast, Professional Service',
-        subtitle: 'Get clear pricing and expert service you can trust.',
-        primaryText: 'Get Free Quote',
-        secondaryText: 'Call Now'
+        subtitle: 'We respond within 24hrs. Often detect and repair in one visit.',
+        primaryText: 'Get a quote',
+        secondaryText: 'Call 0782 784 7003'
       },
       premiumQuality: {
-        label: 'Ready to upgrade?',
-        title: 'Premium Quality That Lasts',
-        subtitle: 'Trusted workmanship backed by our satisfaction guarantee.',
-        primaryText: 'Get Started',
-        secondaryText: 'Learn More'
+        label: 'Why choose Flo Utilities?',
+        title: 'Detection and Repair in One Visit',
+        subtitle: 'No second contractor. Same team, same day when possible.',
+        primaryText: 'Book a survey',
+        secondaryText: 'See services'
       },
       localTrust: {
-        label: 'Join our happy customers',
-        title: `Trusted in [City] Since [Year]`,
-        subtitle: 'Reliable service with no hassle and no inflated quotes.',
-        primaryText: 'Get Quote',
-        secondaryText: 'Speak to Us'
+        label: 'Serving Stoke and 15 miles',
+        title: 'Your Water Infrastructure Specialists',
+        subtitle: 'Watersafe accredited. Fully insured. Transparent pricing.',
+        primaryText: 'Get a quote',
+        secondaryText: 'Call now'
       }
     },
     cinematic: {
       fastResponse: {
-        label: 'Get Started Today',
-        headline: 'Ready to Experience the Difference?',
-        subtitle: 'Join hundreds of satisfied customers who trust us with their needs.',
-        primaryText: 'Get a Quote',
-        secondaryText: 'Call Now'
+        label: 'Get started today',
+        headline: 'Ready to sort your leak or lead pipes?',
+        subtitle: 'Book a free, no-obligation survey. We often detect and repair in one visit.',
+        primaryText: 'Book a survey',
+        secondaryText: 'Call 0782 784 7003'
       },
       premiumQuality: {
-        label: 'Transform Your Space',
-        headline: 'Quality Service You Can Count On',
-        subtitle: 'Professional results delivered with integrity and care.',
-        primaryText: 'Start Your Project',
-        secondaryText: 'Contact Us'
+        label: 'Expert water pipe solutions',
+        headline: 'One team. One visit. Leak found and fixed.',
+        subtitle: 'Watersafe-accredited specialists across Stoke and 15 miles.',
+        primaryText: 'Get a quote',
+        secondaryText: 'Contact us'
       },
       localTrust: {
-        label: 'Choose Local Excellence',
-        headline: `[City]'s Most Trusted Service Provider`,
-        subtitle: 'Serving our community with pride and professionalism.',
-        primaryText: 'Get Free Quote',
-        secondaryText: 'Call Today'
+        label: 'Trusted across Stoke and beyond',
+        headline: '1000+ successful repairs',
+        subtitle: 'Fully insured. Same-day repair often. 24hr response.',
+        primaryText: 'Get a quote',
+        secondaryText: 'Call today'
       }
     },
     contact: {
-      title: 'Speak to a Specialist',
-      responseTime: 'We usually respond within 1 hour',
+      title: 'Speak to a specialist',
+      responseTime: 'We usually respond within 1–2 hours',
       trustChips: [
-        { icon: 'shield', text: 'Certified' },
-        { icon: 'users', text: 'Local' },
-        { icon: 'star', text: 'Trusted' }
+        { icon: 'shield', text: 'Watersafe accredited' },
+        { icon: 'clock', text: '24hr response' },
+        { icon: 'star', text: '1000+ repairs' }
       ]
     }
   },
@@ -337,29 +315,29 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
   footer: {
     closingCTA: {
       enabled: true,
-      title: 'Ready to Get Started?',
-      subtitle: 'Fast, clear advice and a no-obligation quote.',
-      primaryText: 'Get a Quote',
-      primaryHref: '#contact',
-      secondaryText: 'Call Now',
-      secondaryHref: 'tel:'
+      title: 'Need expert water pipe services?',
+      subtitle: 'Free, no-obligation survey. We often detect and repair in one visit.',
+      primaryText: 'Book a survey',
+      primaryHref: '/contact',
+      secondaryText: 'Call 0782 784 7003',
+      secondaryHref: 'tel:07827847003'
     },
-    brandStatement: 'Your trusted local experts delivering quality service with integrity and professionalism.',
+    brandStatement: 'Expert leak detection and repair across Stoke-on-Trent and the 15-mile radius. Watersafe accredited. Same-day repair often.',
     brandTrustChips: [
-      { icon: 'shield', text: 'Certified' },
-      { icon: 'users', text: 'Trusted Locally' },
-      { icon: 'check', text: 'Transparent Pricing' }
+      { icon: 'shield', text: 'Watersafe accredited' },
+      { icon: 'users', text: '24hr response' },
+      { icon: 'check', text: 'Fully insured' }
     ],
     servicesTitle: 'Our Services',
-    areasTitle: 'Service Areas',
-    areasDescription: `Proudly serving ${city} and surrounding communities`,
-    contactTitle: 'Get In Touch',
-    businessHours: 'Mon-Fri: 8am-6pm, Sat: 9am-4pm',
+    areasTitle: 'Areas we cover',
+    areasDescription: 'Stoke-on-Trent and 15-mile radius: Derbyshire, Stafford, Stone, Rugeley, Cannock and surrounding areas',
+    contactTitle: 'Get in touch',
+    businessHours: 'Mon–Sat: 8am–6pm',
     trustBadges: [
-      'Fully Insured',
-      'Qualified Team',
-      'Quality Workmanship',
-      'Satisfaction Guaranteed'
+      'Fully insured',
+      'Watersafe & WIAPS',
+      '1000+ repairs',
+      'Same-day repair often'
     ],
     legalLinks: [
       { label: 'Privacy Policy', href: '#privacy' },
@@ -377,15 +355,15 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
             { label: 'Services', href: '/services' },
             { label: 'Reviews', href: '/reviews' },
             { label: 'Gallery', href: '/gallery' },
-            { label: 'Locations', href: '/locations' },
+            { label: 'Areas', href: '/locations' },
             { label: 'Contact', href: '/contact' }
           ]
         },
         {
           title: 'Help',
           links: [
-            { label: 'Request a Quote', href: '#contact' },
-            { label: 'Contact Us', href: '/contact' },
+            { label: 'Book a survey', href: '/contact' },
+            { label: 'Contact us', href: '/contact' },
             { label: 'Privacy Policy', href: '#privacy' },
             { label: 'Terms of Service', href: '#terms' }
           ]
@@ -395,9 +373,36 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
   },
 
   theme: {
-    primary: '#2563eb',
-    primaryHover: '#1d4ed8',
-    accent: '#10b981',
-    accentHover: '#059669'
+    primary: '#dc2626',
+    primaryHover: '#b91c1c',
+    accent: '#ef4444',
+    accentHover: '#b91c1c'
+  },
+
+  severnTrent: {
+    headline: 'Got a Severn Trent leak notice?',
+    subhead: 'We respond within 24hrs. Often detect and repair in one visit—helping you avoid premium charges.',
+    ctaText: 'Get help now',
+    ctaHref: '/contact',
+    ctaTel: 'tel:07827847003',
+    trustLine: 'Watersafe accredited · 24hr response · Same-day repair often'
+  },
+
+  whatHappensNext: [
+    { step: 1, title: 'You call or submit', description: 'Get in touch by phone or our contact form.' },
+    { step: 2, title: 'We arrange a visit', description: 'We\'ll book a convenient time for our specialist team.' },
+    { step: 3, title: 'Assessment & quote', description: 'We assess the issue and give you a clear, transparent quote.' },
+    { step: 4, title: 'Repair (often same day)', description: 'Once approved, we complete the work—often in one visit.' }
+  ],
+
+  areaChecker: {
+    title: 'In your area?',
+    placeholder: 'Enter postcode or town',
+    buttonText: 'Check coverage',
+    coveredMessage: 'Yes, we cover you. Typical response within 24–48 hours.',
+    notCoveredMessage: 'We mainly serve a 15-mile radius from Stoke. Contact us to confirm.',
+    ctaAfterCovered: 'Book a survey'
   }
 };
+
+export type ServiceConfig = (typeof businessConfig.services)[number];

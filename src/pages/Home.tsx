@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Shield, Clock, Zap, Award, TrendingUp, Image as ImageIcon } from 'lucide-react';
+import { Star, MapPin, Shield, Clock, Zap, Award, Image as ImageIcon } from 'lucide-react';
 import * as Icons from 'lucide-react';
-import { businessConfig } from '../config';
+import { businessConfig, type ServiceConfig } from '../config';
 import SignatureServiceCard from '../components/SignatureServiceCard';
 import ReviewSnapshotPanel from '../components/ReviewSnapshotPanel';
 import PremiumReviewCard from '../components/PremiumReviewCard';
@@ -11,8 +11,10 @@ import ImpactBlock from '../components/ImpactBlock';
 import ServiceAreaChip from '../components/ServiceAreaChip';
 import LuxuryDivider from '../components/LuxuryDivider';
 import HeroCTA from '../components/HeroCTA';
-import DecisionPointCTA from '../components/DecisionPointCTA';
 import CinematicCTA from '../components/CinematicCTA';
+import SevernTrentBlock from '../components/SevernTrentBlock';
+import ServiceAreaChecker from '../components/ServiceAreaChecker';
+import EmptyPictureFrame from '../components/EmptyPictureFrame';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useHeroReveal } from '../hooks/useHeroReveal';
 
@@ -22,6 +24,7 @@ export default function Home() {
   const impactRef = useScrollReveal();
   const galleryRef = useScrollReveal();
   const testimonialsRef = useScrollReveal();
+  const inYourAreaRef = useScrollReveal();
   const serviceAreasRef = useScrollReveal();
 
   return (
@@ -38,22 +41,22 @@ export default function Home() {
         <div className="absolute top-20 right-10 float-badge-1 hidden lg:block">
           <GlassBadge
             icon={Clock}
-            title="24/7 Emergency"
-            subtitle="Fast Response"
+            title="24hr"
+            subtitle="Response"
           />
         </div>
         <div className="absolute top-32 left-10 float-badge-2 hidden lg:block">
           <GlassBadge
             icon={Zap}
-            title="30-60 min"
-            subtitle="Response Time"
+            title="15+ mile"
+            subtitle="Radius"
           />
         </div>
         <div className="absolute bottom-32 right-20 float-badge-3 hidden lg:block">
           <GlassBadge
             icon={Award}
-            title={`Established ${new Date().getFullYear() - businessConfig.yearsExperience}`}
-            subtitle={`${businessConfig.yearsExperience}+ Years`}
+            title="1000+"
+            subtitle="Repairs"
           />
         </div>
 
@@ -74,7 +77,7 @@ export default function Home() {
                 primaryHref={businessConfig.ctaTemplates.hero.primaryHref}
                 secondaryText={businessConfig.ctaTemplates.hero.secondaryText}
                 secondaryHref={businessConfig.ctaTemplates.hero.secondaryHref}
-                trustChips={businessConfig.ctaTemplates.hero.trustChips}
+                trustChips={businessConfig.ctaTemplates.hero.trustChips as Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users'; text: string }>}
                 variant="light"
               />
             </div>
@@ -100,20 +103,20 @@ export default function Home() {
               </div>
               <div>
                 <span className="font-bold text-lg" style={{ color: 'var(--color-text-primary)' }}>{businessConfig.rating}</span>
-                <span className="text-sm ml-2" style={{ color: 'var(--color-text-tertiary)' }}>({businessConfig.reviewCount} reviews)</span>
+                <span className="text-sm ml-2" style={{ color: 'var(--color-text-tertiary)' }}>· 1000+ repairs</span>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Shield className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fully Insured & Certified</span>
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Watersafe accredited</span>
             </div>
             <div className="flex items-center gap-3">
               <MapPin className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Serving {businessConfig.city} & Surrounding Areas</span>
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Serving {businessConfig.city} & 15 miles</span>
             </div>
             <div className="flex items-center gap-3">
               <Zap className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fast Response Times</span>
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>24hr response</span>
             </div>
           </div>
         </div>
@@ -123,15 +126,15 @@ export default function Home() {
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Our Services
+              Your water infrastructure specialists
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              Professional {businessConfig.businessType.toLowerCase()} services tailored to your needs
+              From leak detection to lead replacement and moling—one team, one visit when possible
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {businessConfig.services.slice(0, 6).map((service, index) => (
+            {businessConfig.services.slice(0, 6).map((service: ServiceConfig, index) => (
               <div key={service.id} className="scroll-reveal" style={{ transitionDelay: `${index * 80}ms` }}>
                 <SignatureServiceCard
                   number={String(index + 1).padStart(2, '0')}
@@ -139,6 +142,7 @@ export default function Home() {
                   title={service.name}
                   description={service.shortDescription}
                   benefits={service.benefits}
+                  href={`/services/${service.slug ?? service.id}`}
                 />
               </div>
             ))}
@@ -148,23 +152,9 @@ export default function Home() {
               to="/services"
               className="btn-primary btn-shine"
             >
-              <span>View All Services</span>
+              <span>View all services</span>
               <span>→</span>
             </Link>
-          </div>
-
-          <div className="mt-24 scroll-reveal">
-            <DecisionPointCTA
-              label={businessConfig.ctaTemplates.decisionPoint.fastResponse.label}
-              title={businessConfig.ctaTemplates.decisionPoint.fastResponse.title}
-              subtitle={businessConfig.ctaTemplates.decisionPoint.fastResponse.subtitle}
-              primaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.primaryText}
-              primaryHref="#contact"
-              secondaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.secondaryText}
-              secondaryHref={`tel:${businessConfig.phone}`}
-              tertiaryText="View Our Reviews"
-              tertiaryHref="/reviews"
-            />
           </div>
         </div>
       </section>
@@ -173,41 +163,32 @@ export default function Home() {
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Results That Matter
+              Why you should choose {businessConfig.businessName}
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              We deliver fast, reliable solutions that make a real difference
+              Advanced equipment and comprehensive accreditation across Stoke-on-Trent and surrounding areas
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="scroll-reveal" style={{ transitionDelay: '0ms' }}>
-              <ImpactBlock
-                icon={Zap}
-                title="Fast Emergency Response"
-                description="When emergencies strike, every minute counts. Our rapid response team is ready to help 24/7, arriving within 30-60 minutes to handle urgent situations."
-                index={0}
-              />
-            </div>
-            <div className="scroll-reveal" style={{ transitionDelay: '100ms' }}>
-              <ImpactBlock
-                icon={Shield}
-                title="Reliable Long-Term Solutions"
-                description="We don't just fix problems temporarily. Our expert solutions are built to last, backed by comprehensive warranties and ongoing support."
-                index={1}
-              />
-            </div>
-            <div className="scroll-reveal" style={{ transitionDelay: '200ms' }}>
-              <ImpactBlock
-                icon={TrendingUp}
-                title="Transparent Pricing"
-                description="No hidden fees, no surprises. You'll know exactly what to expect before we start any work, with competitive rates and honest service."
-                index={2}
-              />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {businessConfig.whyChooseUs.map((item, index) => {
+              const Icon = (Icons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[item.icon] ?? Icons.CheckCircle;
+              return (
+                <div key={index} className="scroll-reveal" style={{ transitionDelay: `${index * 80}ms` }}>
+                  <ImpactBlock
+                    icon={Icon as import('lucide-react').LucideIcon}
+                    title={item.title}
+                    description={item.description}
+                    index={index}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
+
+      <SevernTrentBlock />
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={galleryRef}>
         <div className="content-width">
@@ -221,25 +202,13 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {businessConfig.galleryImages.slice(0, 6).map((image, index) => (
+            {Array.from({ length: 6 }, (_, index) => (
               <div
-                key={image.id}
-                className="scroll-reveal group relative overflow-hidden rounded-2xl"
-                style={{
-                  transitionDelay: `${index * 80}ms`,
-                  aspectRatio: '4/3'
-                }}
+                key={index}
+                className="scroll-reveal"
+                style={{ transitionDelay: `${index * 80}ms` }}
               >
-                <img
-                  src={image.url}
-                  alt={image.caption}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <p className="font-semibold">{image.caption}</p>
-                  </div>
-                </div>
+                <EmptyPictureFrame aspectRatio="4/3" />
               </div>
             ))}
           </div>
@@ -255,15 +224,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={testimonialsRef}>
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={testimonialsRef}>
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Trusted by Local Customers
+              Trusted by homeowners, loved for results
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              Real feedback from real customers in {businessConfig.city}
+              Real feedback from customers across {businessConfig.city} and the 15-mile radius
             </p>
           </div>
 
@@ -281,7 +250,7 @@ export default function Home() {
                   date={testimonial.date}
                   serviceTags={testimonial.serviceTags}
                   verified={testimonial.verified}
-                  ownerReply={testimonial.ownerReply}
+                  ownerReply={(testimonial as { ownerReply?: string }).ownerReply}
                 />
               </div>
             ))}
@@ -297,16 +266,30 @@ export default function Home() {
                 to="/reviews"
                 className="btn-primary btn-shine"
               >
-                <span>Read All Reviews</span>
+                <span>Read all reviews</span>
                 <span>→</span>
               </Link>
               <Link
                 to="/contact"
                 className="btn-secondary"
               >
-                <span>Get a Quote</span>
+                <span>Book a survey</span>
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={inYourAreaRef}>
+        <div className="content-width">
+          <div className="text-center mb-12 scroll-reveal">
+            <h2 className="section-title text-balance chapter-heading">
+              In your area?
+            </h2>
+            <LuxuryDivider />
+          </div>
+          <div className="scroll-reveal">
+            <ServiceAreaChecker />
           </div>
         </div>
       </section>
@@ -349,10 +332,10 @@ export default function Home() {
         headline={businessConfig.ctaTemplates.cinematic.fastResponse.headline}
         subtitle={businessConfig.ctaTemplates.cinematic.fastResponse.subtitle}
         primaryText={businessConfig.ctaTemplates.cinematic.fastResponse.primaryText}
-        primaryHref="#contact"
+        primaryHref="/contact"
         secondaryText={businessConfig.ctaTemplates.cinematic.fastResponse.secondaryText}
-        secondaryHref={`tel:${businessConfig.phone}`}
-        trustChips={businessConfig.ctaTemplates.contact.trustChips}
+        secondaryHref={`tel:${businessConfig.phone.replace(/\s/g, '')}`}
+        trustChips={businessConfig.ctaTemplates.contact.trustChips as Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users'; text: string }>}
       />
     </div>
   );

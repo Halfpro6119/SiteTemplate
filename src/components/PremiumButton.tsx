@@ -31,11 +31,11 @@ export default function PremiumButton({
 
   const variantStyles = {
     primary: `
-      bg-gradient-to-r from-cyan-500 to-cyan-600
-      hover:from-cyan-400 hover:to-cyan-500
+      bg-gradient-to-r from-red-500 to-red-600
+      hover:from-red-400 hover:to-red-500
       text-white
-      shadow-lg shadow-cyan-500/25
-      hover:shadow-xl hover:shadow-cyan-500/40
+      shadow-lg shadow-red-500/25
+      hover:shadow-xl hover:shadow-red-500/40
       hover:-translate-y-1
       active:translate-y-0
     `,

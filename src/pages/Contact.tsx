@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, MessageCircle, Clock, CheckCircle, Shield, Zap } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, CheckCircle, Shield, Zap } from 'lucide-react';
 import { businessConfig } from '../config';
 import { supabase } from '../lib/supabase';
 import PageHero from '../components/PageHero';
 import Breadcrumb from '../components/Breadcrumb';
 import ContactCTAPanel from '../components/ContactCTAPanel';
+import WhatHappensNextTimeline from '../components/WhatHappensNextTimeline';
+import ServiceAreaChecker from '../components/ServiceAreaChecker';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -58,8 +60,8 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       <PageHero
-        title="Get In Touch"
-        subtitle="Ready to get started? Contact us today for a free, no-obligation quote"
+        title="Get in touch"
+        subtitle="Free, no-obligation survey. We usually respond within 1–2 hours."
       >
         <div className="mt-8">
           <Breadcrumb items={[
@@ -68,6 +70,8 @@ export default function Contact() {
           ]} />
         </div>
       </PageHero>
+
+      <WhatHappensNextTimeline />
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }}>
         <div className="content-width">
@@ -229,8 +233,8 @@ export default function Contact() {
                   <div
                     className="p-4 rounded-xl flex items-start gap-3"
                     style={{
-                      background: 'rgba(6, 182, 212, 0.08)',
-                      border: '1px solid rgba(6, 182, 212, 0.2)'
+                      background: 'rgba(220, 38, 38, 0.08)',
+                      border: '1px solid rgba(220, 38, 38, 0.2)'
                     }}
                   >
                     <Shield className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--color-accent)' }} />
@@ -288,7 +292,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -310,7 +314,7 @@ export default function Contact() {
                           {businessConfig.phone}
                         </a>
                         <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          Mon-Fri: 8am-6pm
+                          {businessConfig.footer.businessHours}
                         </p>
                       </div>
                     </div>
@@ -319,7 +323,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -350,7 +354,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -378,8 +382,8 @@ export default function Contact() {
                 <div
                   className="rounded-2xl p-8"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0.06) 100%)',
-                    border: '1px solid rgba(6, 182, 212, 0.2)',
+                    background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.12) 0%, rgba(220, 38, 38, 0.06) 100%)',
+                    border: '1px solid rgba(220, 38, 38, 0.2)',
                     boxShadow: '0 4px 24px -8px var(--color-accent-glow)'
                   }}
                 >
@@ -418,14 +422,20 @@ export default function Contact() {
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }}>
         <div className="content-width">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto mb-16">
             <ContactCTAPanel
               title={businessConfig.ctaTemplates.contact.title}
               responseTime={businessConfig.ctaTemplates.contact.responseTime}
-              phoneHref={`tel:${businessConfig.phone}`}
-              quoteHref="#contact"
-              trustChips={businessConfig.ctaTemplates.contact.trustChips}
+              phoneHref={`tel:${businessConfig.phone.replace(/\s/g, '')}`}
+              quoteHref="/contact"
+              trustChips={businessConfig.ctaTemplates.contact.trustChips as Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users'; text: string }>}
             />
+          </div>
+          <div className="max-w-lg mx-auto">
+            <h2 className="text-xl font-bold text-center mb-6" style={{ color: 'var(--color-text-primary)' }}>
+              Check if we cover your area
+            </h2>
+            <ServiceAreaChecker />
           </div>
         </div>
       </section>

@@ -16,10 +16,10 @@
     --color-text-tertiary: #737373;
     --color-text-inverse: #0a0a0a;
 
-    --color-accent: #06b6d4;
-    --color-accent-dark: #0891b2;
-    --color-accent-light: #22d3ee;
-    --color-accent-glow: rgba(6, 182, 212, 0.4);
+    --color-accent: #dc2626;
+    --color-accent-dark: #b91c1c;
+    --color-accent-light: #ef4444;
+    --color-accent-glow: rgba(220, 38, 38, 0.35);
 
     --color-border-subtle: rgba(255, 255, 255, 0.08);
     --color-border-medium: rgba(255, 255, 255, 0.12);
@@ -325,6 +325,11 @@
     transform: translateY(-1px);
   }
 
+  .btn-primary:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-luxury-md), var(--shadow-glow-accent), 0 0 0 3px rgba(220, 38, 38, 0.4);
+  }
+
   .btn-secondary {
     position: relative;
     display: inline-flex;
@@ -355,7 +360,7 @@
     height: 100%;
     background: linear-gradient(90deg,
       transparent 0%,
-      rgba(6, 182, 212, 0.1) 50%,
+      rgba(220, 38, 38, 0.1) 50%,
       transparent 100%);
     transition: left 0.6s var(--ease-cinematic);
   }
@@ -365,7 +370,12 @@
     border-color: var(--color-accent);
     color: var(--color-accent);
     box-shadow: var(--shadow-luxury-md), var(--shadow-glow-accent);
-    background: rgba(6, 182, 212, 0.05);
+    background: rgba(220, 38, 38, 0.05);
+  }
+
+  .btn-secondary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.3);
   }
 
   .btn-secondary:hover::before {
@@ -941,7 +951,7 @@
   .modern-input:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
     background: rgba(255, 255, 255, 0.05);
   }
 
@@ -966,7 +976,7 @@
   .modern-textarea:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
     background: rgba(255, 255, 255, 0.05);
   }
 
@@ -1093,7 +1103,7 @@
   button,
   a[class*="btn"],
   .nav-link-modern {
-    -webkit-tap-highlight-color: rgba(6, 182, 212, 0.2);
+    -webkit-tap-highlight-color: rgba(220, 38, 38, 0.2);
   }
 }
 
