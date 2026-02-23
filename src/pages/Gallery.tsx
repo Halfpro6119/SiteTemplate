@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function Gallery() {
+  useDocumentTitle('Our Work');
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const openLightbox = (index: number) => {

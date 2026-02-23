@@ -5,8 +5,10 @@ import { supabase } from '../lib/supabase';
 import PageHero from '../components/PageHero';
 import Breadcrumb from '../components/Breadcrumb';
 import ContactCTAPanel from '../components/ContactCTAPanel';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function Contact() {
+  useDocumentTitle('Contact');
   const [formData, setFormData] = useState({
     full_name: '',
     phone: '',
@@ -36,7 +38,9 @@ export default function Contact() {
 
         if (error) throw error;
       } else {
-        console.log('Contact form submission (no database configured):', formData);
+        if (import.meta.env.DEV) {
+          console.log('Contact form submission (no database configured):', formData);
+        }
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
 
@@ -48,7 +52,9 @@ export default function Contact() {
         message: ''
       });
     } catch (error) {
-      console.error('Error submitting form:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error submitting form:', error);
+      }
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

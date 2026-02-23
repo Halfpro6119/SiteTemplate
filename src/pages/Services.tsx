@@ -5,8 +5,10 @@ import CTASection from '../components/CTASection';
 import ServiceCTABar from '../components/ServiceCTABar';
 import DecisionPointCTA from '../components/DecisionPointCTA';
 import PostcodeMap from '../components/PostcodeMap';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function Services() {
+  useDocumentTitle('Services');
   return (
     <div className="min-h-screen">
       <section

@@ -6,8 +6,10 @@ import ReviewFilters from '../components/ReviewFilters';
 import CTASection from '../components/CTASection';
 import TrustFooterStrip from '../components/TrustFooterStrip';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function Reviews() {
+  useDocumentTitle('Customer Reviews');
   const [selectedSort, setSelectedSort] = useState('recent');
 
   const headerRef = useScrollReveal();

@@ -6,6 +6,7 @@ import PageHero from '../components/PageHero';
 import Breadcrumb from '../components/Breadcrumb';
 import GasSafeBadge from '../components/GasSafeBadge';
 import ContactCTAPanel from '../components/ContactCTAPanel';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const areaServices = [
   { icon: 'Zap', name: 'Emergency Plumbing', desc: '24/7 emergency plumbing services' },
@@ -16,6 +17,7 @@ const areaServices = [
 export default function AreaDetail() {
   const { slug } = useParams<{ slug: string }>();
   const area = slug ? getAreaBySlug(slug) : undefined;
+  useDocumentTitle(area ? `Plumber ${area.name}` : undefined);
 
   if (!area) return <Navigate to="/locations" replace />;
 

@@ -7,8 +7,10 @@ import PremiumValueCard from '../components/PremiumValueCard';
 import StatCard from '../components/StatCard';
 import LuxuryDivider from '../components/LuxuryDivider';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function About() {
+  useDocumentTitle('About Us');
   const storyRef = useScrollReveal();
   const statsRef = useScrollReveal();
   const valuesRef = useScrollReveal();

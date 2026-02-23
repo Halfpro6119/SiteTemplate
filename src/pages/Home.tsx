@@ -18,8 +18,10 @@ import DecisionPointCTA from '../components/DecisionPointCTA';
 import CinematicCTA from '../components/CinematicCTA';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useHeroReveal } from '../hooks/useHeroReveal';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function Home() {
+  useDocumentTitle(undefined);
   const { shouldAnimate, isRevealed } = useHeroReveal();
   const servicesRef = useScrollReveal();
   const impactRef = useScrollReveal();

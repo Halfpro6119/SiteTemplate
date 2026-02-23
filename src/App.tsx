@@ -12,6 +12,7 @@ import Reviews from './pages/Reviews';
 import Gallery from './pages/Gallery';
 import Locations from './pages/Locations';
 import AreaDetail from './pages/AreaDetail';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/locations" element={<Locations />} />
             <Route path="/areas" element={<Locations />} />
             <Route path="/areas/:slug" element={<AreaDetail />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

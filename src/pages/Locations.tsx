@@ -2,8 +2,10 @@ import { MapPin, Phone, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function Locations() {
+  useDocumentTitle('Areas We Serve');
   return (
     <div className="min-h-screen">
       <section

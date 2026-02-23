@@ -10,6 +10,7 @@ import EmergencyResponseBadge from '../components/EmergencyResponseBadge';
 import AreaHeatStrip from '../components/AreaHeatStrip';
 import FAQItem from '../components/FAQItem';
 import ContactCTAPanel from '../components/ContactCTAPanel';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const defaultFAQs = [
   {
@@ -33,6 +34,7 @@ const defaultFAQs = [
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
   const service = slug ? getServiceBySlug(slug) : undefined;
+  useDocumentTitle(service?.name);
 
   if (!service) return <Navigate to="/services" replace />;
 
