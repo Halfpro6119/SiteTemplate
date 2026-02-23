@@ -51,7 +51,7 @@ export default function Reviews() {
                 Customer Reviews
               </h1>
               <p className="text-xl leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                Real feedback from local customers in {businessConfig.city}
+                See what our customers say about Plumbers Glasgow Ltd
               </p>
             </div>
 
@@ -91,6 +91,7 @@ export default function Reviews() {
                     text={testimonial.text}
                     date={testimonial.date}
                     serviceTags={testimonial.serviceTags}
+                    location={(testimonial as { location?: string }).location}
                     verified={testimonial.verified}
                     ownerReply={testimonial.ownerReply}
                   />

@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Star, MapPin, Shield, Clock, Zap, Award, TrendingUp, Image as ImageIcon } from 'lucide-react';
+import TrustGauge from '../components/TrustGauge';
+import GasSafeBadge from '../components/GasSafeBadge';
+import PremiumTestimonialCarousel from '../components/PremiumTestimonialCarousel';
 import * as Icons from 'lucide-react';
 import { businessConfig } from '../config';
 import SignatureServiceCard from '../components/SignatureServiceCard';
@@ -50,11 +53,7 @@ export default function Home() {
           />
         </div>
         <div className="absolute bottom-32 right-20 float-badge-3 hidden lg:block">
-          <GlassBadge
-            icon={Award}
-            title={`Established ${new Date().getFullYear() - businessConfig.yearsExperience}`}
-            subtitle={`${businessConfig.yearsExperience}+ Years`}
-          />
+          <GasSafeBadge size="lg" />
         </div>
 
         <div className="content-width relative z-10">
@@ -85,24 +84,7 @@ export default function Home() {
       <section className="py-10" style={{ backgroundColor: 'var(--color-bg-surface)', borderTop: '1px solid var(--color-border-subtle)', borderBottom: '1px solid var(--color-border-subtle)' }}>
         <div className="content-width">
           <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16">
-            <div className="flex items-center gap-3">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-5 h-5 ${
-                      i < Math.floor(businessConfig.rating)
-                        ? 'text-yellow-400 fill-yellow-400'
-                        : 'opacity-20'
-                    }`}
-                  />
-                ))}
-              </div>
-              <div>
-                <span className="font-bold text-lg" style={{ color: 'var(--color-text-primary)' }}>{businessConfig.rating}</span>
-                <span className="text-sm ml-2" style={{ color: 'var(--color-text-tertiary)' }}>({businessConfig.reviewCount} reviews)</span>
-              </div>
-            </div>
+            <TrustGauge rating={businessConfig.rating} reviewCount={`${businessConfig.reviewCount}+`} />
             <div className="flex items-center gap-3">
               <Shield className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
               <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fully Insured & Certified</span>
@@ -139,6 +121,7 @@ export default function Home() {
                   title={service.name}
                   description={service.shortDescription}
                   benefits={service.benefits}
+                  href={`/services/${service.slug}`}
                 />
               </div>
             ))}
@@ -323,13 +306,14 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-4 mb-16 scroll-reveal">
-            {businessConfig.serviceAreas.slice(0, 10).map((area, index) => (
-              <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-                <ServiceAreaChip
-                  area={area}
-                  isPrimary={index === 0}
-                />
-              </div>
+            {businessConfig.serviceAreas.slice(0, 12).map((area, index) => (
+              <ServiceAreaChip
+                key={area.slug}
+                area={area.name}
+                postcodes={area.postcodes}
+                isPrimary={index === 0}
+                href={`/areas/${area.slug}`}
+              />
             ))}
           </div>
           <div className="text-center scroll-reveal">
@@ -350,8 +334,8 @@ export default function Home() {
         subtitle={businessConfig.ctaTemplates.cinematic.fastResponse.subtitle}
         primaryText={businessConfig.ctaTemplates.cinematic.fastResponse.primaryText}
         primaryHref="#contact"
-        secondaryText={businessConfig.ctaTemplates.cinematic.fastResponse.secondaryText}
-        secondaryHref={`tel:${businessConfig.phone}`}
+              secondaryText={businessConfig.ctaTemplates.cinematic.fastResponse.secondaryText}
+              secondaryHref={`https://wa.me/${businessConfig.whatsapp}`}
         trustChips={businessConfig.ctaTemplates.contact.trustChips}
       />
     </div>

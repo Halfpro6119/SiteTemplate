@@ -58,8 +58,8 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       <PageHero
-        title="Get In Touch"
-        subtitle="Ready to get started? Contact us today for a free, no-obligation quote"
+        title="Contact Plumbers Glasgow"
+        subtitle="Get in touch for all plumbing, heating, and electrical needs. Emergency services available 24/7 across Glasgow."
       >
         <div className="mt-8">
           <Breadcrumb items={[
@@ -302,15 +302,15 @@ export default function Contact() {
                         >
                           Phone
                         </h3>
-                        <a
-                          href={`tel:${businessConfig.phone}`}
+                  <a
+                    href={`tel:${businessConfig.phone.replace(/\s/g, '')}`}
                           className="font-bold text-lg hover:text-accent transition-colors"
                           style={{ color: 'var(--color-text-primary)' }}
                         >
                           {businessConfig.phone}
                         </a>
                         <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          Mon-Fri: 8am-6pm
+                          {businessConfig.footer.businessHours}
                         </p>
                       </div>
                     </div>
@@ -362,13 +362,12 @@ export default function Contact() {
                           className="font-semibold mb-1 text-sm"
                           style={{ color: 'var(--color-text-tertiary)' }}
                         >
-                          Service Area
+                          Address
                         </h3>
                         <p className="font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-                          {businessConfig.city}, {businessConfig.state}
-                        </p>
-                        <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          & surrounding areas
+                          {businessConfig.address.line1}<br />
+                          {businessConfig.address.city} {businessConfig.address.postcode}<br />
+                          {businessConfig.address.country}
                         </p>
                       </div>
                     </div>

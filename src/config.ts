@@ -1,280 +1,229 @@
-const city = '[City]';
-const businessName = '[Business Name]';
+const city = 'Glasgow';
+const businessName = 'Plumbers Glasgow Ltd';
+
+export interface ServiceWithSlug {
+  id: number;
+  slug: string;
+  name: string;
+  icon: string;
+  shortDescription: string;
+  fullDescription: string;
+  benefits: string[];
+  idealFor: string;
+  priceFrom?: string;
+  relatedSlugs?: string[];
+}
+
+export interface AreaWithSlug {
+  id: number;
+  slug: string;
+  name: string;
+  postcodes: string;
+  nearbySlugs?: string[];
+}
 
 export const businessConfig = {
-  businessName: businessName,
-  businessType: '[Service Type]',
-  city: city,
-  state: '[State]',
+  businessName,
+  businessType: 'Plumbing, Heating & Electrical',
+  city,
+  state: 'Scotland',
 
-  tagline: 'Your Trusted Local Experts',
-  heroHeadline: 'Premium [Service] Services in [City]',
-  heroSubheading: 'Reliable, Professional, and Trusted by Your Community',
+  /** Logo: external URL (Facebook CDN). For long-term reliability, save as public/logo.jpg and use url: '/logo.jpg' */
+  logo: {
+    url: 'https://scontent.fltn1-1.fna.fbcdn.net/v/t39.30808-1/529658464_4424123391164998_3898649118622142475_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=7W5eDJlX068Q7kNvwF-w1Ys&_nc_oc=Adl4Ag8amtCAk2O3xeDpE0f2kc6dDgLOAoVMb-pClVUb4wGcWRrHo6NmZCQ85nBoYvQ&_nc_zt=24&_nc_ht=scontent.fltn1-1.fna&_nc_gid=CZfpyZlRCE_B3aq5BPJV7w&oh=00_AftR0ApOWPGLBNmZ7V-FbEnpSeEipgngqZGfrgMilLySCA&oe=69A1D28C',
+    alt: `${businessName} - 24/7 Emergency Plumbers Glasgow`
+  },
 
-  phone: '(555) 123-4567',
-  whatsapp: '5551234567',
-  email: 'hello@business.com',
+  tagline: '24/7 Emergency Plumbers | Gas Safe | Trusted by Glasgow',
+  heroHeadline: 'Emergency Repairs, Boiler Service, Blocked Drains and Bathrooms',
+  heroSubheading: '1000+ Five-Star Reviews • Gas Safe • 30-Min Emergency Response',
 
-  yearsExperience: 15,
-  rating: 4.9,
-  reviewCount: 127,
+  phone: '+44 141 468 9930',
+  phoneRaw: '441414689930',
+  whatsapp: '447400707069',
+  email: 'info@glasgowsplumber.co.uk',
+
+  address: {
+    line1: 'Suite 109, 111 W George St',
+    city: 'Glasgow',
+    postcode: 'G2 1QX',
+    country: 'United Kingdom'
+  },
+
+  yearsExperience: 85, // combined team experience
+  establishedYear: 2024,
+  rating: 5,
+  reviewCount: 1000,
+  recommendPercent: 98,
+  serviceRadiusMiles: 25,
 
   services: [
     {
       id: 1,
-      name: 'Service One',
-      icon: 'Wrench',
-      shortDescription: 'Quick and reliable service that delivers results',
-      fullDescription: 'Comprehensive service description that explains the benefits and what customers can expect from this specific service offering.',
-      benefits: ['Fast response time', 'Quality guaranteed', 'Experienced team'],
-      idealFor: 'Homeowners and businesses looking for reliable solutions'
+      slug: 'emergency-plumber-glasgow',
+      name: 'Emergency Plumber 24/7',
+      icon: 'Zap',
+      shortDescription: 'Burst pipes, leaks, flooding - we arrive within 30 minutes, day or night.',
+      fullDescription: 'When plumbing emergencies strike in Glasgow, our 24/7 emergency team is ready to help. From burst pipes and blocked drains to boiler breakdowns and gas leaks, we provide rapid 30-60 minute response and professional solutions to minimise damage and restore your plumbing systems quickly. Gas Safe registered engineers available day and night across all Glasgow postcodes.',
+      benefits: ['30-min response time', 'No call-out fee', 'Available 365 days'],
+      idealFor: 'Urgent plumbing emergencies requiring immediate attention'
     },
     {
       id: 2,
-      name: 'Service Two',
+      slug: 'burst-pipe-repair-glasgow',
+      name: 'Burst Pipe Repair',
+      icon: 'Zap',
+      shortDescription: 'Emergency burst pipe repairs to stop water damage fast.',
+      fullDescription: 'Burst pipes can cause severe water damage in minutes. Our emergency burst pipe repair team responds within 30-60 minutes across Glasgow to stop the leak, minimise damage, and provide permanent repairs. We document everything for insurance claims.',
+      benefits: ['Same-day repair', 'Water damage prevention', 'Insurance documentation'],
+      idealFor: 'Emergency burst pipe situations'
+    },
+    {
+      id: 3,
+      slug: 'boiler-repair-glasgow',
+      name: 'Boiler Breakdown Repair',
       icon: 'Shield',
-      shortDescription: 'Professional service backed by years of expertise',
-      fullDescription: 'Detailed explanation of this service, highlighting the value proposition and why customers should choose this option.',
-      benefits: ['Licensed and insured', 'Competitive pricing', 'Satisfaction guaranteed'],
-      idealFor: 'Anyone needing professional, trustworthy service'
+      shortDescription: 'No heating or hot water? We fix all boiler makes and models.',
+      fullDescription: 'When your boiler breaks down, our Gas Safe registered engineers can diagnose and repair all makes and models. We carry common parts in stock for fast repairs. Same-day service available across Glasgow.',
+      benefits: ['Gas Safe engineers', 'All boiler brands', 'Parts in stock'],
+      idealFor: 'Boiler breakdowns and heating failures'
     },
     {
-      id: 3,
-      name: 'Service Three',
+      id: 4,
+      slug: 'blocked-drains-glasgow',
+      name: 'Blocked Drains Cleared',
+      icon: 'Wrench',
+      shortDescription: 'Professional drain unblocking - toilets, sinks, outside drains.',
+      fullDescription: 'Professional drain unblocking for toilets, sinks, baths and outside drains. We use CCTV surveys and high-pressure jetting for thorough clearance. Same-day service across Glasgow.',
+      benefits: ['CCTV drain surveys', 'High-pressure jetting', 'Same-day service'],
+      idealFor: 'Blocked toilets, sinks and drains'
+    },
+    {
+      id: 5,
+      slug: 'no-hot-water-glasgow',
+      name: 'No Hot Water Fix',
       icon: 'Clock',
-      shortDescription: 'Emergency service available when you need it most',
-      fullDescription: 'Complete overview of emergency service capabilities and availability for urgent situations.',
-      benefits: ['24/7 availability', 'Rapid response', 'Emergency specialists'],
-      idealFor: 'Urgent situations requiring immediate attention'
-    },
-    {
-      id: 4,
-      name: 'Service Four',
-      icon: 'Star',
-      shortDescription: 'Premium service for discerning customers',
-      fullDescription: 'Premium service offering with enhanced features and priority support for customers who expect the best.',
-      benefits: ['Premium quality', 'Priority scheduling', 'Extended warranty'],
-      idealFor: 'Customers seeking the highest quality service'
-    },
-    {
-      id: 5,
-      name: 'Service Five',
-      icon: 'Heart',
-      shortDescription: 'Maintenance plans to keep everything running smoothly',
-      fullDescription: 'Regular maintenance service plans designed to prevent problems and ensure optimal performance over time.',
-      benefits: ['Preventive care', 'Cost savings', 'Peace of mind'],
-      idealFor: 'Homeowners wanting ongoing protection'
+      shortDescription: 'Boiler not heating water? We diagnose and fix the problem fast.',
+      fullDescription: 'No hot water? Our engineers quickly diagnose the cause - whether it is the boiler, cylinder, pump or controls. Most repairs completed same-day across Glasgow.',
+      benefits: ['Quick diagnosis', 'Most repairs same-day', 'All systems covered'],
+      idealFor: 'Homes and businesses with no hot water'
     },
     {
       id: 6,
-      name: 'Service Six',
-      icon: 'Award',
-      shortDescription: 'Specialized service for complex situations',
-      fullDescription: 'Advanced service for complex requirements, handled by experienced specialists with proven expertise.',
-      benefits: ['Expert specialists', 'Advanced techniques', 'Proven results'],
-      idealFor: 'Complex projects requiring specialized knowledge'
+      slug: 'gas-leak-detection-glasgow',
+      name: 'Gas Leak Emergency',
+      icon: 'Shield',
+      shortDescription: 'Smell gas? Call immediately. Gas Safe engineers available 24/7.',
+      fullDescription: 'If you smell gas, call us immediately. Our Gas Safe registered engineers are available 24/7 for urgent gas leak detection and repair across Glasgow. Never ignore the smell of gas.',
+      benefits: ['Urgent priority response', 'Gas Safe certified', '24/7 availability'],
+      idealFor: 'Suspected gas leaks - emergency only'
     }
-  ],
+  ] as ServiceWithSlug[],
 
-  whyChooseUs: [
-    {
-      title: 'Locally Owned & Operated',
-      description: 'We live and work in [City]. Your neighbors trust us, and we take that responsibility seriously.',
-      icon: 'MapPin'
-    },
-    {
-      title: 'Fast Response Times',
-      description: 'We understand urgency. Count on us for quick, reliable service when you need it most.',
-      icon: 'Zap'
-    },
-    {
-      title: 'Quality Guaranteed',
-      description: 'We stand behind our work with comprehensive warranties and a commitment to excellence.',
-      icon: 'CheckCircle'
-    },
-    {
-      title: 'Transparent Pricing',
-      description: 'No surprises, no hidden fees. You will know the cost upfront before we start any work.',
-      icon: 'DollarSign'
-    }
-  ],
-
-  testimonials: [
-    {
-      id: 1,
-      name: 'Sarah Johnson',
-      rating: 5,
-      text: 'Absolutely outstanding service! They arrived on time, were professional, and did an excellent job. The technician explained everything clearly and answered all my questions. The pricing was transparent with no hidden fees, and they completed the work faster than expected without compromising quality. I would definitely recommend them to anyone in [City].',
-      date: '2 weeks ago',
-      serviceTags: ['Service One'],
-      verified: true,
-      ownerReply: 'Thank you Sarah! We truly appreciate your kind words and are thrilled we could exceed your expectations. Customer satisfaction is our top priority.'
-    },
-    {
-      id: 2,
-      name: 'Michael Chen',
-      rating: 5,
-      text: 'I have used several companies over the years, but this is by far the best. Great communication throughout the entire process, fair and competitive pricing, and top-quality work that speaks for itself. They really go above and beyond what you would expect from a service company.',
-      date: '1 month ago',
-      serviceTags: ['Service Two'],
-      verified: true
-    },
-    {
-      id: 3,
-      name: 'Emily Rodriguez',
-      rating: 5,
-      text: 'Very impressed with their professionalism and attention to detail. They exceeded my expectations in every way. The team was courteous, respectful of my home, and cleaned up thoroughly after completing the job.',
-      date: '1 month ago',
-      serviceTags: ['Service Three'],
-      verified: true,
-      ownerReply: 'Emily, thank you for trusting us with your project! We take pride in treating every home with the utmost care and respect.'
-    },
-    {
-      id: 4,
-      name: 'David Thompson',
-      rating: 5,
-      text: 'Quick response, excellent service, and reasonable prices. What more could you ask for? They were able to fit me in on short notice and resolved my issue efficiently. The technician was knowledgeable and friendly. Highly recommended!',
-      date: '2 months ago',
-      serviceTags: ['Service Three'],
-      verified: true
-    },
-    {
-      id: 5,
-      name: 'Jennifer Martinez',
-      rating: 5,
-      text: 'These guys are the real deal. Professional, knowledgeable, and genuinely care about doing the job right. They did not try to upsell me on services I did not need, which I really appreciated. Honest and trustworthy company.',
-      date: '2 months ago',
-      serviceTags: ['Service Four'],
-      verified: true
-    },
-    {
-      id: 6,
-      name: 'Robert Wilson',
-      rating: 5,
-      text: 'I am so glad I found this company. They were courteous, efficient, and their work quality is exceptional. The entire experience from initial contact to project completion was seamless and stress-free.',
-      date: '3 months ago',
-      serviceTags: ['Service Five'],
-      verified: true,
-      ownerReply: 'We appreciate your trust in us, Robert! Making the experience seamless for our customers is always our goal.'
-    },
-    {
-      id: 7,
-      name: 'Amanda Foster',
-      rating: 5,
-      text: 'Exceptional service from start to finish! The team was punctual, professional, and incredibly skilled. They took the time to explain the work process and made sure I was comfortable with everything before proceeding. The results exceeded my expectations.',
-      date: '3 months ago',
-      serviceTags: ['Service One'],
-      verified: true
-    },
-    {
-      id: 8,
-      name: 'Carlos Rivera',
-      rating: 4,
-      text: 'Very good experience overall. The work was completed on schedule and the quality was solid. Communication could have been slightly better during the project, but the end result was worth it. Would use them again.',
-      date: '4 months ago',
-      serviceTags: ['Service Six'],
-      verified: true,
-      ownerReply: 'Thank you for your feedback, Carlos. We are always working to improve our communication and appreciate you bringing this to our attention. Glad you are happy with the results!'
-    },
-    {
-      id: 9,
-      name: 'Lisa Wang',
-      rating: 5,
-      text: 'Outstanding company! They handled a complex project with expertise and professionalism. The team was knowledgeable, respectful, and delivered exactly what they promised. Pricing was fair and there were no surprise charges.',
-      date: '4 months ago',
-      serviceTags: ['Service Two'],
-      verified: true
-    }
-  ],
-
-  trustChips: [
-    'Professional Service',
-    'Fast Response',
-    'Transparent Pricing',
-    'Quality Workmanship'
+  allServices: [
+    { id: 1, slug: 'emergency-plumber-glasgow', name: 'Emergency Plumber 24/7', icon: 'Zap' },
+    { id: 2, slug: 'burst-pipe-repair-glasgow', name: 'Burst Pipe Repair', icon: 'Zap' },
+    { id: 3, slug: 'boiler-repair-glasgow', name: 'Boiler Repair', icon: 'Shield' },
+    { id: 4, slug: 'boiler-installation-glasgow', name: 'Boiler Installation', icon: 'Shield' },
+    { id: 5, slug: 'blocked-drains-glasgow', name: 'Blocked Drains', icon: 'Wrench' },
+    { id: 6, slug: 'no-hot-water-glasgow', name: 'No Hot Water', icon: 'Clock' },
+    { id: 7, slug: 'gas-leak-detection-glasgow', name: 'Gas Leak Detection', icon: 'Shield' },
+    { id: 8, slug: 'plumber-glasgow', name: 'Plumber Glasgow', icon: 'Wrench' },
+    { id: 9, slug: 'gas-heating-engineer-glasgow', name: 'Gas & Heating Engineer', icon: 'Shield' },
+    { id: 10, slug: 'drainage-services-glasgow', name: 'Drainage Services', icon: 'Wrench' },
+    { id: 11, slug: 'handyman-glasgow', name: 'Handyman Glasgow', icon: 'Wrench' },
+    { id: 12, slug: 'bathroom-renovation-glasgow', name: 'Bathroom Renovation', icon: 'Star' }
   ],
 
   serviceAreas: [
-    '[City] (Primary)',
-    '[Nearby Town 1]',
-    '[Nearby Town 2]',
-    '[Nearby Town 3]',
-    '[Nearby Town 4]',
-    '[Nearby Town 5]',
-    '[Nearby Town 6]',
-    '[Nearby Town 7]',
-    '[Nearby Town 8]',
-    '[Nearby Town 9]'
+    { slug: 'glasgow-city-centre', name: 'Glasgow City Centre', postcodes: 'G1, G2, G3, G4' },
+    { slug: 'west-end-glasgow', name: 'West End', postcodes: 'G11, G12, G13' },
+    { slug: 'southside-glasgow', name: 'Southside', postcodes: 'G41, G42, G43, G44' },
+    { slug: 'east-end-glasgow', name: 'East End', postcodes: 'G31, G32, G33, G34' },
+    { slug: 'paisley', name: 'Paisley', postcodes: 'PA1, PA2, PA3' },
+    { slug: 'hamilton', name: 'Hamilton', postcodes: 'ML3' },
+    { slug: 'east-kilbride', name: 'East Kilbride', postcodes: 'G74, G75' },
+    { slug: 'cumbernauld', name: 'Cumbernauld', postcodes: 'G67, G68' },
+    { slug: 'bishopbriggs', name: 'Bishopbriggs', postcodes: 'G64' },
+    { slug: 'cambuslang', name: 'Cambuslang', postcodes: 'G72' },
+    { slug: 'rutherglen', name: 'Rutherglen', postcodes: 'G73' },
+    { slug: 'uddingston', name: 'Uddingston', postcodes: 'G71' },
+    { slug: 'bearsden-milngavie', name: 'Bearsden & Milngavie', postcodes: 'G61, G62' },
+    { slug: 'dennistoun', name: 'Dennistoun', postcodes: 'G31' },
+    { slug: 'partick', name: 'Partick', postcodes: 'G11' },
+    { slug: 'newton-mearns', name: 'Newton Mearns', postcodes: 'G77' }
+  ] as AreaWithSlug[],
+
+  whyChooseUs: [
+    { title: 'Gas Safe Registered', description: 'All our heating engineers are Gas Safe registered. Your safety is our priority.', icon: 'Shield' },
+    { title: '24/7 Emergency Service', description: 'Plumbing emergencies do not wait. We are available day and night, 365 days a year.', icon: 'Clock' },
+    { title: '1000+ Five-Star Reviews', description: 'Glasgow families trust us. Read what our customers say about our service.', icon: 'Star' },
+    { title: 'Transparent Pricing', description: 'No hidden fees, no call-out charges. You will know the cost before we start.', icon: 'DollarSign' }
   ],
 
-  aboutStory: `With over ${15} years of experience serving the [City] community, [Business Name] has built a reputation for reliability, quality, and exceptional customer service. We started with a simple mission: to provide honest, professional [service] services that local families and businesses can trust.
+  /** Real customer reviews from https://glasgowsplumber.co.uk/reviews (12 verified reviews, copied verbatim) */
+  testimonials: [
+    { id: 1, name: 'Sarah MacKenzie', rating: 5, text: 'Absolutely delighted with our new kitchen! The team from Plumbers Glasgow Ltd transformed our Victorian terrace kitchen into a beautiful modern space while respecting the period features. Professional, punctual, and the quality of work is exceptional. Would definitely recommend to anyone in the West End.', date: 'Jan 2024', serviceTags: ['Kitchen Renovation'], location: 'West End Glasgow', verified: true },
+    { id: 2, name: 'James Robertson', rating: 5, text: 'Had a new Worcester Bosch boiler installed by the team. From quote to completion, the service was first-class. The Gas Safe engineer explained everything clearly, worked cleanly, and the new boiler is so much more efficient than our old one. Excellent value for money.', date: 'Jan 2024', serviceTags: ['Boiler Installation'], location: 'Bearsden', verified: true },
+    { id: 3, name: 'Linda Thomson', rating: 5, text: 'Called them at 11pm on a Sunday night with a burst pipe flooding our utility room. The engineer arrived within 45 minutes, stopped the leak, and made it safe. Returned the next day to do a permanent repair. Professional emergency service when we really needed it!', date: 'Jan 2024', serviceTags: ['Emergency Plumbing'], location: 'Southside Glasgow', verified: true },
+    { id: 4, name: 'Michael O\'Brien', rating: 5, text: 'Fantastic bathroom renovation from start to finish. The design advice was spot-on, and they managed all the trades perfectly. Our small bathroom now feels much more spacious and modern. Great communication throughout and finished exactly on budget.', date: 'Jan 2024', serviceTags: ['Bathroom Renovation'], location: 'East End Glasgow', verified: true },
+    { id: 5, name: 'Jennifer Stewart', rating: 5, text: 'New central heating system installed including smart thermostats in every room. The planning and installation was excellent, with minimal disruption to our family life. The house is now beautifully warm and our energy bills have already reduced significantly.', date: 'Jan 2024', serviceTags: ['Central Heating'], location: 'Newton Mearns', verified: true },
+    { id: 6, name: 'Robert Wilson', rating: 5, text: 'Blocked drains sorted quickly and professionally. They used CCTV to diagnose the problem, explained everything clearly, and fixed it permanently. No mess, fair price, and they even gave advice on preventing future blockages. Highly recommend their drainage service.', date: 'Jan 2024', serviceTags: ['Drainage Services'], location: 'Paisley', verified: true },
+    { id: 7, name: 'Mary Campbell', rating: 5, text: 'House rewire completed professionally and efficiently. The electricians were tidy, punctual, and explained what they were doing each day. All certificates provided and the work passed building control inspection first time. Great job by a professional team.', date: 'Dec 2023', serviceTags: ['Electrical Services'], location: 'East Kilbride', verified: true },
+    { id: 8, name: 'David Anderson', rating: 5, text: 'Annual boiler service and landlord certificate completed promptly. The Gas Safe engineer was knowledgeable, efficient, and spotted a small issue that could have become expensive later. Fixed it there and then. Professional service for landlords.', date: 'Dec 2023', serviceTags: ['Gas Services'], location: 'Hamilton', verified: true },
+    { id: 9, name: 'Helen Murray', rating: 5, text: 'Multiple jobs completed including tiling, decorating, and small plumbing repairs. The handyman was skilled, reliable, and took pride in his work. Everything finished to a high standard and reasonably priced. Will definitely use again.', date: 'Dec 2023', serviceTags: ['Handyman Services'], location: 'Clydebank', verified: true },
+    { id: 10, name: 'Andrew Fraser', rating: 5, text: 'Boiler broke down on Christmas Eve - not ideal with family visiting! Called their emergency line and an engineer came out within 2 hours, even on Christmas Eve. Got our heating working again quickly. Outstanding emergency service when it really mattered.', date: 'Dec 2023', serviceTags: ['Emergency Heating'], location: 'Motherwell', verified: true },
+    { id: 11, name: 'Karen McDonald', rating: 5, text: 'Shower installation and bathroom plumbing work completed to a very high standard. The plumber was courteous, clean, and clearly experienced. Explained all the options and costs upfront. Very happy with the quality of work and would recommend.', date: 'Dec 2023', serviceTags: ['Plumbing Services'], location: 'Rutherglen', verified: true },
+    { id: 12, name: 'Graham Scott', rating: 5, text: 'EICR electrical testing for our rental property completed efficiently. The electrician found a few minor issues, explained them clearly, and fixed them the same day. Certificate issued immediately. Professional service for landlords at a fair price.', date: 'Dec 2023', serviceTags: ['Electrical Testing'], location: 'Coatbridge', verified: true }
+  ],
 
-Today, we are proud to be one of the most trusted names in [City] for [service] services. Our team of experienced professionals is dedicated to delivering outstanding results on every project, big or small.`,
+  trustChips: ['24/7', 'Gas Safe', '£10M Insured', '1000+ Reviews'],
+
+  teamMembers: [
+    { name: 'James MacLeod', role: 'Master Plumber & Founder', years: '30+', skills: ['Gas Safe Registered', 'Emergency Plumbing', 'Heating Systems'] },
+    { name: 'Sarah Campbell', role: 'Senior Gas Engineer', years: '15+', skills: ['Boiler Installation', 'Gas Safety', 'Heating Repairs'] },
+    { name: 'David Thomson', role: 'Master Electrician', years: '20+', skills: ['Electrical Installation', 'Safety Testing', 'Emergency Callouts'] }
+  ],
+
+  journey: [
+    { year: '2024', title: 'Plumbers Glasgow Ltd established as a registered company' },
+    { year: '2024', title: 'Gas Safe registered engineers joined the team' },
+    { year: '2024', title: 'Expanded services to cover all Glasgow areas' },
+    { year: '2024', title: '24/7 emergency service launched' }
+  ],
+
+  aboutStory: `Plumbers Glasgow Ltd brings together a team of experienced engineers dedicated to serving Glasgow's homes and businesses. Our skilled professionals understand the unique needs of Glasgow properties, from traditional tenements to modern developments.
+
+Today, we are proud to serve over 1,000 satisfied customers annually, from emergency callouts in Glasgow's historic West End to modern bathroom installations in new developments across the city. Our team of Gas Safe registered engineers upholds the highest standards of excellence.
+
+We are committed to Glasgow families. We are not just tradesmen – we are your neighbours, working to keep your homes safe, warm, and comfortable throughout every Scottish season.`,
 
   values: [
-    {
-      title: 'Integrity',
-      description: 'We do what we say we will do, every single time. Your trust is our most valuable asset.'
-    },
-    {
-      title: 'Excellence',
-      description: 'Good enough is never good enough. We strive for excellence in every aspect of our work.'
-    },
-    {
-      title: 'Community',
-      description: 'We are part of this community and committed to making [City] an even better place to live.'
-    }
+    { title: 'Local Knowledge', description: 'We understand Glasgow\'s unique housing stock, from Victorian tenements to modern developments, and the specific challenges they present.' },
+    { title: 'Community Focus', description: 'Active in local community projects, charity work, and youth training programs to develop the next generation of Glasgow tradespeople.' },
+    { title: 'Honest Pricing', description: 'No hidden fees, no call-out charges. Fair, transparent pricing that respects your budget and our reputation.' }
   ],
 
+  /** Gallery images from glasgowsplumber.co.uk (hero + team asset from their site) */
   galleryImages: [
-    {
-      id: 1,
-      url: 'https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Recent project completion in [City]',
-      category: 'recent'
-    },
-    {
-      id: 2,
-      url: 'https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Professional service delivery',
-      category: 'recent'
-    },
-    {
-      id: 3,
-      url: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Quality workmanship you can trust',
-      category: 'before-after'
-    },
-    {
-      id: 4,
-      url: 'https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Attention to detail in every project',
-      category: 'recent'
-    },
-    {
-      id: 5,
-      url: 'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Transforming spaces in [City]',
-      category: 'before-after'
-    },
-    {
-      id: 6,
-      url: 'https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Expert team at work',
-      category: 'recent'
-    }
+    { id: 1, url: 'https://glasgowsplumber.co.uk/images/glasgow-plumber-hero.jpg', caption: 'Plumbers Glasgow – expert plumbing across Glasgow', category: 'recent' },
+    { id: 2, url: 'https://glasgowsplumber.co.uk/assets/plumbers-glasgow-team-S2nYy3du.webp', caption: 'Our Glasgow team – Gas Safe registered engineers', category: 'recent' },
+    { id: 3, url: 'https://glasgowsplumber.co.uk/images/glasgow-plumber-hero.jpg', caption: '24/7 emergency plumber Glasgow', category: 'emergency' },
+    { id: 4, url: 'https://glasgowsplumber.co.uk/assets/plumbers-glasgow-team-S2nYy3du.webp', caption: 'Trusted by Glasgow families – 1000+ reviews', category: 'recent' },
+    { id: 5, url: 'https://glasgowsplumber.co.uk/images/glasgow-plumber-hero.jpg', caption: 'Boiler repair, heating & bathroom services', category: 'heating' },
+    { id: 6, url: 'https://glasgowsplumber.co.uk/assets/plumbers-glasgow-team-S2nYy3du.webp', caption: 'Professional plumbing & drainage across G1–G53', category: 'recent' }
   ],
 
   ctaTemplates: {
     hero: {
-      primaryText: 'Get a Quote',
-      primaryHref: '#contact',
-      secondaryText: 'Explore Services',
-      secondaryHref: '#services',
+      primaryText: 'Call Now 24/7',
+      primaryHref: 'tel:+441414689930',
+      secondaryText: 'WhatsApp',
+      secondaryHref: 'https://wa.me/447400707069',
       trustChips: [
-        { icon: 'shield', text: 'Certified & Insured' },
-        { icon: 'clock', text: 'Fast Response' },
-        { icon: 'award', text: 'Trusted Locally' }
+        { icon: 'shield', text: 'Gas Safe' },
+        { icon: 'clock', text: '30-60 min Response' },
+        { icon: 'award', text: '1000+ Reviews' }
       ]
     },
     decisionPoint: {
@@ -287,14 +236,14 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
       },
       premiumQuality: {
         label: 'Ready to upgrade?',
-        title: 'Premium Quality That Lasts',
-        subtitle: 'Trusted workmanship backed by our satisfaction guarantee.',
+        title: 'Quality Workmanship That Lasts',
+        subtitle: 'Trusted by Glasgow families since day one.',
         primaryText: 'Get Started',
         secondaryText: 'Learn More'
       },
       localTrust: {
-        label: 'Join our happy customers',
-        title: `Trusted in [City] Since [Year]`,
+        label: 'Your Glasgow neighbours trust us',
+        title: 'Trusted in Glasgow',
         subtitle: 'Reliable service with no hassle and no inflated quotes.',
         primaryText: 'Get Quote',
         secondaryText: 'Speak to Us'
@@ -303,10 +252,10 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
     cinematic: {
       fastResponse: {
         label: 'Get Started Today',
-        headline: 'Ready to Experience the Difference?',
-        subtitle: 'Join hundreds of satisfied customers who trust us with their needs.',
-        primaryText: 'Get a Quote',
-        secondaryText: 'Call Now'
+        headline: 'Ready to Experience Our 5-Star Service?',
+        subtitle: 'Join 1000+ satisfied customers across Glasgow. Get a free quote today.',
+        primaryText: 'Call +44 141 468 9930',
+        secondaryText: 'WhatsApp Quote'
       },
       premiumQuality: {
         label: 'Transform Your Space',
@@ -317,7 +266,7 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
       },
       localTrust: {
         label: 'Choose Local Excellence',
-        headline: `[City]'s Most Trusted Service Provider`,
+        headline: 'Glasgow\'s Most Trusted Plumbing Service',
         subtitle: 'Serving our community with pride and professionalism.',
         primaryText: 'Get Free Quote',
         secondaryText: 'Call Today'
@@ -327,9 +276,9 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
       title: 'Speak to a Specialist',
       responseTime: 'We usually respond within 1 hour',
       trustChips: [
-        { icon: 'shield', text: 'Certified' },
-        { icon: 'users', text: 'Local' },
-        { icon: 'star', text: 'Trusted' }
+        { icon: 'shield', text: 'Gas Safe' },
+        { icon: 'users', text: 'Trusted Locally' },
+        { icon: 'star', text: '1000+ Reviews' }
       ]
     }
   },
@@ -337,30 +286,25 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
   footer: {
     closingCTA: {
       enabled: true,
-      title: 'Ready to Get Started?',
-      subtitle: 'Fast, clear advice and a no-obligation quote.',
-      primaryText: 'Get a Quote',
-      primaryHref: '#contact',
-      secondaryText: 'Call Now',
-      secondaryHref: 'tel:'
+      title: 'Need a Plumber in Glasgow?',
+      subtitle: 'Emergency plumber 24/7, burst pipe repair, boiler service, blocked drains.',
+      primaryText: 'Call +44 141 468 9930',
+      primaryHref: 'tel:+441414689930',
+      secondaryText: 'WhatsApp',
+      secondaryHref: 'https://wa.me/447400707069'
     },
-    brandStatement: 'Your trusted local experts delivering quality service with integrity and professionalism.',
+    brandStatement: '24/7 emergency plumber Glasgow. Gas Safe registered, fully insured, and trusted by Glasgow families.',
     brandTrustChips: [
-      { icon: 'shield', text: 'Certified' },
-      { icon: 'users', text: 'Trusted Locally' },
-      { icon: 'check', text: 'Transparent Pricing' }
+      { icon: 'shield', text: 'Gas Safe' },
+      { icon: 'users', text: '1000+ Reviews' },
+      { icon: 'check', text: '£10M Insured' }
     ],
     servicesTitle: 'Our Services',
-    areasTitle: 'Service Areas',
-    areasDescription: `Proudly serving ${city} and surrounding communities`,
+    areasTitle: 'Areas We Serve',
+    areasDescription: 'Plumbing, heating & electrical across Glasgow G1-G53',
     contactTitle: 'Get In Touch',
-    businessHours: 'Mon-Fri: 8am-6pm, Sat: 9am-4pm',
-    trustBadges: [
-      'Fully Insured',
-      'Qualified Team',
-      'Quality Workmanship',
-      'Satisfaction Guaranteed'
-    ],
+    businessHours: 'Mon-Fri: 7am-6pm, Sat: 8am-4pm | Emergency 24/7',
+    trustBadges: ['24/7 Emergency', 'Gas Safe', '£10M Insured', '1000+ Reviews'],
     legalLinks: [
       { label: 'Privacy Policy', href: '#privacy' },
       { label: 'Terms of Service', href: '#terms' },
@@ -377,14 +321,14 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
             { label: 'Services', href: '/services' },
             { label: 'Reviews', href: '/reviews' },
             { label: 'Gallery', href: '/gallery' },
-            { label: 'Locations', href: '/locations' },
+            { label: 'Areas', href: '/locations' },
             { label: 'Contact', href: '/contact' }
           ]
         },
         {
           title: 'Help',
           links: [
-            { label: 'Request a Quote', href: '#contact' },
+            { label: 'Request Quote', href: '/contact' },
             { label: 'Contact Us', href: '/contact' },
             { label: 'Privacy Policy', href: '#privacy' },
             { label: 'Terms of Service', href: '#terms' }
@@ -395,9 +339,17 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
   },
 
   theme: {
-    primary: '#2563eb',
-    primaryHover: '#1d4ed8',
-    accent: '#10b981',
-    accentHover: '#059669'
+    primary: '#06b6d4',
+    primaryHover: '#0891b2',
+    accent: '#06b6d4',
+    accentHover: '#22d3ee'
   }
 };
+
+export function getServiceBySlug(slug: string): ServiceWithSlug | undefined {
+  return businessConfig.services.find((s) => s.slug === slug);
+}
+
+export function getAreaBySlug(slug: string): AreaWithSlug | undefined {
+  return businessConfig.serviceAreas.find((a) => a.slug === slug);
+}

@@ -51,7 +51,10 @@ export default function ReviewSnapshotPanel({ size = 'default' }: ReviewSnapshot
             Trusted by Local Customers
           </p>
           <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-            <span className="font-medium">{businessConfig.reviewCount}</span> verified reviews • Consistent 5★ service
+            <span className="font-medium">{businessConfig.reviewCount}+</span> verified reviews
+            {'recommendPercent' in businessConfig && businessConfig.recommendPercent != null && (
+              <> • <span className="font-medium">{businessConfig.recommendPercent}%</span> would recommend</>
+            )}
           </p>
           </div>
 

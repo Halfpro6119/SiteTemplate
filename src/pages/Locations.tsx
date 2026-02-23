@@ -18,7 +18,7 @@ export default function Locations() {
               Areas We Serve
             </h1>
             <p className="section-subtitle">
-              Providing exceptional {businessConfig.businessType.toLowerCase()} services throughout {businessConfig.city} and surrounding communities
+              Plumbing, heating & electrical across Glasgow and 25-mile radius. Gas Safe, 24/7 emergency.
             </p>
           </div>
         </div>
@@ -84,18 +84,26 @@ export default function Locations() {
                 Service Areas
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {businessConfig.serviceAreas.map((area, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center space-x-2 p-4 rounded-lg transition-colors"
-                    style={{ backgroundColor: 'var(--color-bg-surface)' }}
+                {businessConfig.serviceAreas.map((area) => (
+                  <Link
+                    key={area.slug}
+                    to={`/areas/${area.slug}`}
+                    className="flex items-center space-x-2 p-4 rounded-lg transition-all duration-300 hover:scale-105"
+                    style={{
+                      backgroundColor: 'var(--color-bg-surface)',
+                      border: '1px solid var(--color-border-subtle)',
+                      color: 'var(--color-text-secondary)'
+                    }}
                   >
                     <MapPin
                       className="w-5 h-5 flex-shrink-0"
                       style={{ color: 'var(--color-accent)' }}
                     />
-                    <span className="font-medium" style={{ color: 'var(--color-text-secondary)' }}>{area}</span>
-                  </div>
+                    <div>
+                      <span className="font-medium block">{area.name}</span>
+                      <span className="text-xs opacity-75">{area.postcodes}</span>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -122,7 +130,7 @@ export default function Locations() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href={`tel:${businessConfig.phone}`}
+                href={`tel:${businessConfig.phone.replace(/\s/g, '')}`}
                 className="btn-primary"
                 style={{ fontSize: '1.125rem', padding: '1.125rem 2rem' }}
               >

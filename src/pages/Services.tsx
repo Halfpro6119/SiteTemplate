@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
 import ServiceCTABar from '../components/ServiceCTABar';
 import DecisionPointCTA from '../components/DecisionPointCTA';
+import PostcodeMap from '../components/PostcodeMap';
 
 export default function Services() {
   return (
@@ -16,12 +18,10 @@ export default function Services() {
         <div className="content-width">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="section-title">
-              Our Services
+              96+ Professional Plumbing Services Across Glasgow G1–G53
             </h1>
             <p className="section-subtitle">
-              We offer a comprehensive range of {businessConfig.businessType.toLowerCase()} services
-              designed to meet your needs. Every service is delivered with professionalism,
-              expertise, and a commitment to excellence.
+              Emergency, heating, drainage, bathrooms, handyman – one trusted team. Gas Safe registered, 24/7.
             </p>
           </div>
         </div>
@@ -29,6 +29,35 @@ export default function Services() {
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }}>
         <div className="content-width">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            {businessConfig.services.map((service) => {
+              const IconComponent = (Icons as any)[service.icon] || Icons.Star;
+              return (
+                <Link
+                  key={service.id}
+                  to={`/services/${service.slug}`}
+                  className="block p-6 rounded-2xl transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: 'var(--color-bg-surface)',
+                    border: '1px solid var(--color-border-subtle)',
+                    boxShadow: 'var(--shadow-luxury-sm)'
+                  }}
+                >
+                  <IconComponent className="w-10 h-10 mb-3" style={{ color: 'var(--color-accent)' }} />
+                  <h3 className="font-bold text-lg mb-2" style={{ color: 'var(--color-text-primary)' }}>
+                    {service.name}
+                  </h3>
+                  <p className="text-sm" style={{ color: 'var(--color-text-tertiary)' }}>
+                    {service.shortDescription}
+                  </p>
+                  <span className="inline-block mt-3 text-sm font-semibold" style={{ color: 'var(--color-accent)' }}>
+                    View details →
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+
           <div className="space-y-12">
             {businessConfig.services.map((service, index) => {
               const IconComponent = (Icons as any)[service.icon] || Icons.Star;
@@ -107,14 +136,15 @@ export default function Services() {
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }}>
         <div className="content-width">
+          <PostcodeMap className="mb-16" />
           <DecisionPointCTA
             label="Not sure which service you need?"
             title="We'll Help You Find the Perfect Solution"
             subtitle="Our friendly team is here to provide expert guidance and free consultations."
-            primaryText="Get Free Consultation"
-            primaryHref="#contact"
-            secondaryText="Call Us Now"
-            secondaryHref={`tel:${businessConfig.phone}`}
+            primaryText="Get Free Quote"
+            primaryHref="/contact"
+            secondaryText="Call +44 141 468 9930"
+            secondaryHref={`tel:${businessConfig.phone.replace(/\s/g, '')}`}
           />
         </div>
       </section>

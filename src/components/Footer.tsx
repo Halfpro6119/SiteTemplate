@@ -45,7 +45,7 @@ export default function Footer() {
               primaryText={businessConfig.footer.closingCTA.primaryText}
               primaryHref={businessConfig.footer.closingCTA.primaryHref}
               secondaryText={businessConfig.footer.closingCTA.secondaryText}
-              secondaryHref={`${businessConfig.footer.closingCTA.secondaryHref}${businessConfig.phone}`}
+              secondaryHref={businessConfig.footer.closingCTA.secondaryHref}
             />
           </div>
         )}
@@ -54,21 +54,31 @@ export default function Footer() {
           <div className="hidden lg:grid lg:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
-                  </div>
-                </div>
+                {businessConfig.logo?.url ? (
+                  <img
+                    src={businessConfig.logo.url}
+                    alt={businessConfig.logo.alt || businessConfig.businessName}
+                    className="h-11 w-auto max-w-[160px] object-contain object-left"
+                  />
+                ) : (
+                  <>
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
+                      style={{
+                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
+                        color: 'white',
+                        boxShadow: '0 0 24px -8px var(--color-accent)'
+                      }}
+                    >
+                      {businessConfig.businessName.charAt(0)}
+                    </div>
+                    <div>
+                      <div className="font-bold text-lg text-white">
+                        {businessConfig.businessName}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
@@ -82,7 +92,7 @@ export default function Footer() {
                 {businessConfig.services.slice(0, 8).map((service) => (
                   <li key={service.id}>
                     <Link
-                      to="/services"
+                      to={`/services/${service.slug}`}
                       className="text-sm text-white/70 hover:text-white transition-all duration-300 relative inline-block group"
                     >
                       <span className="relative">
@@ -101,13 +111,14 @@ export default function Footer() {
                 {businessConfig.footer.areasDescription}
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                {businessConfig.serviceAreas.slice(0, 6).map((area, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1.5 rounded-full text-xs bg-white/5 border border-white/10 text-white/80"
+                {businessConfig.serviceAreas.slice(0, 6).map((area) => (
+                  <Link
+                    key={area.slug}
+                    to={`/areas/${area.slug}`}
+                    className="px-3 py-1.5 rounded-full text-xs bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 transition-colors"
                   >
-                    {area}
-                  </span>
+                    {area.name}
+                  </Link>
                 ))}
               </div>
               <Link
@@ -163,21 +174,31 @@ export default function Footer() {
           <div className="lg:hidden space-y-4 mb-12">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
-                  </div>
-                </div>
+                {businessConfig.logo?.url ? (
+                  <img
+                    src={businessConfig.logo.url}
+                    alt={businessConfig.logo.alt || businessConfig.businessName}
+                    className="h-11 w-auto max-w-[160px] object-contain object-left"
+                  />
+                ) : (
+                  <>
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
+                      style={{
+                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
+                        color: 'white',
+                        boxShadow: '0 0 24px -8px var(--color-accent)'
+                      }}
+                    >
+                      {businessConfig.businessName.charAt(0)}
+                    </div>
+                    <div>
+                      <div className="font-bold text-lg text-white">
+                        {businessConfig.businessName}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
@@ -272,13 +293,14 @@ export default function Footer() {
                     {businessConfig.footer.areasDescription}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {businessConfig.serviceAreas.slice(0, 6).map((area, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1.5 rounded-full text-xs bg-white/5 border border-white/10 text-white/80"
+                    {businessConfig.serviceAreas.slice(0, 6).map((area) => (
+                      <Link
+                        key={area.slug}
+                        to={`/areas/${area.slug}`}
+                        className="px-3 py-1.5 rounded-full text-xs bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 transition-colors"
                       >
-                        {area}
-                      </span>
+                        {area.name}
+                      </Link>
                     ))}
                   </div>
                   <Link

@@ -48,7 +48,7 @@ export default function MiniSitemap({
     links: [
       ...businessConfig.services.slice(0, 8).map(service => ({
         label: service.name,
-        href: '/services'
+        href: `/services/${service.slug}`
       })),
       ...(businessConfig.services.length > 8 ? [{ label: 'View All Services', href: '/services' }] : [])
     ]
@@ -59,10 +59,10 @@ export default function MiniSitemap({
     content: (
       <div>
         <div className="flex flex-wrap gap-2 mb-3">
-          {businessConfig.serviceAreas.slice(0, 10).map((area, index) => (
+          {businessConfig.serviceAreas.slice(0, 10).map((area) => (
             <Link
-              key={index}
-              to="/locations"
+              key={area.slug}
+              to={`/areas/${area.slug}`}
               className="px-3 py-1.5 rounded-full text-xs transition-all duration-300"
               style={{
                 background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
@@ -70,7 +70,7 @@ export default function MiniSitemap({
                 color: isDark ? 'rgba(255, 255, 255, 0.8)' : 'var(--color-text-primary)'
               }}
             >
-              {area}
+              {area.name}
             </Link>
           ))}
         </div>

@@ -7,6 +7,7 @@ interface PremiumReviewCardProps {
   text: string;
   date: string;
   serviceTags?: string[];
+  location?: string;
   verified?: boolean;
   ownerReply?: string;
 }
@@ -58,6 +59,7 @@ export default function PremiumReviewCard({
   text,
   date,
   serviceTags = [],
+  location,
   verified = false,
   ownerReply
 }: PremiumReviewCardProps) {
@@ -213,6 +215,18 @@ export default function PremiumReviewCard({
 
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div className="flex flex-wrap gap-2">
+            {location && (
+              <span
+                className="px-3 py-1 rounded-full text-xs font-medium"
+                style={{
+                  backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                  color: 'var(--color-accent)',
+                  border: '1px solid rgba(6, 182, 212, 0.2)'
+                }}
+              >
+                {location}
+              </span>
+            )}
             {serviceTags.map((tag, index) => (
               <span
                 key={index}

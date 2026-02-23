@@ -17,8 +17,8 @@ export default function About() {
   return (
     <div className="min-h-screen">
       <PageHero
-        title={`Your Local ${businessConfig.businessType} Experts`}
-        subtitle="Building trust and delivering excellence, one customer at a time"
+        title="Professional Plumbers Serving Glasgow Families"
+        subtitle="Plumbers Glasgow Ltd is Glasgow's trusted name for plumbing, heating, electrical, and handyman services. Local families rely on our expertise, quality workmanship, and honest pricing."
       >
         <div className="mt-8">
           <Breadcrumb items={[
@@ -53,7 +53,7 @@ export default function About() {
                     letterSpacing: '-0.02em'
                   }}
                 >
-                  Building Trust Since {new Date().getFullYear() - businessConfig.yearsExperience}
+                  Professional Plumbers Serving Glasgow Families
                 </h2>
                 <div className="prose prose-lg leading-relaxed space-y-4" style={{ color: 'var(--color-text-secondary)' }}>
                   {businessConfig.aboutStory.split('\n\n').map((paragraph, index) => (
