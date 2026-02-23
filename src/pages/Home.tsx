@@ -167,7 +167,7 @@ export default function Home() {
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              Advanced equipment and comprehensive accreditation across Stoke-on-Trent and surrounding areas
+              Advanced equipment and comprehensive accreditation across {businessConfig.city} and surrounding areas.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

@@ -10,6 +10,7 @@ export const businessConfig = {
   tagline: 'Expert water pipe solutions for your property',
   heroHeadline: 'Leak detection and repair in one visit.',
   heroSubheading: 'Watersafe-accredited specialists across Stoke and 15 miles. Same-day repair often. 24hr response.',
+  metaDescription: 'Expert water leak detection and repair across Stoke and 15 miles. Watersafe accredited. Same-day repair often. 24hr response. Book a free survey.',
 
   phone: '0782 784 7003',
   whatsapp: '447827847003',
@@ -406,3 +407,9 @@ Our team is Watersafe and WIAPS accredited, NPORS and EUSR certified, and fully 
 };
 
 export type ServiceConfig = (typeof businessConfig.services)[number];
+
+/** Used for index.html title and meta tags (injected at build time). */
+export const siteMeta = {
+  title: `${businessConfig.businessName} | ${businessConfig.businessType} ${businessConfig.city}`,
+  description: businessConfig.metaDescription ?? businessConfig.heroSubheading,
+};

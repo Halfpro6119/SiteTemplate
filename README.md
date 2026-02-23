@@ -92,13 +92,14 @@ All content is managed through the `businessConfig` object in `src/config.ts`. S
 
 The site is production-ready and can be deployed to any static hosting service:
 
-- Vercel
-- Netlify
-- GitHub Pages
-- AWS S3
-- Cloudflare Pages
+- **Vercel** — `vercel.json` is included; deploy the `dist` folder or connect the repo for automatic builds.
+- **Netlify** — `public/_redirects` is included for SPA routing; deploy `dist` or use build command `npm run build` and publish directory `dist`.
+- **GitHub Pages** — Run `npm run build`, then set `base` in `vite.config.ts` to your repo path (e.g. `'/your-repo/'`) and deploy `dist`.
+- **AWS S3 / Cloudflare Pages** — Build and upload `dist`; configure the server to serve `index.html` for all routes (SPA fallback).
 
-Build the project and deploy the `dist` folder.
+**SPA fallback:** For client-side routing to work, the host must serve `index.html` for paths like `/services`, `/about`, etc. The included `vercel.json` and `public/_redirects` (Netlify) handle this. For other hosts, add a rewrite rule so all requests return `index.html`.
+
+**Social sharing:** Default Open Graph image is `/flogo.png`. For best results on social networks, use an absolute URL (e.g. `https://yourdomain.com/flogo.png`) by adding a `vite-plugin-html` transform or setting meta tags in your hosting provider.
 
 ## License
 

@@ -31,7 +31,7 @@ export default function ServiceAreaChecker() {
         {config?.title ?? 'In your area?'}
       </h3>
       <p className="text-sm mb-6 text-center" style={{ color: 'var(--color-text-secondary)' }}>
-        We serve Stoke-on-Trent and a 15-mile radius.
+        We serve {businessConfig.city} and a 15-mile radius.
       </p>
       <div className="flex flex-col sm:flex-row gap-3">
         <input

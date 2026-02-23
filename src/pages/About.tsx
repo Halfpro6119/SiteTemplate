@@ -17,8 +17,8 @@ export default function About() {
   return (
     <div className="min-h-screen">
       <PageHero
-        title="About Flo Utilities"
-        subtitle="Watersafe-accredited water infrastructure specialists across Stoke and 15 miles"
+        title={`About ${businessConfig.businessName}`}
+        subtitle={`Watersafe-accredited water infrastructure specialists across ${businessConfig.city} and 15 miles`}
       >
         <div className="mt-8">
           <Breadcrumb items={[

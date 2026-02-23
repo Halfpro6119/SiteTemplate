@@ -19,7 +19,7 @@ export default function Locations() {
               Areas we cover
             </h1>
             <p className="section-subtitle">
-              Stoke-on-Trent and 15-mile radius: Derbyshire, Stafford, Stone, Rugeley, Cannock and surrounding areas
+              {businessConfig.footer.areasDescription}
             </p>
           </div>
         </div>
@@ -31,10 +31,10 @@ export default function Locations() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
               <div>
                 <h2 className="text-3xl font-bold mb-6" style={{ color: 'var(--color-text-primary)' }}>
-                  We cover Stoke and 15 miles
+                  We cover {businessConfig.city} and 15 miles
                 </h2>
                 <p className="text-lg mb-6 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                  Flo Utilities serves {businessConfig.city} and a 15-mile radius, including Derbyshire,
+                  {businessConfig.businessName} serves {businessConfig.city} and a 15-mile radius, including Derbyshire,
                   Stafford, Stone, Rugeley, Cannock and surrounding areas. We prioritise fast response
                   and same-day repair when possible.
                 </p>

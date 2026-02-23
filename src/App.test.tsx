@@ -2,15 +2,16 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes } from 'react-router-dom';
 import { appRoutes } from './App';
+import { businessConfig } from './config';
 
 const routesToTest: { path: string; expectedText: string }[] = [
   { path: '/', expectedText: 'Leak detection and repair' },
   { path: '/services', expectedText: 'Your water infrastructure specialists' },
-  { path: '/about', expectedText: 'About Flo Utilities' },
+  { path: '/about', expectedText: `About ${businessConfig.businessName}` },
   { path: '/contact', expectedText: 'Get in touch' },
   { path: '/reviews', expectedText: 'Trusted by homeowners' },
   { path: '/gallery', expectedText: 'Our Work' },
-  { path: '/locations', expectedText: 'We cover Stoke and 15 miles' },
+  { path: '/locations', expectedText: `We cover ${businessConfig.city} and 15 miles` },
   { path: '/services/lead-pipe-replacement', expectedText: 'Lead Pipe Replacement' },
   { path: '/services/leak-repair', expectedText: 'Leak Repair' },
   { path: '/services/leak-detection', expectedText: 'Leak Detection' },
