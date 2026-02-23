@@ -5,6 +5,7 @@ import PremiumReviewCard from '../components/PremiumReviewCard';
 import ReviewFilters from '../components/ReviewFilters';
 import CTASection from '../components/CTASection';
 import TrustFooterStrip from '../components/TrustFooterStrip';
+import ReviewScoreReveal from '../components/ReviewScoreReveal';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Reviews() {
@@ -112,7 +113,7 @@ export default function Reviews() {
               className="rounded-2xl p-8 lg:p-12 shadow-lg text-center"
               style={{
                 backgroundColor: 'var(--color-bg-base)',
-                border: '1px solid rgba(6, 182, 212, 0.1)'
+                border: '1px solid rgba(16, 185, 129, 0.1)'
               }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--color-text-primary)' }}>
@@ -127,13 +128,8 @@ export default function Reviews() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div
-                    className="text-5xl font-bold mb-3"
-                    style={{ color: 'var(--color-accent)' }}
-                  >
-                    {businessConfig.rating}/5
-                  </div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Average Rating</p>
+                  <ReviewScoreReveal size="lg" />
+                  <p className="text-sm font-semibold mt-3" style={{ color: 'var(--color-text-secondary)' }}>Average Rating</p>
                 </div>
                 <div className="text-center">
                   <div

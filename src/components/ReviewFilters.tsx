@@ -28,7 +28,7 @@ export default function ReviewFilters({
           style={{
             backgroundColor: 'var(--color-bg-surface)',
             color: 'var(--color-text-primary)',
-            border: '1px solid rgba(6, 182, 212, 0.15)',
+            border: '1px solid rgba(16, 185, 129, 0.15)',
             focusRing: 'var(--color-accent)'
           }}
         >

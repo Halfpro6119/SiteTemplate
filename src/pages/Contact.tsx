@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, MessageCircle, Clock, CheckCircle, Shield, Zap } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, CheckCircle, Shield, Zap } from 'lucide-react';
 import { businessConfig } from '../config';
 import { supabase } from '../lib/supabase';
 import PageHero from '../components/PageHero';
 import Breadcrumb from '../components/Breadcrumb';
 import ContactCTAPanel from '../components/ContactCTAPanel';
+import PhoneGlowButton from '../components/PhoneGlowButton';
+import HoursStrip from '../components/HoursStrip';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -36,7 +38,6 @@ export default function Contact() {
 
         if (error) throw error;
       } else {
-        console.log('Contact form submission (no database configured):', formData);
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
 
@@ -48,7 +49,7 @@ export default function Contact() {
         message: ''
       });
     } catch (error) {
-      console.error('Error submitting form:', error);
+      if (import.meta.env.DEV) console.error('Error submitting form:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -58,16 +59,21 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       <PageHero
-        title="Get In Touch"
-        subtitle="Ready to get started? Contact us today for a free, no-obligation quote"
+        title="Contact Us"
+        subtitle="Free estimates, questions, and scheduling. Serving Phoenix."
       >
-        <div className="mt-8">
+        <div className="mt-8 flex flex-col items-center gap-4">
           <Breadcrumb items={[
             { label: 'Home', href: '/' },
             { label: 'Contact' }
           ]} />
+          <HoursStrip />
         </div>
       </PageHero>
+
+      <div className="fixed bottom-6 right-6 z-40 lg:hidden">
+        <PhoneGlowButton variant="sticky" showLabel={false} />
+      </div>
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }}>
         <div className="content-width">
@@ -229,8 +235,8 @@ export default function Contact() {
                   <div
                     className="p-4 rounded-xl flex items-start gap-3"
                     style={{
-                      background: 'rgba(6, 182, 212, 0.08)',
-                      border: '1px solid rgba(6, 182, 212, 0.2)'
+                      background: 'rgba(16, 185, 129, 0.08)',
+                      border: '1px solid rgba(16, 185, 129, 0.2)'
                     }}
                   >
                     <Shield className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--color-accent)' }} />
@@ -288,7 +294,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -303,14 +309,14 @@ export default function Contact() {
                           Phone
                         </h3>
                         <a
-                          href={`tel:${businessConfig.phone}`}
+                          href={businessConfig.phoneTel}
                           className="font-bold text-lg hover:text-accent transition-colors"
                           style={{ color: 'var(--color-text-primary)' }}
                         >
                           {businessConfig.phone}
                         </a>
                         <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          Mon-Fri: 8am-6pm
+                          {businessConfig.footer.businessHours} · Emergency services available
                         </p>
                       </div>
                     </div>
@@ -319,7 +325,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -350,7 +356,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -362,13 +368,19 @@ export default function Contact() {
                           className="font-semibold mb-1 text-sm"
                           style={{ color: 'var(--color-text-tertiary)' }}
                         >
-                          Service Area
+                          Location
                         </h3>
-                        <p className="font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-                          {businessConfig.city}, {businessConfig.state}
-                        </p>
+                        <a
+                          href={`https://maps.google.com/?q=${encodeURIComponent(businessConfig.address)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold hover:text-accent transition-colors"
+                          style={{ color: 'var(--color-text-primary)' }}
+                        >
+                          {businessConfig.address}
+                        </a>
                         <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          & surrounding areas
+                          Phoenix & surrounding areas
                         </p>
                       </div>
                     </div>
@@ -378,8 +390,8 @@ export default function Contact() {
                 <div
                   className="rounded-2xl p-8"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0.06) 100%)',
-                    border: '1px solid rgba(6, 182, 212, 0.2)',
+                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0.06) 100%)',
+                    border: '1px solid rgba(16, 185, 129, 0.2)',
                     boxShadow: '0 4px 24px -8px var(--color-accent-glow)'
                   }}
                 >
@@ -422,8 +434,8 @@ export default function Contact() {
             <ContactCTAPanel
               title={businessConfig.ctaTemplates.contact.title}
               responseTime={businessConfig.ctaTemplates.contact.responseTime}
-              phoneHref={`tel:${businessConfig.phone}`}
-              quoteHref="#contact"
+              phoneHref={businessConfig.phoneTel}
+              quoteHref="/contact"
               trustChips={businessConfig.ctaTemplates.contact.trustChips}
             />
           </div>

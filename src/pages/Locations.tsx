@@ -2,27 +2,24 @@ import { MapPin, Phone, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
+import PageHero from '../components/PageHero';
+import Breadcrumb from '../components/Breadcrumb';
+import MapPinPulse from '../components/MapPinPulse';
 
 export default function Locations() {
   return (
     <div className="min-h-screen">
-      <section
-        className="pt-32 pb-16"
-        style={{
-          background: 'linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-base) 100%)'
-        }}
+      <PageHero
+        title="Areas We Serve"
+        subtitle="Proudly serving Phoenix and surrounding communities"
       >
-        <div className="content-width">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="section-title">
-              Areas We Serve
-            </h1>
-            <p className="section-subtitle">
-              Providing exceptional {businessConfig.businessType.toLowerCase()} services throughout {businessConfig.city} and surrounding communities
-            </p>
-          </div>
+        <div className="mt-8">
+          <Breadcrumb items={[
+            { label: 'Home', href: '/' },
+            { label: 'Locations' }
+          ]} />
         </div>
-      </section>
+      </PageHero>
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }}>
         <div className="content-width">
@@ -74,8 +71,17 @@ export default function Locations() {
                 </div>
               </div>
 
-              <div className="rounded-2xl aspect-square flex items-center justify-center" style={{ backgroundColor: 'var(--color-bg-surface)' }}>
-                <MapPin className="w-32 h-32" style={{ color: 'var(--color-text-tertiary)' }} />
+              <div className="rounded-2xl aspect-square flex flex-col items-center justify-center gap-4" style={{ backgroundColor: 'var(--color-bg-surface)' }}>
+                <MapPinPulse />
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(businessConfig.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg font-semibold text-center px-4"
+                  style={{ color: 'var(--color-accent)' }}
+                >
+                  {businessConfig.address}
+                </a>
               </div>
             </div>
 
@@ -122,7 +128,7 @@ export default function Locations() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href={`tel:${businessConfig.phone}`}
+                href={businessConfig.phoneTel}
                 className="btn-primary"
                 style={{ fontSize: '1.125rem', padding: '1.125rem 2rem' }}
               >
@@ -147,7 +153,7 @@ export default function Locations() {
             <div
               className="rounded-2xl p-8 md:p-12 text-center"
               style={{
-                background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(6, 182, 212, 0.12) 100%)'
+                background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.12) 100%)'
               }}
             >
               <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>

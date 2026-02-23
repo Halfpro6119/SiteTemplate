@@ -46,7 +46,7 @@ All business information can be customized in `src/config.ts`. Update the follow
 
 ## Database (Optional)
 
-This template works without a database by default. Contact form submissions are logged to the browser console.
+This template works without a database by default. Without Supabase, the contact form shows success after a short delay and does not persist submissions.
 
 ### To Enable Supabase Database:
 
@@ -99,6 +99,13 @@ The site is production-ready and can be deployed to any static hosting service:
 - Cloudflare Pages
 
 Build the project and deploy the `dist` folder.
+
+### Production checklist
+
+- **Build:** Run `npm run build`. If you see `EBUSY` copying `public/logo.png`, close any app that may be using it (e.g. OneDrive sync) and retry, or build from a path outside OneDrive.
+- **Env (optional):** To save contact form submissions, set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in your build environment and create the `contact_submissions` table in Supabase.
+- **OG/URL:** After deploying, update `index.html` `og:url` (and canonical URL if added) to your live site URL so social shares point to the correct domain.
+- **Lint/typecheck:** `npm run lint` and `npm run typecheck` pass before release.
 
 ## License
 

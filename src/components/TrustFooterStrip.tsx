@@ -13,7 +13,7 @@ export default function TrustFooterStrip() {
       className="rounded-xl p-6 shadow-sm"
       style={{
         backgroundColor: 'var(--color-bg-surface)',
-        border: '1px solid rgba(6, 182, 212, 0.1)'
+        border: '1px solid rgba(16, 185, 129, 0.1)'
       }}
     >
       <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-12">
@@ -27,8 +27,8 @@ export default function TrustFooterStrip() {
               <div
                 className="p-2.5 rounded-lg transition-all duration-300 group-hover:scale-110"
                 style={{
-                  backgroundColor: 'rgba(6, 182, 212, 0.1)',
-                  border: '1px solid rgba(6, 182, 212, 0.2)'
+                  backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                  border: '1px solid rgba(16, 185, 129, 0.2)'
                 }}
               >
                 <Icon

@@ -20,7 +20,7 @@ export default function PremiumValueCard({ icon: Icon, title, description, index
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 70%)'
+          background: 'radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 70%)'
         }}
       />
 
@@ -35,7 +35,7 @@ export default function PremiumValueCard({ icon: Icon, title, description, index
         <div
           className="inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
           style={{
-            background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(6, 182, 212, 0.1) 100%)',
+            background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%)',
             border: '1px solid var(--color-border-medium)',
             boxShadow: '0 0 24px -8px var(--color-accent-glow)'
           }}
@@ -49,9 +49,9 @@ export default function PremiumValueCard({ icon: Icon, title, description, index
         <div
           className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-4"
           style={{
-            background: 'rgba(6, 182, 212, 0.1)',
+            background: 'rgba(16, 185, 129, 0.1)',
             color: 'var(--color-accent)',
-            border: '1px solid rgba(6, 182, 212, 0.2)'
+            border: '1px solid rgba(16, 185, 129, 0.2)'
           }}
         >
           Value #{String(index + 1).padStart(2, '0')}

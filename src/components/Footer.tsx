@@ -45,7 +45,7 @@ export default function Footer() {
               primaryText={businessConfig.footer.closingCTA.primaryText}
               primaryHref={businessConfig.footer.closingCTA.primaryHref}
               secondaryText={businessConfig.footer.closingCTA.secondaryText}
-              secondaryHref={`${businessConfig.footer.closingCTA.secondaryHref}${businessConfig.phone}`}
+              secondaryHref={businessConfig.phoneTel}
             />
           </div>
         )}
@@ -54,22 +54,37 @@ export default function Footer() {
           <div className="hidden lg:grid lg:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
+                {businessConfig.logoUrl ? (
+                  <img
+                    src={businessConfig.logoUrl}
+                    alt={`${businessConfig.businessName} logo`}
+                    className="h-11 w-auto max-w-[140px] object-contain object-left"
+                  />
+                ) : (
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
+                    style={{
+                      background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
+                      color: 'white',
+                      boxShadow: '0 0 24px -8px var(--color-accent)'
+                    }}
+                  >
+                    {businessConfig.businessName.charAt(0)}
                   </div>
-                </div>
+                )}
+                {!businessConfig.logoUrl && (
+                  <div>
+                    <div className="font-bold text-lg text-white">
+                      {businessConfig.businessName}
+                    </div>
+                  </div>
+                )}
               </div>
+              {businessConfig.logoUrl && (
+                <div className="font-bold text-lg text-white -mt-1 mb-1">
+                  {businessConfig.businessName}
+                </div>
+              )}
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
               </p>
@@ -125,7 +140,7 @@ export default function Footer() {
               <ul className="space-y-4 mb-6">
                 <li>
                   <a
-                    href={`tel:${businessConfig.phone}`}
+                    href={businessConfig.phoneTel}
                     className="flex items-start gap-2.5 text-sm text-white/70 hover:text-white transition-colors"
                   >
                     <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--color-accent)' }} />
@@ -142,15 +157,20 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <div className="flex items-start gap-2.5 text-sm text-white/70">
+                  <a
+                    href={`https://maps.google.com/?q=${encodeURIComponent(businessConfig.address)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-2.5 text-sm text-white/70 hover:text-white transition-colors"
+                  >
                     <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--color-accent)' }} />
-                    <span>{businessConfig.city}, {businessConfig.state}</span>
-                  </div>
+                    <span>{businessConfig.address}</span>
+                  </a>
                 </li>
               </ul>
               <p className="text-xs text-white/60 mb-4">{businessConfig.footer.businessHours}</p>
               <div className="flex flex-col gap-2">
-                <PremiumButton variant="primary" size="sm" href="#contact">
+                <PremiumButton variant="primary" size="sm" href="/contact">
                   Get Quote
                 </PremiumButton>
                 <PremiumButton variant="outline" size="sm" href="/contact" className="text-white">
@@ -163,22 +183,37 @@ export default function Footer() {
           <div className="lg:hidden space-y-4 mb-12">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
+                {businessConfig.logoUrl ? (
+                  <img
+                    src={businessConfig.logoUrl}
+                    alt={`${businessConfig.businessName} logo`}
+                    className="h-11 w-auto max-w-[140px] object-contain object-left"
+                  />
+                ) : (
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
+                    style={{
+                      background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
+                      color: 'white',
+                      boxShadow: '0 0 24px -8px var(--color-accent)'
+                    }}
+                  >
+                    {businessConfig.businessName.charAt(0)}
                   </div>
-                </div>
+                )}
+                {!businessConfig.logoUrl && (
+                  <div>
+                    <div className="font-bold text-lg text-white">
+                      {businessConfig.businessName}
+                    </div>
+                  </div>
+                )}
               </div>
+              {businessConfig.logoUrl && (
+                <div className="font-bold text-lg text-white -mt-1 mb-1">
+                  {businessConfig.businessName}
+                </div>
+              )}
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
               </p>
@@ -190,7 +225,7 @@ export default function Footer() {
               <ul className="space-y-4 mb-6">
                 <li>
                   <a
-                    href={`tel:${businessConfig.phone}`}
+                    href={businessConfig.phoneTel}
                     className="flex items-start gap-2.5 text-sm text-white/70 hover:text-white transition-colors"
                   >
                     <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--color-accent)' }} />
@@ -209,7 +244,7 @@ export default function Footer() {
               </ul>
               <p className="text-xs text-white/60 mb-4">{businessConfig.footer.businessHours}</p>
               <div className="flex flex-col gap-2">
-                <PremiumButton variant="primary" size="sm" href="#contact">
+                <PremiumButton variant="primary" size="sm" href="/contact">
                   Get Quote
                 </PremiumButton>
                 <PremiumButton variant="outline" size="sm" href="/contact" className="text-white">

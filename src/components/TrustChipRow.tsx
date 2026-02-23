@@ -43,7 +43,7 @@ export default function TrustChipRow({ chips, variant = 'light', size = 'md' }: 
               hover:scale-105
               ${
                 variant === 'light'
-                  ? 'bg-white/80 border-cyan-200/50 text-slate-700'
+                  ? 'bg-white/80 border-emerald-200/50 text-slate-700'
                   : 'bg-white/5 border-white/20 text-white/90'
               }
             `}

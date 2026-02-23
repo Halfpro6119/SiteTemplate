@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Shield, Clock, Zap, Award, TrendingUp, Image as ImageIcon } from 'lucide-react';
+import { Star, MapPin, Shield, Clock, Zap, Award, Image as ImageIcon, Phone, FileText, Percent, Gift } from 'lucide-react';
 import * as Icons from 'lucide-react';
 import { businessConfig } from '../config';
 import SignatureServiceCard from '../components/SignatureServiceCard';
@@ -13,6 +13,9 @@ import LuxuryDivider from '../components/LuxuryDivider';
 import HeroCTA from '../components/HeroCTA';
 import DecisionPointCTA from '../components/DecisionPointCTA';
 import CinematicCTA from '../components/CinematicCTA';
+import HeroPipeMesh from '../components/HeroPipeMesh';
+import TrustPulseBar from '../components/TrustPulseBar';
+import FaucetDripReveal from '../components/FaucetDripReveal';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useHeroReveal } from '../hooks/useHeroReveal';
 
@@ -34,26 +37,27 @@ export default function Home() {
         }}
       >
         <div className="spotlight-glow" />
+        <HeroPipeMesh />
 
         <div className="absolute top-20 right-10 float-badge-1 hidden lg:block">
           <GlassBadge
-            icon={Clock}
-            title="24/7 Emergency"
-            subtitle="Fast Response"
+            icon={Phone}
+            title="Free Estimates"
+            subtitle="Over the Phone"
           />
         </div>
         <div className="absolute top-32 left-10 float-badge-2 hidden lg:block">
           <GlassBadge
-            icon={Zap}
-            title="30-60 min"
-            subtitle="Response Time"
+            icon={FileText}
+            title="Job-Based"
+            subtitle="No Hourly Rates"
           />
         </div>
         <div className="absolute bottom-32 right-20 float-badge-3 hidden lg:block">
           <GlassBadge
             icon={Award}
-            title={`Established ${new Date().getFullYear() - businessConfig.yearsExperience}`}
-            subtitle={`${businessConfig.yearsExperience}+ Years`}
+            title={`${businessConfig.yearsExperience}+ Years`}
+            subtitle="Phoenix Trusted"
           />
         </div>
 
@@ -82,52 +86,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-10" style={{ backgroundColor: 'var(--color-bg-surface)', borderTop: '1px solid var(--color-border-subtle)', borderBottom: '1px solid var(--color-border-subtle)' }}>
-        <div className="content-width">
-          <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16">
-            <div className="flex items-center gap-3">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-5 h-5 ${
-                      i < Math.floor(businessConfig.rating)
-                        ? 'text-yellow-400 fill-yellow-400'
-                        : 'opacity-20'
-                    }`}
-                  />
-                ))}
-              </div>
-              <div>
-                <span className="font-bold text-lg" style={{ color: 'var(--color-text-primary)' }}>{businessConfig.rating}</span>
-                <span className="text-sm ml-2" style={{ color: 'var(--color-text-tertiary)' }}>({businessConfig.reviewCount} reviews)</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Shield className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fully Insured & Certified</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <MapPin className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Serving {businessConfig.city} & Surrounding Areas</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Zap className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fast Response Times</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TrustPulseBar />
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={servicesRef}>
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Our Services
+              What We Do
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              Professional {businessConfig.businessType.toLowerCase()} services tailored to your needs
+              Residential plumbing, light commercial, and service & repair—from drain cleaning to water heaters
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -153,15 +122,38 @@ export default function Home() {
             </Link>
           </div>
 
+          <div
+            className="mt-20 scroll-reveal rounded-2xl p-8 lg:p-12"
+            style={{
+              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.03) 100%)',
+              border: '1px solid rgba(16, 185, 129, 0.2)'
+            }}
+          >
+            <h3 className="text-2xl font-bold mb-4 text-center" style={{ color: 'var(--color-text-primary)' }}>
+              We Are Drain Cleaning Experts
+            </h3>
+            <p className="text-lg text-center max-w-3xl mx-auto mb-6" style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+              We service all plumbing problems—especially ones that make your space unusable. Drain cleaning, sewer hydrojetting, video scoping, and decalcifying of cast iron sewer lines. If your drain needs cleaning or replacing, contact us. We guarantee our work.
+            </p>
+            <div className="flex justify-center gap-4">
+              <a href={businessConfig.phoneTel} className="btn-primary">
+                Call {businessConfig.phone}
+              </a>
+              <Link to="/services" className="btn-secondary">
+                View Services
+              </Link>
+            </div>
+          </div>
+
           <div className="mt-24 scroll-reveal">
             <DecisionPointCTA
               label={businessConfig.ctaTemplates.decisionPoint.fastResponse.label}
               title={businessConfig.ctaTemplates.decisionPoint.fastResponse.title}
               subtitle={businessConfig.ctaTemplates.decisionPoint.fastResponse.subtitle}
               primaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.primaryText}
-              primaryHref="#contact"
+              primaryHref="/contact"
               secondaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.secondaryText}
-              secondaryHref={`tel:${businessConfig.phone}`}
+              secondaryHref={businessConfig.phoneTel}
               tertiaryText="View Our Reviews"
               tertiaryHref="/reviews"
             />
@@ -172,36 +164,39 @@ export default function Home() {
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={impactRef}>
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
-            <h2 className="section-title text-balance chapter-heading">
-              Results That Matter
-            </h2>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <FaucetDripReveal />
+              <h2 className="section-title text-balance chapter-heading">
+                What We Offer
+              </h2>
+            </div>
             <LuxuryDivider />
             <p className="section-subtitle">
-              We deliver fast, reliable solutions that make a real difference
+              Value and peace of mind for every customer
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="scroll-reveal" style={{ transitionDelay: '0ms' }}>
               <ImpactBlock
-                icon={Zap}
-                title="Fast Emergency Response"
-                description="When emergencies strike, every minute counts. Our rapid response team is ready to help 24/7, arriving within 30-60 minutes to handle urgent situations."
+                icon={Percent}
+                title="10% Off Veterans & Seniors"
+                description="All plumbing services—10% off for Veterans and Seniors. We appreciate your service and want to give back. Call to learn more."
                 index={0}
               />
             </div>
             <div className="scroll-reveal" style={{ transitionDelay: '100ms' }}>
               <ImpactBlock
-                icon={Shield}
-                title="Reliable Long-Term Solutions"
-                description="We don't just fix problems temporarily. Our expert solutions are built to last, backed by comprehensive warranties and ongoing support."
+                icon={Phone}
+                title="Free Over-the-Phone Estimates"
+                description="We believe free estimates are convenient and make your life easier. Give us a call for a quick, no-obligation quote before we come out."
                 index={1}
               />
             </div>
             <div className="scroll-reveal" style={{ transitionDelay: '200ms' }}>
               <ImpactBlock
-                icon={TrendingUp}
-                title="Transparent Pricing"
-                description="No hidden fees, no surprises. You'll know exactly what to expect before we start any work, with competitive rates and honest service."
+                icon={Gift}
+                title="Warranties"
+                description="We offer warranties on our services and products. We stand behind our work—every repair and installation."
                 index={2}
               />
             </div>
@@ -349,9 +344,9 @@ export default function Home() {
         headline={businessConfig.ctaTemplates.cinematic.fastResponse.headline}
         subtitle={businessConfig.ctaTemplates.cinematic.fastResponse.subtitle}
         primaryText={businessConfig.ctaTemplates.cinematic.fastResponse.primaryText}
-        primaryHref="#contact"
+        primaryHref="/contact"
         secondaryText={businessConfig.ctaTemplates.cinematic.fastResponse.secondaryText}
-        secondaryHref={`tel:${businessConfig.phone}`}
+        secondaryHref={businessConfig.phoneTel}
         trustChips={businessConfig.ctaTemplates.contact.trustChips}
       />
     </div>

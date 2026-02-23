@@ -1,4 +1,4 @@
-import { Users, Target, Heart, Shield, Award, TrendingUp } from 'lucide-react';
+import { Users, Target, Heart, Shield, Award } from 'lucide-react';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
 import PageHero from '../components/PageHero';
@@ -6,6 +6,8 @@ import Breadcrumb from '../components/Breadcrumb';
 import PremiumValueCard from '../components/PremiumValueCard';
 import StatCard from '../components/StatCard';
 import LuxuryDivider from '../components/LuxuryDivider';
+import YearsCounter from '../components/YearsCounter';
+import ReviewStarsWave from '../components/ReviewStarsWave';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function About() {
@@ -36,8 +38,8 @@ export default function About() {
                 <div
                   className="inline-block px-4 py-2 rounded-full mb-6"
                   style={{
-                    background: 'rgba(6, 182, 212, 0.1)',
-                    border: '1px solid rgba(6, 182, 212, 0.2)',
+                    background: 'rgba(16, 185, 129, 0.1)',
+                    border: '1px solid rgba(16, 185, 129, 0.2)',
                     color: 'var(--color-accent)',
                     fontSize: '0.875rem',
                     fontWeight: 600
@@ -53,7 +55,7 @@ export default function About() {
                     letterSpacing: '-0.02em'
                   }}
                 >
-                  Building Trust Since {new Date().getFullYear() - businessConfig.yearsExperience}
+                  Serving Phoenix for <YearsCounter end={businessConfig.yearsExperience} suffix=" Years" className="inline" />
                 </h2>
                 <div className="prose prose-lg leading-relaxed space-y-4" style={{ color: 'var(--color-text-secondary)' }}>
                   {businessConfig.aboutStory.split('\n\n').map((paragraph, index) => (
@@ -73,7 +75,7 @@ export default function About() {
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                     style={{
-                      background: 'radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 70%)'
+                      background: 'radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 70%)'
                     }}
                   />
                   <Users className="w-32 h-32 relative z-10 transition-transform duration-500 group-hover:scale-110" style={{ color: 'var(--color-text-tertiary)' }} />
@@ -105,18 +107,27 @@ export default function About() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <StatCard
-                value={`${businessConfig.yearsExperience}+`}
-                label="Years Experience"
-                description="Trusted expertise you can count on"
-                delay={0}
-              />
-              <StatCard
-                value={businessConfig.rating}
-                label="Star Rating"
-                description={`Based on ${businessConfig.reviewCount} reviews`}
-                delay={100}
-              />
+              <div className="text-center scroll-reveal" style={{ transitionDelay: '0ms' }}>
+                <div
+                  className="relative inline-flex items-center justify-center w-24 h-24 rounded-2xl mb-4"
+                  style={{
+                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)',
+                    boxShadow: '0 8px 32px -8px var(--color-accent-glow)',
+                    color: 'var(--color-text-inverse)'
+                  }}
+                >
+                  <YearsCounter end={businessConfig.yearsExperience} suffix="+" className="text-3xl font-bold" />
+                </div>
+                <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>Years Experience</h3>
+                <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Trusted expertise in Phoenix</p>
+              </div>
+              <div className="text-center scroll-reveal" style={{ transitionDelay: '100ms' }}>
+                <div className="flex justify-center mb-4">
+                  <ReviewStarsWave rating={businessConfig.rating} size="lg" />
+                </div>
+                <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>{businessConfig.rating} Star Rating</h3>
+                <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Based on {businessConfig.reviewCount}+ reviews</p>
+              </div>
               <StatCard
                 value="100%"
                 label="Local"
@@ -190,7 +201,7 @@ export default function About() {
               <div
                 className="absolute inset-0 opacity-30 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle at 30% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 60%)'
+                  background: 'radial-gradient(circle at 30% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 60%)'
                 }}
               />
 
@@ -230,8 +241,8 @@ export default function About() {
                 <div
                   className="inline-block px-6 py-3 rounded-xl font-semibold"
                   style={{
-                    background: 'rgba(6, 182, 212, 0.15)',
-                    border: '1px solid rgba(6, 182, 212, 0.3)',
+                    background: 'rgba(16, 185, 129, 0.15)',
+                    border: '1px solid rgba(16, 185, 129, 0.3)',
                     color: 'var(--color-accent)'
                   }}
                 >
@@ -245,7 +256,7 @@ export default function About() {
 
       <CTASection
         title="Experience the Difference"
-        subtitle="Join hundreds of satisfied customers in {businessConfig.city}"
+        subtitle={`Join hundreds of satisfied customers in ${businessConfig.city}`}
       />
     </div>
   );

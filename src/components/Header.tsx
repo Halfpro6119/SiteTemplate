@@ -43,16 +43,24 @@ export default function Header() {
       <div className="content-width">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl transition-all duration-500 group-hover:scale-105"
-              style={{
-                background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)',
-                color: 'var(--color-text-inverse)',
-                boxShadow: '0 0 24px -8px var(--color-accent-glow)'
-              }}
-            >
-              {businessConfig.businessName.charAt(0)}
-            </div>
+            {businessConfig.logoUrl ? (
+              <img
+                src={businessConfig.logoUrl}
+                alt={`${businessConfig.businessName} logo`}
+                className="h-11 w-auto max-w-[140px] object-contain object-left transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl transition-all duration-500 group-hover:scale-105"
+                style={{
+                  background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)',
+                  color: 'var(--color-text-inverse)',
+                  boxShadow: '0 0 24px -8px var(--color-accent-glow)'
+                }}
+              >
+                {businessConfig.businessName.charAt(0)}
+              </div>
+            )}
             <div>
               <div
                 className="font-bold text-lg leading-tight transition-colors duration-300"
@@ -88,7 +96,7 @@ export default function Header() {
 
           <div className="hidden lg:flex items-center gap-3">
             <a
-              href={`tel:${businessConfig.phone}`}
+              href={businessConfig.phoneTel}
               className="btn-primary"
               style={{ padding: '0.75rem 1.75rem', fontSize: '0.9375rem' }}
             >
@@ -133,7 +141,7 @@ export default function Header() {
               ))}
               <div className="pt-3 space-y-2">
                 <a
-                  href={`tel:${businessConfig.phone}`}
+                  href={businessConfig.phoneTel}
                   className="btn-primary w-full"
                 >
                   <Phone className="w-4 h-4" />

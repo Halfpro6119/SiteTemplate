@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
+import PageHero from '../components/PageHero';
+import Breadcrumb from '../components/Breadcrumb';
+import ImageShine from '../components/ImageShine';
+import MasonryReveal from '../components/MasonryReveal';
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -26,49 +30,43 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen">
-      <section
-        className="pt-32 pb-16"
-        style={{
-          background: 'linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-base) 100%)'
-        }}
+      <PageHero
+        title="Our Work"
+        subtitle={`Recent projects in Phoenix. Quality workmanship you can see.`}
       >
-        <div className="content-width">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="section-title">
-              Our Work
-            </h1>
-            <p className="section-subtitle">
-              Take a look at some of our recent projects in {businessConfig.city}.
-              Quality workmanship you can see.
-            </p>
-          </div>
+        <div className="mt-8">
+          <Breadcrumb items={[
+            { label: 'Home', href: '/' },
+            { label: 'Gallery' }
+          ]} />
         </div>
-      </section>
+      </PageHero>
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }}>
         <div className="content-width">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <MasonryReveal className="max-w-6xl mx-auto">
             {businessConfig.galleryImages.map((image, index) => (
-              <div
-                key={image.id}
-                className="group relative aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1"
-                onClick={() => openLightbox(index)}
-              >
-                <img
-                  src={image.url}
-                  alt={image.caption}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                  loading="lazy"
-                />
+              <ImageShine key={image.id}>
+                <div
+                  className="group relative aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1"
+                  onClick={() => openLightbox(index)}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.caption}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    loading="lazy"
+                  />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
                   <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <p className="text-white font-semibold">{image.caption}</p>
                   </div>
                 </div>
-                <div className="absolute inset-0 ring-2 ring-transparent group-hover:ring-blue-400 ring-inset transition-all duration-300 rounded-xl"></div>
-              </div>
+                <div className="absolute inset-0 ring-2 ring-transparent group-hover:ring-emerald-400/60 ring-inset transition-all duration-300 rounded-xl"></div>
+                </div>
+              </ImageShine>
             ))}
-          </div>
+          </MasonryReveal>
         </div>
       </section>
 
