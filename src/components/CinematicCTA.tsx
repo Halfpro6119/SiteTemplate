@@ -19,7 +19,7 @@ export default function CinematicCTA({
   headline,
   subtitle,
   primaryText = 'Get a Quote',
-  primaryHref = '#contact',
+  primaryHref = '/contact',
   secondaryText = 'Call Now',
   secondaryHref = 'tel:',
   trustChips = [

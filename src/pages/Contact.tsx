@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabase';
 import PageHero from '../components/PageHero';
 import Breadcrumb from '../components/Breadcrumb';
 import ContactCTAPanel from '../components/ContactCTAPanel';
+import GasSafeBadge from '../components/GasSafeBadge';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -58,8 +59,8 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       <PageHero
-        title="Get In Touch"
-        subtitle="Ready to get started? Contact us today for a free, no-obligation quote"
+        title="Get Your Free Quote"
+        subtitle="Speak to a specialist. We usually respond within 1 hour. 24/7 emergency available."
       >
         <div className="mt-8">
           <Breadcrumb items={[
@@ -79,7 +80,7 @@ export default function Contact() {
                     Send Us a Message
                   </h2>
                   <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>
-                    Fill out the form and we'll get back to you within 24 hours
+                    Fill out the form and we'll get back to you within 1 hour. 24/7 emergency? Call 0131 202 1032
                   </p>
                 </div>
 
@@ -163,7 +164,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="modern-input"
-                      placeholder="John Smith"
+                      placeholder="Your name"
                     />
                   </div>
 
@@ -183,7 +184,7 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         className="modern-input"
-                        placeholder="(555) 123-4567"
+                        placeholder="0131 202 1032"
                       />
                     </div>
 
@@ -202,7 +203,7 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         className="modern-input"
-                        placeholder="john@example.com"
+                        placeholder="your@email.com"
                       />
                     </div>
                   </div>
@@ -307,11 +308,16 @@ export default function Contact() {
                           className="font-bold text-lg hover:text-accent transition-colors"
                           style={{ color: 'var(--color-text-primary)' }}
                         >
-                          {businessConfig.phone}
+                          {businessConfig.phoneDisplay ?? businessConfig.phone}
                         </a>
                         <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          Mon-Fri: 8am-6pm
+                          24/7 Emergency | Mon-Fri: 8am-6pm
                         </p>
+                        {'phoneSecondaryDisplay' in businessConfig && businessConfig.phoneSecondaryDisplay && (
+                          <p className="text-sm mt-2" style={{ color: 'var(--color-text-secondary)' }}>
+                            West Lothian: <a href={`tel:${businessConfig.phoneSecondary}`} className="font-semibold hover:opacity-80" style={{ color: 'var(--color-accent)' }}>{businessConfig.phoneSecondaryDisplay}</a>
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -423,7 +429,7 @@ export default function Contact() {
               title={businessConfig.ctaTemplates.contact.title}
               responseTime={businessConfig.ctaTemplates.contact.responseTime}
               phoneHref={`tel:${businessConfig.phone}`}
-              quoteHref="#contact"
+              quoteHref="/contact"
               trustChips={businessConfig.ctaTemplates.contact.trustChips}
             />
           </div>

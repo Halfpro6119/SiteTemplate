@@ -15,7 +15,7 @@ export default function ContactCTAPanel({
   title = 'Speak to a Specialist',
   responseTime = 'We usually respond within 1 hour',
   phoneHref = 'tel:',
-  quoteHref = '#contact',
+  quoteHref = '/contact',
   trustChips = [
     { icon: 'shield', text: 'Certified' },
     { icon: 'users', text: 'Local' },

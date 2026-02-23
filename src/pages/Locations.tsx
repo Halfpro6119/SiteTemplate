@@ -15,10 +15,10 @@ export default function Locations() {
         <div className="content-width">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="section-title">
-              Areas We Serve
+              Plumbers in Edinburgh & West Lothian
             </h1>
             <p className="section-subtitle">
-              Providing exceptional {businessConfig.businessType.toLowerCase()} services throughout {businessConfig.city} and surrounding communities
+              Local engineers serving Livingston, Bathgate, Linlithgow, and surrounding areas. Gas Safe registered. 24/7 emergency available.
             </p>
           </div>
         </div>
@@ -121,14 +121,14 @@ export default function Locations() {
               We are always looking to expand our service area for the right projects.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href={`tel:${businessConfig.phone}`}
-                className="btn-primary"
-                style={{ fontSize: '1.125rem', padding: '1.125rem 2rem' }}
-              >
-                <Phone className="w-5 h-5" />
-                <span>Call {businessConfig.phone}</span>
-              </a>
+                <a
+                  href={`tel:${businessConfig.phone}`}
+                  className="btn-primary"
+                  style={{ fontSize: '1.125rem', padding: '1.125rem 2rem' }}
+                >
+                  <Phone className="w-5 h-5" />
+                  <span>Call {businessConfig.phoneDisplay ?? businessConfig.phone}</span>
+                </a>
               <Link
                 to="/contact"
                 className="btn-secondary"

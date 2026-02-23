@@ -1,21 +1,25 @@
-import { Phone, ArrowRight } from 'lucide-react';
+import { Phone, ArrowRight, FileText, LucideIcon } from 'lucide-react';
 import PremiumButton from './PremiumButton';
 import TrustChipRow from './TrustChipRow';
 
 interface HeroCTAProps {
   primaryText?: string;
   primaryHref?: string;
+  primaryIcon?: LucideIcon;
   secondaryText?: string;
   secondaryHref?: string;
+  secondaryIcon?: LucideIcon;
   trustChips?: Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users'; text: string }>;
   variant?: 'light' | 'dark';
 }
 
 export default function HeroCTA({
   primaryText = 'Get a Quote',
-  primaryHref = '#contact',
-  secondaryText = 'Explore Services',
-  secondaryHref = '#services',
+  primaryHref = '/contact',
+  primaryIcon,
+  secondaryText = 'Call Now',
+  secondaryHref = 'tel:',
+  secondaryIcon,
   trustChips = [
     { icon: 'shield', text: 'Certified & Insured' },
     { icon: 'clock', text: 'Fast Response' },
@@ -23,13 +27,16 @@ export default function HeroCTA({
   ],
   variant = 'light'
 }: HeroCTAProps) {
+  const PrimaryIcon = primaryIcon || FileText;
+  const SecondaryIcon = secondaryIcon || Phone;
+
   return (
     <div className="flex flex-col items-center gap-6">
       <div className="flex flex-col sm:flex-row items-center gap-4">
         <PremiumButton
           variant="primary"
           size="lg"
-          icon={Phone}
+          icon={PrimaryIcon}
           iconPosition="left"
           href={primaryHref}
         >
@@ -38,7 +45,7 @@ export default function HeroCTA({
         <PremiumButton
           variant="outline"
           size="lg"
-          icon={ArrowRight}
+          icon={SecondaryIcon}
           href={secondaryHref}
           className={variant === 'dark' ? 'text-white' : 'text-slate-700'}
         >

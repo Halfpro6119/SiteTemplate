@@ -48,10 +48,10 @@ export default function Reviews() {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
                 style={{ color: 'var(--color-text-primary)' }}
               >
-                Customer Reviews
+                What Our Customers Say
               </h1>
               <p className="text-xl leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                Real feedback from local customers in {businessConfig.city}
+                Trusted by 1000+ customers across Edinburgh and West Lothian
               </p>
             </div>
 
@@ -119,10 +119,7 @@ export default function Reviews() {
                 Why Customers Trust Us
               </h2>
               <p className="text-lg mb-10 leading-relaxed max-w-2xl mx-auto" style={{ color: 'var(--color-text-secondary)' }}>
-                Our commitment to quality, reliability, and customer satisfaction has earned
-                us a reputation as one of the most trusted {businessConfig.businessType.toLowerCase()} providers
-                in {businessConfig.city}. Every review represents a real customer who trusted
-                us with their needs.
+                Our commitment to quality, reliability, and customer satisfaction has earned us a reputation as one of the most trusted plumbing and heating providers in Edinburgh and West Lothian. Every review represents a real customer who trusted us with their boiler, plumbing, or heating needs.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

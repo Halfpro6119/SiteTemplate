@@ -17,8 +17,8 @@ export default function About() {
   return (
     <div className="min-h-screen">
       <PageHero
-        title={`Your Local ${businessConfig.businessType} Experts`}
-        subtitle="Building trust and delivering excellence, one customer at a time"
+        title="A Third-Generation Plumber Serving Edinburgh & West Lothian"
+        subtitle="25+ years of hands-on experience. Family-run. Honest advice, fast response, customer-first."
       >
         <div className="mt-8">
           <Breadcrumb items={[
@@ -53,7 +53,7 @@ export default function About() {
                     letterSpacing: '-0.02em'
                   }}
                 >
-                  Building Trust Since {new Date().getFullYear() - businessConfig.yearsExperience}
+                  Third-Generation Craftsmanship Since {new Date().getFullYear() - businessConfig.yearsExperience}
                 </h2>
                 <div className="prose prose-lg leading-relaxed space-y-4" style={{ color: 'var(--color-text-secondary)' }}>
                   {businessConfig.aboutStory.split('\n\n').map((paragraph, index) => (
@@ -217,14 +217,11 @@ export default function About() {
                 </h2>
 
                 <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--color-text-secondary)' }}>
-                  We believe that exceptional {businessConfig.businessType.toLowerCase()} service should
-                  be accessible to everyone in {businessConfig.city}. That is why we have built our
-                  business on transparency, reliability, and genuine care for our customers.
+                  We believe exceptional plumbing and heating service should be accessible to everyone in Edinburgh and West Lothian. That is why we have built our business on transparency, reliability, and genuine care for our customers.
                 </p>
 
                 <p className="text-lg leading-relaxed mb-8" style={{ color: 'var(--color-text-secondary)' }}>
-                  When you work with us, you are not just getting a service provider. You are getting a
-                  partner who is invested in your success and satisfaction.
+                  When you work with us, you are not just getting a plumber. You are getting a trusted partner—owner Andy and our team of Gas Safe registered engineers, fully qualified and committed to your satisfaction.
                 </p>
 
                 <div
@@ -245,7 +242,7 @@ export default function About() {
 
       <CTASection
         title="Experience the Difference"
-        subtitle="Join hundreds of satisfied customers in {businessConfig.city}"
+        subtitle={`Join 1000+ satisfied customers across Edinburgh and West Lothian`}
       />
     </div>
   );

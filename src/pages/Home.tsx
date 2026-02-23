@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Shield, Clock, Zap, Award, TrendingUp, Image as ImageIcon } from 'lucide-react';
+import { Star, MapPin, Shield, Clock, Zap, Award, TrendingUp, Image as ImageIcon, FileText, Phone } from 'lucide-react';
 import * as Icons from 'lucide-react';
 import { businessConfig } from '../config';
 import SignatureServiceCard from '../components/SignatureServiceCard';
 import ReviewSnapshotPanel from '../components/ReviewSnapshotPanel';
+import StatsCounter from '../components/StatsCounter';
+import BrandBar from '../components/BrandBar';
+import GasSafeBadge from '../components/GasSafeBadge';
 import PremiumReviewCard from '../components/PremiumReviewCard';
 import TrustFooterStrip from '../components/TrustFooterStrip';
 import GlassBadge from '../components/GlassBadge';
@@ -72,8 +75,10 @@ export default function Home() {
               <HeroCTA
                 primaryText={businessConfig.ctaTemplates.hero.primaryText}
                 primaryHref={businessConfig.ctaTemplates.hero.primaryHref}
+                primaryIcon={FileText}
                 secondaryText={businessConfig.ctaTemplates.hero.secondaryText}
                 secondaryHref={businessConfig.ctaTemplates.hero.secondaryHref}
+                secondaryIcon={Phone}
                 trustChips={businessConfig.ctaTemplates.hero.trustChips}
                 variant="light"
               />
@@ -105,7 +110,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-3">
               <Shield className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fully Insured & Certified</span>
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Gas Safe Registered</span>
             </div>
             <div className="flex items-center gap-3">
               <MapPin className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
@@ -113,11 +118,22 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-3">
               <Zap className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fast Response Times</span>
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>24/7 Emergency</span>
             </div>
           </div>
         </div>
       </section>
+
+      <StatsCounter
+        stats={[
+          { value: businessConfig.stats?.boilersInstalled ?? 500, suffix: '+', label: 'Boilers Installed' },
+          { value: businessConfig.stats?.yearsExperience ?? 26, suffix: '+', label: 'Years Experience' },
+          { value: businessConfig.stats?.happyCustomers ?? 1000, suffix: '+', label: 'Happy Customers' },
+          { text: 'Local', label: 'Engineers' }
+        ]}
+      />
+
+      <BrandBar brands={businessConfig.boilerBrands ?? ['Vaillant', 'Worcester Bosch', 'Glow-worm', 'Baxi']} />
 
       <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={servicesRef}>
         <div className="content-width">
@@ -127,7 +143,7 @@ export default function Home() {
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              Professional {businessConfig.businessType.toLowerCase()} services tailored to your needs
+              Expert heating & plumbing services across Edinburgh and West Lothian
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -139,6 +155,7 @@ export default function Home() {
                   title={service.name}
                   description={service.shortDescription}
                   benefits={service.benefits}
+                  href={`/services/${(service as { slug?: string }).slug || '#'}`}
                 />
               </div>
             ))}
@@ -159,7 +176,7 @@ export default function Home() {
               title={businessConfig.ctaTemplates.decisionPoint.fastResponse.title}
               subtitle={businessConfig.ctaTemplates.decisionPoint.fastResponse.subtitle}
               primaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.primaryText}
-              primaryHref="#contact"
+              primaryHref="/contact"
               secondaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.secondaryText}
               secondaryHref={`tel:${businessConfig.phone}`}
               tertiaryText="View Our Reviews"
@@ -185,15 +202,15 @@ export default function Home() {
               <ImpactBlock
                 icon={Zap}
                 title="Fast Emergency Response"
-                description="When emergencies strike, every minute counts. Our rapid response team is ready to help 24/7, arriving within 30-60 minutes to handle urgent situations."
+                description="When emergencies strike, every minute counts. Our rapid response team is ready 24/7, arriving within 30–60 minutes. Burst pipes, leaks, no heating—we fix them fast."
                 index={0}
               />
             </div>
             <div className="scroll-reveal" style={{ transitionDelay: '100ms' }}>
               <ImpactBlock
                 icon={Shield}
-                title="Reliable Long-Term Solutions"
-                description="We don't just fix problems temporarily. Our expert solutions are built to last, backed by comprehensive warranties and ongoing support."
+                title="500+ Boilers Installed"
+                description="Our core speciality is boiler installation. Gas, oil, electric—combi, system, heat pumps. Trusted brands: Vaillant, Worcester Bosch, Glow-worm, Baxi."
                 index={1}
               />
             </div>
@@ -201,7 +218,7 @@ export default function Home() {
               <ImpactBlock
                 icon={TrendingUp}
                 title="Transparent Pricing"
-                description="No hidden fees, no surprises. You'll know exactly what to expect before we start any work, with competitive rates and honest service."
+                description="Free quotes and upfront pricing on all work. No hidden fees, no surprises. You'll know the cost before we start."
                 index={2}
               />
             </div>
@@ -349,7 +366,7 @@ export default function Home() {
         headline={businessConfig.ctaTemplates.cinematic.fastResponse.headline}
         subtitle={businessConfig.ctaTemplates.cinematic.fastResponse.subtitle}
         primaryText={businessConfig.ctaTemplates.cinematic.fastResponse.primaryText}
-        primaryHref="#contact"
+        primaryHref="/contact"
         secondaryText={businessConfig.ctaTemplates.cinematic.fastResponse.secondaryText}
         secondaryHref={`tel:${businessConfig.phone}`}
         trustChips={businessConfig.ctaTemplates.contact.trustChips}

@@ -12,14 +12,20 @@ interface ServiceCTABarProps {
 export default function ServiceCTABar({
   question = 'Need help with this service?',
   primaryText = 'Get Quote',
-  primaryHref = '#contact',
+  primaryHref = '/contact',
   callText = 'Call Now',
   callHref = 'tel:'
 }: ServiceCTABarProps) {
   return (
     <div
-      className="mt-6 p-4 rounded-lg backdrop-blur-sm bg-white/50 border-l-4 flex flex-col sm:flex-row items-center justify-between gap-4"
-      style={{ borderLeftColor: 'var(--color-accent)' }}
+      className="mt-6 p-6 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4"
+      style={{
+        background: 'linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-elevated) 100%)',
+        border: '1px solid var(--color-border-subtle)',
+        borderLeftWidth: '4px',
+        borderLeftColor: 'var(--color-accent)',
+        boxShadow: 'var(--shadow-luxury-md)'
+      }}
     >
       <p
         className="text-sm font-semibold"

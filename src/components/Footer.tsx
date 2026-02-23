@@ -54,21 +54,31 @@ export default function Footer() {
           <div className="hidden lg:grid lg:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
+                {'logoUrl' in businessConfig && businessConfig.logoUrl ? (
+                  <img
+                    src={businessConfig.logoUrl}
+                    alt={businessConfig.businessName}
+                    className="h-11 w-auto max-w-[180px] object-contain object-left"
+                  />
+                ) : (
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
+                    style={{
+                      background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
+                      color: 'white',
+                      boxShadow: '0 0 24px -8px var(--color-accent)'
+                    }}
+                  >
+                    {businessConfig.businessName.charAt(0)}
                   </div>
-                </div>
+                )}
+                {!('logoUrl' in businessConfig && businessConfig.logoUrl) && (
+                  <div>
+                    <div className="font-bold text-lg text-white">
+                      {businessConfig.businessName}
+                    </div>
+                  </div>
+                )}
               </div>
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
@@ -150,7 +160,7 @@ export default function Footer() {
               </ul>
               <p className="text-xs text-white/60 mb-4">{businessConfig.footer.businessHours}</p>
               <div className="flex flex-col gap-2">
-                <PremiumButton variant="primary" size="sm" href="#contact">
+                <PremiumButton variant="primary" size="sm" href="/contact">
                   Get Quote
                 </PremiumButton>
                 <PremiumButton variant="outline" size="sm" href="/contact" className="text-white">
@@ -163,21 +173,31 @@ export default function Footer() {
           <div className="lg:hidden space-y-4 mb-12">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
+                {'logoUrl' in businessConfig && businessConfig.logoUrl ? (
+                  <img
+                    src={businessConfig.logoUrl}
+                    alt={businessConfig.businessName}
+                    className="h-11 w-auto max-w-[180px] object-contain object-left"
+                  />
+                ) : (
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
+                    style={{
+                      background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
+                      color: 'white',
+                      boxShadow: '0 0 24px -8px var(--color-accent)'
+                    }}
+                  >
+                    {businessConfig.businessName.charAt(0)}
                   </div>
-                </div>
+                )}
+                {!('logoUrl' in businessConfig && businessConfig.logoUrl) && (
+                  <div>
+                    <div className="font-bold text-lg text-white">
+                      {businessConfig.businessName}
+                    </div>
+                  </div>
+                )}
               </div>
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
@@ -209,7 +229,7 @@ export default function Footer() {
               </ul>
               <p className="text-xs text-white/60 mb-4">{businessConfig.footer.businessHours}</p>
               <div className="flex flex-col gap-2">
-                <PremiumButton variant="primary" size="sm" href="#contact">
+                <PremiumButton variant="primary" size="sm" href="/contact">
                   Get Quote
                 </PremiumButton>
                 <PremiumButton variant="outline" size="sm" href="/contact" className="text-white">

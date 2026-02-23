@@ -35,11 +35,10 @@ export default function Gallery() {
         <div className="content-width">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="section-title">
-              Our Work
+              Our Work in Edinburgh & West Lothian
             </h1>
             <p className="section-subtitle">
-              Take a look at some of our recent projects in {businessConfig.city}.
-              Quality workmanship you can see.
+              Boiler installations, plumbing projects, and heating systems. Quality workmanship you can see.
             </p>
           </div>
         </div>
