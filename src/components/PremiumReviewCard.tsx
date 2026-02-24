@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Star, ChevronDown, ChevronUp, BadgeCheck, MessageCircle, ShieldCheck } from 'lucide-react';
+import { Star, ChevronDown, ChevronUp, BadgeCheck, MessageCircle, ShieldCheck, Clock } from 'lucide-react';
 
 interface PremiumReviewCardProps {
   name: string;
@@ -9,12 +9,15 @@ interface PremiumReviewCardProps {
   serviceTags?: string[];
   verified?: boolean;
   ownerReply?: string;
+  yearsAsCustomer?: number;
 }
 
 const HIGHLIGHT_KEYWORDS = [
   'professional', 'friendly', 'fast', 'reliable', 'great', 'excellent',
   'outstanding', 'exceptional', 'quality', 'recommended', 'trusted',
-  'honest', 'knowledgeable', 'courteous', 'efficient', 'transparent'
+  'honest', 'knowledgeable', 'courteous', 'efficient', 'transparent',
+  'organic', 'safe', 'effective', 'thorough', 'humane', 'solved',
+  'permanently', 'expertise', 'family', 'generations'
 ];
 
 function highlightKeywords(text: string): JSX.Element[] {
@@ -37,7 +40,7 @@ function highlightKeywords(text: string): JSX.Element[] {
           key={index}
           className="inline-block px-1.5 py-0.5 rounded transition-all duration-300"
           style={{
-            backgroundColor: 'rgba(6, 182, 212, 0.12)',
+            backgroundColor: 'rgba(34, 197, 94, 0.12)',
             color: 'var(--color-accent)'
           }}
         >
@@ -59,7 +62,8 @@ export default function PremiumReviewCard({
   date,
   serviceTags = [],
   verified = false,
-  ownerReply
+  ownerReply,
+  yearsAsCustomer
 }: PremiumReviewCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showExpandButton, setShowExpandButton] = useState(false);
@@ -79,7 +83,7 @@ export default function PremiumReviewCard({
       className="group rounded-xl shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 relative overflow-hidden"
       style={{
         backgroundColor: 'var(--color-bg-surface)',
-        border: '1px solid rgba(6, 182, 212, 0.06)'
+        border: '1px solid rgba(34, 197, 94, 0.06)'
       }}
     >
       <div
@@ -92,21 +96,27 @@ export default function PremiumReviewCard({
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{
-          background: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(6, 182, 212, 0.06), transparent 40%)'
+          background: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(34, 197, 94, 0.06), transparent 40%)'
         }}
       />
 
       <div className="relative z-10 p-6 pl-8">
         <div className="flex items-start justify-between gap-4 mb-4">
           <div className="flex-1">
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
               <h3 className="font-bold text-lg" style={{ color: 'var(--color-text-primary)' }}>
                 {name}
               </h3>
               {verified && (
-                <div className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium" style={{ backgroundColor: 'rgba(6, 182, 212, 0.1)', color: 'var(--color-accent)' }}>
+                <div className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium" style={{ backgroundColor: 'rgba(34, 197, 94, 0.1)', color: 'var(--color-accent)' }}>
                   <BadgeCheck className="w-3 h-3" />
                   <span>Verified</span>
+                </div>
+              )}
+              {yearsAsCustomer && yearsAsCustomer >= 5 && (
+                <div className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium" style={{ backgroundColor: 'rgba(251, 191, 36, 0.15)', color: '#f59e0b' }}>
+                  <Clock className="w-3 h-3" />
+                  <span>{yearsAsCustomer}+ year customer</span>
                 </div>
               )}
             </div>
@@ -188,8 +198,8 @@ export default function PremiumReviewCard({
                 <div
                   className="p-4 rounded-lg border relative"
                   style={{
-                    backgroundColor: 'rgba(6, 182, 212, 0.04)',
-                    borderColor: 'rgba(6, 182, 212, 0.2)',
+                    backgroundColor: 'rgba(34, 197, 94, 0.04)',
+                    borderColor: 'rgba(34, 197, 94, 0.2)',
                     borderLeftWidth: '3px'
                   }}
                 >
@@ -220,7 +230,7 @@ export default function PremiumReviewCard({
                 style={{
                   backgroundColor: 'var(--color-bg-base)',
                   color: 'var(--color-text-secondary)',
-                  border: '1px solid rgba(6, 182, 212, 0.12)'
+                  border: '1px solid rgba(34, 197, 94, 0.12)'
                 }}
               >
                 {tag}

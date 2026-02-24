@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Shield, Clock, Zap, Award, TrendingUp, Image as ImageIcon } from 'lucide-react';
-import * as Icons from 'lucide-react';
+import { Star, MapPin, Shield, Award, Leaf, Users, Heart, Image as ImageIcon } from 'lucide-react';
 import { businessConfig } from '../config';
 import SignatureServiceCard from '../components/SignatureServiceCard';
 import ReviewSnapshotPanel from '../components/ReviewSnapshotPanel';
@@ -18,6 +17,7 @@ import { useHeroReveal } from '../hooks/useHeroReveal';
 
 export default function Home() {
   const { shouldAnimate, isRevealed } = useHeroReveal();
+  const credentialsRef = useScrollReveal();
   const servicesRef = useScrollReveal();
   const impactRef = useScrollReveal();
   const galleryRef = useScrollReveal();
@@ -37,23 +37,23 @@ export default function Home() {
 
         <div className="absolute top-20 right-10 float-badge-1 hidden lg:block">
           <GlassBadge
-            icon={Clock}
-            title="24/7 Emergency"
-            subtitle="Fast Response"
+            icon={Leaf}
+            title="Organic Options"
+            subtitle="Safe & Effective"
           />
         </div>
         <div className="absolute top-32 left-10 float-badge-2 hidden lg:block">
           <GlassBadge
-            icon={Zap}
-            title="30-60 min"
-            subtitle="Response Time"
+            icon={Award}
+            title="Est. 1900"
+            subtitle="125+ Years"
           />
         </div>
         <div className="absolute bottom-32 right-20 float-badge-3 hidden lg:block">
           <GlassBadge
-            icon={Award}
-            title={`Established ${new Date().getFullYear() - businessConfig.yearsExperience}`}
-            subtitle={`${businessConfig.yearsExperience}+ Years`}
+            icon={Users}
+            title="5th Generation"
+            subtitle="Family Owned"
           />
         </div>
 
@@ -100,26 +100,90 @@ export default function Home() {
               </div>
               <div>
                 <span className="font-bold text-lg" style={{ color: 'var(--color-text-primary)' }}>{businessConfig.rating}</span>
-                <span className="text-sm ml-2" style={{ color: 'var(--color-text-tertiary)' }}>({businessConfig.reviewCount} reviews)</span>
+                <span className="text-sm ml-2" style={{ color: 'var(--color-text-tertiary)' }}>({businessConfig.reviewCount}+ reviews)</span>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Shield className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fully Insured & Certified</span>
+              <Award className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Board Certified Arborist</span>
             </div>
             <div className="flex items-center gap-3">
-              <MapPin className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Serving {businessConfig.city} & Surrounding Areas</span>
+              <Leaf className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Organic & IPM Methods</span>
             </div>
             <div className="flex items-center gap-3">
-              <Zap className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fast Response Times</span>
+              <Heart className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>14-Year Avg. Customer Loyalty</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={servicesRef}>
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={credentialsRef}>
+        <div className="content-width">
+          <div className="text-center mb-16 scroll-reveal">
+            <h2 className="section-title text-balance chapter-heading">
+              What Sets Us Apart
+            </h2>
+            <LuxuryDivider />
+            <p className="section-subtitle">
+              125 years of family expertise, modern science-based methods
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {businessConfig.whyChooseUs.map((item, index) => {
+              const iconMap: Record<string, typeof Users> = {
+                Users,
+                Award,
+                Leaf,
+                Heart
+              };
+              const IconComponent = iconMap[item.icon] || Shield;
+              
+              return (
+                <div 
+                  key={index} 
+                  className="scroll-reveal card-luxury p-8 text-center"
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div 
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%)',
+                      border: '1px solid rgba(34, 197, 94, 0.2)'
+                    }}
+                  >
+                    <IconComponent className="w-8 h-8" style={{ color: 'var(--color-accent)' }} />
+                  </div>
+                  <h3 
+                    className="text-xl font-bold mb-3"
+                    style={{ color: 'var(--color-text-primary)' }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9375rem', lineHeight: '1.7' }}>
+                    {item.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          
+          <div className="mt-16 scroll-reveal">
+            <DecisionPointCTA
+              label={businessConfig.ctaTemplates.decisionPoint.localTrust.label}
+              title={businessConfig.ctaTemplates.decisionPoint.localTrust.title}
+              subtitle={businessConfig.ctaTemplates.decisionPoint.localTrust.subtitle}
+              primaryText={businessConfig.ctaTemplates.decisionPoint.localTrust.primaryText}
+              primaryHref="/contact"
+              secondaryText={businessConfig.ctaTemplates.decisionPoint.localTrust.secondaryText}
+              secondaryHref="/reviews"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={servicesRef}>
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
@@ -127,7 +191,7 @@ export default function Home() {
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              Professional {businessConfig.businessType.toLowerCase()} services tailored to your needs
+              Comprehensive pest control and lawn care solutions for Metro Detroit homes
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -159,7 +223,7 @@ export default function Home() {
               title={businessConfig.ctaTemplates.decisionPoint.fastResponse.title}
               subtitle={businessConfig.ctaTemplates.decisionPoint.fastResponse.subtitle}
               primaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.primaryText}
-              primaryHref="#contact"
+              primaryHref="/contact"
               secondaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.secondaryText}
               secondaryHref={`tel:${businessConfig.phone}`}
               tertiaryText="View Our Reviews"
@@ -169,39 +233,39 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={impactRef}>
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={impactRef}>
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Results That Matter
+              The IPM Difference
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              We deliver fast, reliable solutions that make a real difference
+              Integrated Pest Management delivers better results with less environmental impact
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="scroll-reveal" style={{ transitionDelay: '0ms' }}>
               <ImpactBlock
-                icon={Zap}
-                title="Fast Emergency Response"
-                description="When emergencies strike, every minute counts. Our rapid response team is ready to help 24/7, arriving within 30-60 minutes to handle urgent situations."
+                icon={Shield}
+                title="Root Cause Solutions"
+                description="We don't just treat symptoms—we identify why pests are attracted to your property and eliminate those conditions. This means lasting results, not temporary fixes."
                 index={0}
               />
             </div>
             <div className="scroll-reveal" style={{ transitionDelay: '100ms' }}>
               <ImpactBlock
-                icon={Shield}
-                title="Reliable Long-Term Solutions"
-                description="We don't just fix problems temporarily. Our expert solutions are built to last, backed by comprehensive warranties and ongoing support."
+                icon={Leaf}
+                title="Up to 90% Less Pesticide"
+                description="By addressing the source of pest problems, IPM dramatically reduces the need for chemical treatments. Better for your family, pets, and the environment."
                 index={1}
               />
             </div>
             <div className="scroll-reveal" style={{ transitionDelay: '200ms' }}>
               <ImpactBlock
-                icon={TrendingUp}
-                title="Transparent Pricing"
-                description="No hidden fees, no surprises. You'll know exactly what to expect before we start any work, with competitive rates and honest service."
+                icon={Award}
+                title="125 Years of Expertise"
+                description="Five generations of pest control experience means we've seen it all. Our IPM-trained technicians bring unmatched knowledge to every home we protect."
                 index={2}
               />
             </div>
@@ -209,15 +273,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={galleryRef}>
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={galleryRef}>
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Our Work in Action
+              Our Work
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              See the quality and craftsmanship that sets us apart
+              Professional pest control and lawn care across Metro Detroit
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
@@ -255,15 +319,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={testimonialsRef}>
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={testimonialsRef}>
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Trusted by Local Customers
+              Trusted by Generations
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              Real feedback from real customers in {businessConfig.city}
+              Our customers stay an average of 14 years—here's why
             </p>
           </div>
 
@@ -282,6 +346,7 @@ export default function Home() {
                   serviceTags={testimonial.serviceTags}
                   verified={testimonial.verified}
                   ownerReply={testimonial.ownerReply}
+                  yearsAsCustomer={testimonial.yearsAsCustomer}
                 />
               </div>
             ))}
@@ -304,14 +369,14 @@ export default function Home() {
                 to="/contact"
                 className="btn-secondary"
               >
-                <span>Get a Quote</span>
+                <span>Get Free Inspection</span>
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={serviceAreasRef}>
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={serviceAreasRef}>
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
@@ -319,11 +384,11 @@ export default function Home() {
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              Providing expert {businessConfig.businessType.toLowerCase()} services throughout the region
+              Proudly protecting homes across Oakland County, Macomb & surrounding communities
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-4 mb-16 scroll-reveal">
-            {businessConfig.serviceAreas.slice(0, 10).map((area, index) => (
+            {businessConfig.serviceAreas.slice(0, 12).map((area, index) => (
               <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
                 <ServiceAreaChip
                   area={area}
@@ -345,12 +410,12 @@ export default function Home() {
       </section>
 
       <CinematicCTA
-        label={businessConfig.ctaTemplates.cinematic.fastResponse.label}
-        headline={businessConfig.ctaTemplates.cinematic.fastResponse.headline}
-        subtitle={businessConfig.ctaTemplates.cinematic.fastResponse.subtitle}
-        primaryText={businessConfig.ctaTemplates.cinematic.fastResponse.primaryText}
-        primaryHref="#contact"
-        secondaryText={businessConfig.ctaTemplates.cinematic.fastResponse.secondaryText}
+        label={businessConfig.ctaTemplates.cinematic.localTrust.label}
+        headline={businessConfig.ctaTemplates.cinematic.localTrust.headline}
+        subtitle={businessConfig.ctaTemplates.cinematic.localTrust.subtitle}
+        primaryText={businessConfig.ctaTemplates.cinematic.localTrust.primaryText}
+        primaryHref="/contact"
+        secondaryText={businessConfig.ctaTemplates.cinematic.localTrust.secondaryText}
         secondaryHref={`tel:${businessConfig.phone}`}
         trustChips={businessConfig.ctaTemplates.contact.trustChips}
       />

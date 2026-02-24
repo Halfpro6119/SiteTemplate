@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, MessageCircle, Clock, CheckCircle, Shield, Zap } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, CheckCircle, Shield, Zap } from 'lucide-react';
 import { businessConfig } from '../config';
 import { supabase } from '../lib/supabase';
 import PageHero from '../components/PageHero';

@@ -31,7 +31,7 @@ export default function Services() {
         <div className="content-width">
           <div className="space-y-12">
             {businessConfig.services.map((service, index) => {
-              const IconComponent = (Icons as any)[service.icon] || Icons.Star;
+              const IconComponent = (Icons as unknown as Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>>)[service.icon] || Icons.Star;
               const isEven = index % 2 === 0;
 
               return (
