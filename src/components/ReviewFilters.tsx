@@ -24,12 +24,11 @@ export default function ReviewFilters({
         <select
           value={selectedSort}
           onChange={(e) => onSortChange(e.target.value)}
-          className="appearance-none px-5 py-2.5 pr-10 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2"
+          className="appearance-none px-5 py-2.5 pr-10 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500/50"
           style={{
             backgroundColor: 'var(--color-bg-surface)',
             color: 'var(--color-text-primary)',
-            border: '1px solid rgba(6, 182, 212, 0.15)',
-            focusRing: 'var(--color-accent)'
+            border: '1px solid rgba(5, 150, 105, 0.15)'
           }}
         >
           {sortOptions.map((option) => (

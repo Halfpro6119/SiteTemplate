@@ -8,7 +8,7 @@ interface ContactCTAPanelProps {
   responseTime?: string;
   phoneHref?: string;
   quoteHref?: string;
-  trustChips?: Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users'; text: string }>;
+  trustChips?: Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users' | 'leaf'; text: string }>;
 }
 
 export default function ContactCTAPanel({

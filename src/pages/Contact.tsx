@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, MessageCircle, Clock, CheckCircle, Shield, Zap } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, CheckCircle, Shield, Zap, Leaf, Award } from 'lucide-react';
 import { businessConfig } from '../config';
 import { supabase } from '../lib/supabase';
 import PageHero from '../components/PageHero';
@@ -58,8 +58,8 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       <PageHero
-        title="Get In Touch"
-        subtitle="Ready to get started? Contact us today for a free, no-obligation quote"
+        title="Get Your Free Estimate"
+        subtitle="Contact us today for organic pest control, lawn care, or tree services. Same-day service available."
       >
         <div className="mt-8">
           <Breadcrumb items={[
@@ -229,8 +229,8 @@ export default function Contact() {
                   <div
                     className="p-4 rounded-xl flex items-start gap-3"
                     style={{
-                      background: 'rgba(6, 182, 212, 0.08)',
-                      border: '1px solid rgba(6, 182, 212, 0.2)'
+                      background: 'rgba(5, 150, 105, 0.08)',
+                      border: '1px solid rgba(5, 150, 105, 0.2)'
                     }}
                   >
                     <Shield className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--color-accent)' }} />
@@ -288,7 +288,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -300,17 +300,17 @@ export default function Contact() {
                           className="font-semibold mb-1 text-sm"
                           style={{ color: 'var(--color-text-tertiary)' }}
                         >
-                          Phone
+                          Local Phone
                         </h3>
                         <a
-                          href={`tel:${businessConfig.phone}`}
+                          href={`tel:${businessConfig.phone.replace(/[^0-9]/g, '')}`}
                           className="font-bold text-lg hover:text-accent transition-colors"
                           style={{ color: 'var(--color-text-primary)' }}
                         >
                           {businessConfig.phone}
                         </a>
-                        <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          Mon-Fri: 8am-6pm
+                        <p className="text-sm mt-1" style={{ color: 'var(--color-text-secondary)' }}>
+                          Toll-Free: {businessConfig.tollFree}
                         </p>
                       </div>
                     </div>
@@ -319,7 +319,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -350,7 +350,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -362,13 +362,40 @@ export default function Contact() {
                           className="font-semibold mb-1 text-sm"
                           style={{ color: 'var(--color-text-tertiary)' }}
                         >
-                          Service Area
+                          Address
                         </h3>
                         <p className="font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-                          {businessConfig.city}, {businessConfig.state}
+                          {businessConfig.address}
                         </p>
                         <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          & surrounding areas
+                          Serving {businessConfig.city} & surrounding areas
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0.08) 100%)',
+                          border: '1px solid var(--color-border-medium)',
+                          boxShadow: '0 0 20px -8px var(--color-accent-glow)'
+                        }}
+                      >
+                        <Clock className="w-5 h-5" style={{ color: 'var(--color-accent)' }} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-semibold mb-1 text-sm"
+                          style={{ color: 'var(--color-text-tertiary)' }}
+                        >
+                          Business Hours
+                        </h3>
+                        <p className="font-semibold" style={{ color: 'var(--color-text-primary)' }}>
+                          Mon-Fri: 7am-7pm
+                        </p>
+                        <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                          Sat: 8am-4pm | 24/7 Emergency
                         </p>
                       </div>
                     </div>
@@ -378,8 +405,8 @@ export default function Contact() {
                 <div
                   className="rounded-2xl p-8"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0.06) 100%)',
-                    border: '1px solid rgba(6, 182, 212, 0.2)',
+                    background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.12) 0%, rgba(5, 150, 105, 0.06) 100%)',
+                    border: '1px solid rgba(5, 150, 105, 0.2)',
                     boxShadow: '0 4px 24px -8px var(--color-accent-glow)'
                   }}
                 >
@@ -391,24 +418,25 @@ export default function Contact() {
                         color: 'var(--color-text-inverse)'
                       }}
                     >
-                      <MessageCircle className="w-5 h-5" />
+                      <Award className="w-5 h-5" />
                     </div>
                     <h3 className="font-bold" style={{ color: 'var(--color-text-primary)' }}>
-                      Prefer to chat?
+                      Why Choose Us?
                     </h3>
                   </div>
-                  <p className="mb-5" style={{ color: 'var(--color-text-secondary)' }}>
-                    Send us a message on WhatsApp for instant communication
-                  </p>
-                  <a
-                    href={`https://wa.me/${businessConfig.whatsapp}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary inline-flex w-full justify-center"
-                  >
-                    <MessageCircle className="w-5 h-5" />
-                    <span>Chat on WhatsApp</span>
-                  </a>
+                  <ul className="space-y-3">
+                    {[
+                      'Board Certified Consulting Arborist',
+                      '5th Generation Family Owned (Est. 1900)',
+                      'Organic & IPM Methods',
+                      'Same-Day Service Available'
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-center gap-2" style={{ color: 'var(--color-text-secondary)' }}>
+                        <Leaf className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--color-accent)' }} />
+                        <span className="text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>

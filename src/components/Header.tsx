@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, MessageSquare } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare, Leaf } from 'lucide-react';
 import { businessConfig } from '../config';
 
 export default function Header() {
@@ -44,14 +44,13 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
             <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl transition-all duration-500 group-hover:scale-105"
+              className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-105"
               style={{
                 background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)',
-                color: 'var(--color-text-inverse)',
                 boxShadow: '0 0 24px -8px var(--color-accent-glow)'
               }}
             >
-              {businessConfig.businessName.charAt(0)}
+              <Leaf className="w-6 h-6 text-white" />
             </div>
             <div>
               <div
@@ -64,8 +63,8 @@ export default function Header() {
               >
                 {businessConfig.businessName}
               </div>
-              <div className="text-xs" style={{ color: 'var(--color-text-tertiary)' }}>
-                {businessConfig.tagline}
+              <div className="text-xs" style={{ color: 'var(--color-accent)' }}>
+                Est. {businessConfig.foundingYear} • Family Owned
               </div>
             </div>
           </Link>

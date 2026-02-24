@@ -7,7 +7,7 @@ interface HeroCTAProps {
   primaryHref?: string;
   secondaryText?: string;
   secondaryHref?: string;
-  trustChips?: Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users'; text: string }>;
+  trustChips?: Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users' | 'leaf'; text: string }>;
   variant?: 'light' | 'dark';
 }
 

@@ -13,7 +13,7 @@ interface DecisionPointCTAProps {
   secondaryHref?: string;
   tertiaryText?: string;
   tertiaryHref?: string;
-  trustChips?: Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users'; text: string }>;
+  trustChips?: Array<{ icon: 'shield' | 'clock' | 'award' | 'check' | 'star' | 'users' | 'leaf'; text: string }>;
 }
 
 export default function DecisionPointCTA({

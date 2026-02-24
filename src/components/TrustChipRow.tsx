@@ -1,4 +1,4 @@
-import { Shield, Clock, Award, CheckCircle2, Star, Users } from 'lucide-react';
+import { Shield, Clock, Award, CheckCircle2, Star, Users, Leaf } from 'lucide-react';
 
 const iconMap = {
   shield: Shield,
@@ -6,10 +6,11 @@ const iconMap = {
   award: Award,
   check: CheckCircle2,
   star: Star,
-  users: Users
+  users: Users,
+  leaf: Leaf
 };
 
-interface TrustChip {
+export interface TrustChip {
   icon: keyof typeof iconMap;
   text: string;
 }
