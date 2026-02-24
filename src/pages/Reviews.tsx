@@ -1,167 +1,279 @@
-import { useState, useMemo } from 'react';
-import { businessConfig } from '../config';
-import ReviewSnapshotPanel from '../components/ReviewSnapshotPanel';
-import PremiumReviewCard from '../components/PremiumReviewCard';
-import ReviewFilters from '../components/ReviewFilters';
+import { Shield, Award, Users, CheckCircle, Clock, Building2 } from 'lucide-react';
 import CTASection from '../components/CTASection';
-import TrustFooterStrip from '../components/TrustFooterStrip';
+import PageHero from '../components/PageHero';
+import Breadcrumb from '../components/Breadcrumb';
+import LuxuryDivider from '../components/LuxuryDivider';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Reviews() {
-  const [selectedSort, setSelectedSort] = useState('recent');
-
-  const headerRef = useScrollReveal();
-  const reviewsRef = useScrollReveal();
+  const credentialsRef = useScrollReveal();
   const statsRef = useScrollReveal();
-
-  const sortedReviews = useMemo(() => {
-    const sorted = [...businessConfig.testimonials];
-
-    switch (selectedSort) {
-      case 'highest':
-        sorted.sort((a, b) => b.rating - a.rating);
-        break;
-      case 'longest':
-        sorted.sort((a, b) => b.text.length - a.text.length);
-        break;
-      case 'recent':
-      default:
-        break;
-    }
-
-    return sorted;
-  }, [selectedSort]);
 
   return (
     <div className="min-h-screen">
-      <section
-        className="pt-32 pb-16"
-        style={{
-          background: 'linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-base) 100%)'
-        }}
-        ref={headerRef}
+      <PageHero
+        title="Our Credentials & Trust"
+        subtitle="Professional certifications, industry training, and a commitment to quality that speaks for itself"
       >
-        <div className="container mx-auto px-4">
+        <div className="mt-8">
+          <Breadcrumb items={[
+            { label: 'Home', href: '/' },
+            { label: 'Reviews' }
+          ]} />
+        </div>
+      </PageHero>
+
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={credentialsRef}>
+        <div className="content-width">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12 scroll-reveal">
-              <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-                style={{ color: 'var(--color-text-primary)' }}
+            <div className="text-center mb-16 scroll-reveal">
+              <h2
+                className="text-3xl md:text-4xl font-bold mb-4"
+                style={{
+                  color: 'var(--color-text-primary)',
+                  fontFamily: 'Plus Jakarta Sans, sans-serif',
+                  letterSpacing: '-0.02em'
+                }}
               >
-                Customer Reviews
-              </h1>
-              <p className="text-xl leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                Real feedback from local customers in {businessConfig.city}
+                Why Trust Secure Links Fence?
+              </h2>
+              <LuxuryDivider />
+              <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>
+                Our professional credentials and industry certifications
               </p>
             </div>
 
-            <div className="scroll-reveal">
-              <ReviewSnapshotPanel size="large" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              {[
+                {
+                  icon: Award,
+                  title: 'BBB Accredited Business',
+                  description: 'We maintain accreditation with the Better Business Bureau, demonstrating our commitment to ethical business practices and customer satisfaction.'
+                },
+                {
+                  icon: Shield,
+                  title: 'AFA Field Training Graduate',
+                  description: 'Owner Nick Beard is a graduate of the American Fence Association\'s Field Training School in Athens, Georgia—the industry\'s premier training program.'
+                },
+                {
+                  icon: CheckCircle,
+                  title: 'OSHA Certified',
+                  description: 'Our team maintains OSHA safety certifications, ensuring every job site meets the highest safety standards for workers and property owners.'
+                },
+                {
+                  icon: Building2,
+                  title: 'MICCS Certified',
+                  description: 'Military Installation Compatible Contractor certification qualifies us for government and military base projects with strict security requirements.'
+                }
+              ].map((credential, index) => {
+                const IconComponent = credential.icon;
+                return (
+                  <div
+                    key={index}
+                    className="scroll-reveal rounded-2xl p-6"
+                    style={{
+                      background: 'linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-elevated) 100%)',
+                      border: '1px solid var(--color-border-subtle)',
+                      boxShadow: 'var(--shadow-luxury-md)',
+                      transitionDelay: `${index * 100}ms`
+                    }}
+                  >
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0.08) 100%)',
+                        border: '1px solid var(--color-border-medium)'
+                      }}
+                    >
+                      <IconComponent className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>
+                      {credential.title}
+                    </h3>
+                    <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                      {credential.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="py-16" style={{ backgroundColor: 'var(--color-bg-base)' }} ref={reviewsRef}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-12 scroll-reveal">
-              <ReviewFilters
-                selectedSort={selectedSort}
-                onSortChange={setSelectedSort}
-              />
-            </div>
-
-            <div className="mb-8 scroll-reveal">
-              <p className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>
-                Showing {sortedReviews.length} {sortedReviews.length === 1 ? 'review' : 'reviews'}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 auto-rows-auto">
-              {sortedReviews.map((testimonial, index) => (
-                <div
-                  key={testimonial.id}
-                  className="h-fit scroll-reveal"
-                  style={{ transitionDelay: `${(index % 6) * 80}ms` }}
-                >
-                  <PremiumReviewCard
-                    name={testimonial.name}
-                    rating={testimonial.rating}
-                    text={testimonial.text}
-                    date={testimonial.date}
-                    serviceTags={testimonial.serviceTags}
-                    verified={testimonial.verified}
-                    ownerReply={testimonial.ownerReply}
-                  />
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-16 scroll-reveal">
-              <TrustFooterStrip />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={statsRef}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto scroll-reveal">
             <div
-              className="rounded-2xl p-8 lg:p-12 shadow-lg text-center"
+              className="scroll-reveal rounded-2xl p-8 text-center"
               style={{
-                backgroundColor: 'var(--color-bg-base)',
-                border: '1px solid rgba(5, 150, 105, 0.1)'
+                background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(5, 150, 105, 0.04) 100%)',
+                border: '1px solid rgba(5, 150, 105, 0.2)'
               }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--color-text-primary)' }}>
-                Why Customers Trust Us
-              </h2>
-              <p className="text-lg mb-10 leading-relaxed max-w-2xl mx-auto" style={{ color: 'var(--color-text-secondary)' }}>
-                Our commitment to quality, reliability, and customer satisfaction has earned
-                us a reputation as one of the most trusted {businessConfig.businessType.toLowerCase()} providers
-                in {businessConfig.city}. Every review represents a real customer who trusted
-                us with their needs.
+              <Users className="w-12 h-12 mx-auto mb-4" style={{ color: 'var(--color-accent)' }} />
+              <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>
+                50+ Years Combined Experience
+              </h3>
+              <p style={{ color: 'var(--color-text-secondary)' }}>
+                Our installation team brings over five decades of combined fence industry experience, 
+                with owner Nick Beard contributing 20+ years of expertise in residential and commercial fencing.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div
-                    className="text-5xl font-bold mb-3"
-                    style={{ color: 'var(--color-accent)' }}
-                  >
-                    {businessConfig.rating}/5
-                  </div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Average Rating</p>
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-surface)' }} ref={statsRef}>
+        <div className="content-width">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16 scroll-reveal">
+              <h2
+                className="text-3xl md:text-4xl font-bold mb-4"
+                style={{
+                  color: 'var(--color-text-primary)',
+                  fontFamily: 'Plus Jakarta Sans, sans-serif',
+                  letterSpacing: '-0.02em'
+                }}
+              >
+                Our Track Record
+              </h2>
+              <LuxuryDivider />
+              <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>
+                Trusted by homeowners and businesses across Indianapolis
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="scroll-reveal text-center" style={{ transitionDelay: '0ms' }}>
+                <div
+                  className="text-5xl font-bold mb-3"
+                  style={{ color: 'var(--color-accent)' }}
+                >
+                  2018
                 </div>
-                <div className="text-center">
-                  <div
-                    className="text-5xl font-bold mb-3"
-                    style={{ color: 'var(--color-accent)' }}
-                  >
-                    {businessConfig.reviewCount}+
-                  </div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Verified Reviews</p>
+                <p className="text-lg font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>
+                  Established
+                </p>
+                <p className="text-sm" style={{ color: 'var(--color-text-tertiary)' }}>
+                  Serving Indianapolis since founding
+                </p>
+              </div>
+              <div className="scroll-reveal text-center" style={{ transitionDelay: '100ms' }}>
+                <div
+                  className="text-5xl font-bold mb-3"
+                  style={{ color: 'var(--color-accent)' }}
+                >
+                  20+
                 </div>
-                <div className="text-center">
-                  <div
-                    className="text-5xl font-bold mb-3"
-                    style={{ color: 'var(--color-accent)' }}
-                  >
-                    {businessConfig.yearsExperience}+
-                  </div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Years Experience</p>
+                <p className="text-lg font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>
+                  Years Experience
+                </p>
+                <p className="text-sm" style={{ color: 'var(--color-text-tertiary)' }}>
+                  Owner Nick Beard's industry expertise
+                </p>
+              </div>
+              <div className="scroll-reveal text-center" style={{ transitionDelay: '200ms' }}>
+                <div
+                  className="text-5xl font-bold mb-3"
+                  style={{ color: 'var(--color-accent)' }}
+                >
+                  50+
                 </div>
+                <p className="text-lg font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>
+                  Combined Years
+                </p>
+                <p className="text-sm" style={{ color: 'var(--color-text-tertiary)' }}>
+                  Team's total fence industry experience
+                </p>
+              </div>
+            </div>
+
+            <div
+              className="scroll-reveal rounded-2xl p-8 md:p-12"
+              style={{
+                background: 'var(--color-bg-base)',
+                border: '1px solid var(--color-border-subtle)'
+              }}
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center"
+                  style={{
+                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)'
+                  }}
+                >
+                  <Clock className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
+                    Customer Reviews Coming Soon
+                  </h3>
+                </div>
+              </div>
+              <p className="mb-6" style={{ color: 'var(--color-text-secondary)' }}>
+                We're in the process of collecting and verifying customer testimonials to share on our website. 
+                In the meantime, we invite you to ask for references when you request your free estimate—we're 
+                happy to connect you with past customers who can speak to our work quality and professionalism.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['BBB Accredited', 'Licensed', 'Fully Insured', 'Free Estimates'].map((badge, index) => (
+                  <span
+                    key={index}
+                    className="px-4 py-2 rounded-full text-sm font-semibold"
+                    style={{
+                      background: 'rgba(5, 150, 105, 0.1)',
+                      border: '1px solid rgba(5, 150, 105, 0.2)',
+                      color: 'var(--color-accent)'
+                    }}
+                  >
+                    {badge}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      <section className="section-spacing" style={{ backgroundColor: 'var(--color-bg-base)' }}>
+        <div className="content-width">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2
+              className="text-3xl md:text-4xl font-bold mb-6"
+              style={{
+                color: 'var(--color-text-primary)',
+                fontFamily: 'Plus Jakarta Sans, sans-serif',
+                letterSpacing: '-0.02em'
+              }}
+            >
+              Experience Our Quality Firsthand
+            </h2>
+            <p className="text-lg mb-8" style={{ color: 'var(--color-text-secondary)' }}>
+              The best way to understand our commitment to quality is to see our work in person. 
+              Contact us for a free estimate and we'll be happy to provide references from past 
+              customers in your area.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[
+                { label: 'Free Estimates', sublabel: 'No obligation quotes' },
+                { label: 'References Available', sublabel: 'Upon request' },
+                { label: 'Quality Guaranteed', sublabel: 'On every project' }
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="p-4 rounded-xl"
+                  style={{
+                    background: 'var(--color-bg-surface)',
+                    border: '1px solid var(--color-border-subtle)'
+                  }}
+                >
+                  <p className="font-bold" style={{ color: 'var(--color-text-primary)' }}>{item.label}</p>
+                  <p className="text-sm" style={{ color: 'var(--color-text-tertiary)' }}>{item.sublabel}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CTASection
-        title="Join Our Happy Customers"
-        subtitle="Experience the quality service that has earned us consistent 5-star reviews"
+        title="Ready to Get Started?"
+        subtitle="Request your free estimate and ask for customer references in your area"
       />
     </div>
   );

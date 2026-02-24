@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Shield, Clock, Award, TrendingUp, Image as ImageIcon, Home as HomeIcon, Building2, CheckCircle, Users } from 'lucide-react';
+import { MapPin, Shield, Clock, Award, TrendingUp, Image as ImageIcon, Home as HomeIcon, Building2, CheckCircle, Users } from 'lucide-react';
 import { businessConfig } from '../config';
 import SignatureServiceCard from '../components/SignatureServiceCard';
-import ReviewSnapshotPanel from '../components/ReviewSnapshotPanel';
-import PremiumReviewCard from '../components/PremiumReviewCard';
-import TrustFooterStrip from '../components/TrustFooterStrip';
 import GlassBadge from '../components/GlassBadge';
 import ImpactBlock from '../components/ImpactBlock';
 import ServiceAreaChip from '../components/ServiceAreaChip';
@@ -86,22 +83,8 @@ export default function Home() {
         <div className="content-width">
           <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16">
             <div className="flex items-center gap-3">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-5 h-5 ${
-                      i < Math.floor(businessConfig.rating)
-                        ? 'text-yellow-400 fill-yellow-400'
-                        : 'opacity-20'
-                    }`}
-                  />
-                ))}
-              </div>
-              <div>
-                <span className="font-bold text-lg" style={{ color: 'var(--color-text-primary)' }}>{businessConfig.rating}</span>
-                <span className="text-sm ml-2" style={{ color: 'var(--color-text-tertiary)' }}>({businessConfig.reviewCount} reviews)</span>
-              </div>
+              <Award className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>BBB Accredited Business</span>
             </div>
             <div className="flex items-center gap-3">
               <Shield className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
@@ -393,36 +376,97 @@ export default function Home() {
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              What Our Customers Say
+              Our Credentials & Trust
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              Real feedback from homeowners and businesses across Indianapolis
+              Professional certifications and industry training you can count on
             </p>
           </div>
 
-          <div className="mb-16 scroll-reveal">
-            <ReviewSnapshotPanel />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {[
+              {
+                title: 'BBB Accredited',
+                description: 'Better Business Bureau accredited for ethical practices',
+                icon: Award
+              },
+              {
+                title: 'AFA Certified',
+                description: 'American Fence Association Field Training School graduate',
+                icon: Award
+              },
+              {
+                title: 'OSHA Certified',
+                description: 'Safety certified for all job sites',
+                icon: Shield
+              },
+              {
+                title: '50+ Years Experience',
+                description: 'Combined team expertise in fence installation',
+                icon: Users
+              }
+            ].map((credential, index) => {
+              const IconComponent = credential.icon;
+              return (
+                <div 
+                  key={index}
+                  className="scroll-reveal text-center p-6 rounded-2xl"
+                  style={{ 
+                    transitionDelay: `${index * 80}ms`,
+                    background: 'linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-elevated) 100%)',
+                    border: '1px solid var(--color-border-subtle)'
+                  }}
+                >
+                  <div 
+                    className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0.08) 100%)',
+                      border: '1px solid var(--color-border-medium)'
+                    }}
+                  >
+                    <IconComponent className="w-7 h-7" style={{ color: 'var(--color-accent)' }} />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2" style={{ color: 'var(--color-text-primary)' }}>
+                    {credential.title}
+                  </h3>
+                  <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                    {credential.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {businessConfig.testimonials.slice(0, 6).map((testimonial, index) => (
-              <div key={testimonial.id} className="scroll-reveal" style={{ transitionDelay: `${index * 80}ms` }}>
-                <PremiumReviewCard
-                  name={testimonial.name}
-                  rating={testimonial.rating}
-                  text={testimonial.text}
-                  date={testimonial.date}
-                  serviceTags={testimonial.serviceTags}
-                  verified={testimonial.verified}
-                  ownerReply={testimonial.ownerReply}
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="mb-16 scroll-reveal">
-            <TrustFooterStrip />
+          <div 
+            className="scroll-reveal rounded-2xl p-8 text-center mb-16"
+            style={{
+              background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(5, 150, 105, 0.04) 100%)',
+              border: '1px solid rgba(5, 150, 105, 0.2)'
+            }}
+          >
+            <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-primary)' }}>
+              References Available Upon Request
+            </h3>
+            <p className="mb-4" style={{ color: 'var(--color-text-secondary)' }}>
+              Ask for customer references when you request your free estimate. We're happy to connect you 
+              with past residential and commercial clients who can speak to our work quality.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {['Licensed', 'Fully Insured', 'Free Estimates', 'Quality Guaranteed'].map((badge, idx) => (
+                <span
+                  key={idx}
+                  className="px-4 py-2 rounded-full text-sm font-semibold"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid var(--color-border-medium)',
+                    color: 'var(--color-text-secondary)'
+                  }}
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="text-center scroll-reveal">
@@ -431,7 +475,7 @@ export default function Home() {
                 to="/reviews"
                 className="btn-primary btn-shine"
               >
-                <span>Read All Reviews</span>
+                <span>View Our Credentials</span>
                 <span>→</span>
               </Link>
               <Link

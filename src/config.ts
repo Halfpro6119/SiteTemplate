@@ -11,16 +11,26 @@ export const businessConfig = {
   heroHeadline: 'Indianapolis Area Fence Installation Experts',
   heroSubheading: 'Residential & Commercial Fencing Solutions Built to Last. Trusted by Homeowners, Businesses, Military Bases & More Since 2018.',
 
-  phone: '(317) 535-3623',
-  whatsapp: '13175353623',
-  email: 'info@securelinksfencing.com',
+  phone: '(317) 672-4315',
+  phoneAlt: '(317) 672-4369',
+  whatsapp: '13176724315',
+  email: 'NBeard@securelinksfencing.com',
 
   yearsExperience: 7,
-  rating: 4.9,
-  reviewCount: 87,
+  ownerExperience: 20,
+  rating: null,
+  reviewCount: 0,
 
   foundedYear: 2018,
   founderName: 'Nick Beard',
+  
+  credentials: [
+    'BBB Accredited Business',
+    'American Fence Association Field Training School Graduate',
+    'OSHA Certified',
+    'MICCS Certified',
+    '50+ Years Combined Team Experience'
+  ],
 
   services: [
     {
@@ -102,93 +112,7 @@ export const businessConfig = {
     }
   ],
 
-  testimonials: [
-    {
-      id: 1,
-      name: 'Mark Henderson',
-      rating: 5,
-      text: 'Secure Links installed a privacy fence around our entire backyard. The crew was professional, finished ahead of schedule, and the fence looks amazing. Nick even helped us choose the right style for our property. Highly recommend for any residential fencing needs.',
-      date: '2 weeks ago',
-      serviceTags: ['Wood Fencing'],
-      verified: true,
-      ownerReply: 'Thank you Mark! It was a pleasure working with you. Enjoy your new backyard privacy!'
-    },
-    {
-      id: 2,
-      name: 'Commercial Property Manager',
-      rating: 5,
-      text: 'We hired Secure Links for a large commercial fencing project at our warehouse facility. Their team handled the complexity professionally—from permits to final inspection. The security fencing exceeded our requirements. They understand commercial needs.',
-      date: '1 month ago',
-      serviceTags: ['Commercial Fencing'],
-      verified: true
-    },
-    {
-      id: 3,
-      name: 'Jennifer Walsh',
-      rating: 5,
-      text: 'Went with vinyl fencing after learning about the maintenance benefits. Six months later and it still looks brand new with zero upkeep. The installation team was courteous and cleaned up thoroughly. Great experience from estimate to completion.',
-      date: '1 month ago',
-      serviceTags: ['Vinyl Fencing'],
-      verified: true,
-      ownerReply: 'Thanks Jennifer! Vinyl is definitely the way to go for low maintenance. Glad you\'re enjoying it!'
-    },
-    {
-      id: 4,
-      name: 'Robert Chen',
-      rating: 5,
-      text: 'Needed chain link fencing for our rental properties—five different locations. Secure Links gave us a fair bulk price and coordinated the installations efficiently. Excellent communication throughout. Will use them for all future properties.',
-      date: '2 months ago',
-      serviceTags: ['Chain Link Fencing'],
-      verified: true
-    },
-    {
-      id: 5,
-      name: 'Amanda Pierce',
-      rating: 5,
-      text: 'The ornamental aluminum fence around our pool area is beautiful and met all code requirements. Nick knew exactly what was needed for compliance. Professional installation and the fence adds so much elegance to our backyard.',
-      date: '2 months ago',
-      serviceTags: ['Ornamental Aluminum'],
-      verified: true
-    },
-    {
-      id: 6,
-      name: 'Facility Director',
-      rating: 5,
-      text: 'Secure Links completed a major perimeter fencing project for our college campus. They worked around our academic schedule, maintained safety protocols, and delivered a quality installation. Their commercial experience really shows.',
-      date: '3 months ago',
-      serviceTags: ['Commercial Fencing'],
-      verified: true,
-      ownerReply: 'It was an honor to work on your campus security project. Thank you for trusting us with such an important installation.'
-    },
-    {
-      id: 7,
-      name: 'Steve Martinez',
-      rating: 5,
-      text: 'Had a custom fence designed that combined wood privacy sections with aluminum decorative portions. Secure Links made my vision a reality. Neighbors constantly compliment it. These guys are true craftsmen.',
-      date: '3 months ago',
-      serviceTags: ['Custom Fencing Solutions'],
-      verified: true
-    },
-    {
-      id: 8,
-      name: 'Lisa Thompson',
-      rating: 4,
-      text: 'Good quality wood fence installation. There was a small scheduling delay due to weather, but they kept us informed and finished the job right. The fence looks great and the crew was friendly. Would recommend.',
-      date: '4 months ago',
-      serviceTags: ['Wood Fencing'],
-      verified: true,
-      ownerReply: 'Thanks for understanding about the weather delay, Lisa. We appreciate your patience and are glad you love the final result!'
-    },
-    {
-      id: 9,
-      name: 'Industrial Park Management',
-      rating: 5,
-      text: 'Secure Links handled security fencing for our entire industrial park—multiple buildings and hundreds of feet of perimeter fencing. Professional, organized, and delivered on time and on budget. This is the team you want for commercial projects.',
-      date: '4 months ago',
-      serviceTags: ['Commercial Fencing'],
-      verified: true
-    }
-  ],
+  testimonials: [],
 
   trustChips: [
     'Licensed & Insured',

@@ -110,20 +110,20 @@ export default function About() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <StatCard
                 value={`${businessConfig.yearsExperience}+`}
-                label="Years Experience"
+                label="Years in Business"
                 description="Serving Indianapolis since 2018"
                 delay={0}
               />
               <StatCard
-                value={businessConfig.rating}
-                label="Star Rating"
-                description={`Based on ${businessConfig.reviewCount} reviews`}
+                value="20+"
+                label="Years Experience"
+                description="Owner Nick Beard's expertise"
                 delay={100}
               />
               <StatCard
-                value="500+"
-                label="Fences Installed"
-                description="Residential & commercial"
+                value="50+"
+                label="Combined Years"
+                description="Team's total experience"
                 delay={200}
               />
               <StatCard
