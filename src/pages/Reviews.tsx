@@ -112,7 +112,7 @@ export default function Reviews() {
               className="rounded-2xl p-8 lg:p-12 shadow-lg text-center"
               style={{
                 backgroundColor: 'var(--color-bg-base)',
-                border: '1px solid rgba(6, 182, 212, 0.1)'
+                border: '1px solid rgba(5, 150, 105, 0.1)'
               }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--color-text-primary)' }}>
