@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, MessageCircle, Clock, CheckCircle, Shield, Zap } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, CheckCircle, Shield, Zap, Home, Building2, Calendar } from 'lucide-react';
 import { businessConfig } from '../config';
 import { supabase } from '../lib/supabase';
 import PageHero from '../components/PageHero';
@@ -11,12 +11,15 @@ export default function Contact() {
     full_name: '',
     phone: '',
     email: '',
+    project_type: '',
+    fence_type: '',
+    timeline: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -45,6 +48,9 @@ export default function Contact() {
         full_name: '',
         phone: '',
         email: '',
+        project_type: '',
+        fence_type: '',
+        timeline: '',
         message: ''
       });
     } catch (error) {
@@ -55,11 +61,34 @@ export default function Contact() {
     }
   };
 
+  const projectTypes = [
+    { value: 'residential', label: 'Residential', icon: Home },
+    { value: 'commercial', label: 'Commercial', icon: Building2 }
+  ];
+
+  const fenceTypes = [
+    'Wood Fencing',
+    'Vinyl Fencing',
+    'Chain Link Fencing',
+    'Ornamental Aluminum',
+    'Commercial/Industrial',
+    'Custom/Other',
+    'Not Sure - Need Advice'
+  ];
+
+  const timelineOptions = [
+    'As soon as possible',
+    'Within 2 weeks',
+    'Within 1 month',
+    'Within 2-3 months',
+    'Just getting quotes/planning'
+  ];
+
   return (
     <div className="min-h-screen">
       <PageHero
-        title="Get In Touch"
-        subtitle="Ready to get started? Contact us today for a free, no-obligation quote"
+        title="Get Your Free Fence Estimate"
+        subtitle="Tell us about your project and we'll provide a detailed, no-obligation quote within 24 hours"
       >
         <div className="mt-8">
           <Breadcrumb items={[
@@ -75,11 +104,24 @@ export default function Contact() {
             <div className="hero-split">
               <div>
                 <div className="mb-8">
+                  <div
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
+                    style={{
+                      background: 'rgba(5, 150, 105, 0.1)',
+                      border: '1px solid rgba(5, 150, 105, 0.2)',
+                      color: 'var(--color-accent)',
+                      fontSize: '0.875rem',
+                      fontWeight: 600
+                    }}
+                  >
+                    <Calendar className="w-4 h-4" />
+                    <span>Free estimates - usually same day response</span>
+                  </div>
                   <h2 className="text-3xl font-bold mb-4" style={{ letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>
-                    Send Us a Message
+                    Request Your Free Estimate
                   </h2>
                   <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>
-                    Fill out the form and we'll get back to you within 24 hours
+                    Complete the form below and we'll contact you to discuss your fencing needs
                   </p>
                 </div>
 
@@ -106,10 +148,10 @@ export default function Contact() {
                         className="font-bold mb-1"
                         style={{ color: 'var(--color-text-primary)' }}
                       >
-                        Message sent successfully!
+                        Estimate request received!
                       </p>
                       <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-                        We will get back to you within 24 hours.
+                        We'll review your project details and contact you within 24 hours with your free estimate.
                       </p>
                     </div>
                   </div>
@@ -148,6 +190,90 @@ export default function Contact() {
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="mb-8">
+                    <label className="modern-label mb-3">Project Type *</label>
+                    <div className="grid grid-cols-2 gap-4">
+                      {projectTypes.map((type) => {
+                        const IconComponent = type.icon;
+                        const isSelected = formData.project_type === type.value;
+                        return (
+                          <button
+                            key={type.value}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, project_type: type.value })}
+                            className={`p-4 rounded-xl border-2 transition-all duration-300 flex items-center gap-3 ${
+                              isSelected ? 'scale-[1.02]' : 'hover:scale-[1.01]'
+                            }`}
+                            style={{
+                              borderColor: isSelected ? 'var(--color-accent)' : 'var(--color-border-medium)',
+                              background: isSelected 
+                                ? 'rgba(5, 150, 105, 0.1)' 
+                                : 'rgba(255, 255, 255, 0.03)',
+                              boxShadow: isSelected ? '0 0 20px -8px var(--color-accent-glow)' : 'none'
+                            }}
+                          >
+                            <div
+                              className="w-10 h-10 rounded-lg flex items-center justify-center"
+                              style={{
+                                background: isSelected 
+                                  ? 'var(--color-accent)' 
+                                  : 'rgba(255, 255, 255, 0.05)',
+                                color: isSelected ? 'white' : 'var(--color-text-tertiary)'
+                              }}
+                            >
+                              <IconComponent className="w-5 h-5" />
+                            </div>
+                            <span 
+                              className="font-semibold"
+                              style={{ color: isSelected ? 'var(--color-accent)' : 'var(--color-text-secondary)' }}
+                            >
+                              {type.label}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="fence_type" className="modern-label">
+                      Fence Type *
+                    </label>
+                    <select
+                      id="fence_type"
+                      name="fence_type"
+                      value={formData.fence_type}
+                      onChange={handleChange}
+                      required
+                      className="modern-input"
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <option value="">Select fence type...</option>
+                      {fenceTypes.map((type) => (
+                        <option key={type} value={type}>{type}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="timeline" className="modern-label">
+                      Project Timeline
+                    </label>
+                    <select
+                      id="timeline"
+                      name="timeline"
+                      value={formData.timeline}
+                      onChange={handleChange}
+                      className="modern-input"
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <option value="">When do you need this done?</option>
+                      {timelineOptions.map((option) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
                   <div>
                     <label
                       htmlFor="full_name"
@@ -183,7 +309,7 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         className="modern-input"
-                        placeholder="(555) 123-4567"
+                        placeholder="(317) 555-1234"
                       />
                     </div>
 
@@ -199,8 +325,8 @@ export default function Contact() {
                         id="email"
                         name="email"
                         value={formData.email}
-                        onChange={handleChange}
                         required
+                        onChange={handleChange}
                         className="modern-input"
                         placeholder="john@example.com"
                       />
@@ -212,36 +338,40 @@ export default function Contact() {
                       htmlFor="message"
                       className="modern-label"
                     >
-                      Your Message *
+                      Project Details
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      required
-                      rows={7}
+                      rows={5}
                       className="modern-textarea"
-                      placeholder="Tell us about your project or inquiry..."
+                      placeholder="Tell us about your project: approximate fence length, property details, any specific requirements..."
                     />
                   </div>
 
                   <div
                     className="p-4 rounded-xl flex items-start gap-3"
                     style={{
-                      background: 'rgba(6, 182, 212, 0.08)',
-                      border: '1px solid rgba(6, 182, 212, 0.2)'
+                      background: 'rgba(5, 150, 105, 0.08)',
+                      border: '1px solid rgba(5, 150, 105, 0.2)'
                     }}
                   >
                     <Shield className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--color-accent)' }} />
-                    <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-                      Your information is secure and will only be used to respond to your inquiry.
-                    </p>
+                    <div>
+                      <p className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>
+                        No obligation, no pressure
+                      </p>
+                      <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                        Your estimate is completely free. We'll provide honest pricing with no hidden fees.
+                      </p>
+                    </div>
                   </div>
 
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !formData.project_type}
                     className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none"
                     style={{ fontSize: '1.0625rem', padding: '1.125rem 2rem' }}
                   >
@@ -252,14 +382,14 @@ export default function Contact() {
                       </>
                     ) : (
                       <>
-                        <span>Send Message</span>
+                        <span>Get My Free Estimate</span>
                         <span>→</span>
                       </>
                     )}
                   </button>
 
                   <p className="text-xs text-center" style={{ color: 'var(--color-text-tertiary)' }}>
-                    By submitting this form, you agree to be contacted about your inquiry.
+                    By submitting, you agree to be contacted about your fence estimate. We respect your privacy.
                   </p>
                 </form>
               </div>
@@ -288,7 +418,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -310,7 +440,7 @@ export default function Contact() {
                           {businessConfig.phone}
                         </a>
                         <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          Mon-Fri: 8am-6pm
+                          Mon-Fri: 7am-6pm, Sat: 8am-4pm
                         </p>
                       </div>
                     </div>
@@ -319,7 +449,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -341,7 +471,7 @@ export default function Contact() {
                           {businessConfig.email}
                         </a>
                         <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          24-hour response time
+                          Usually respond same day
                         </p>
                       </div>
                     </div>
@@ -350,7 +480,7 @@ export default function Contact() {
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                          background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0.08) 100%)',
                           border: '1px solid var(--color-border-medium)',
                           boxShadow: '0 0 20px -8px var(--color-accent-glow)'
                         }}
@@ -368,7 +498,7 @@ export default function Contact() {
                           {businessConfig.city}, {businessConfig.state}
                         </p>
                         <p className="text-xs mt-1" style={{ color: 'var(--color-text-tertiary)' }}>
-                          & surrounding areas
+                          & Indianapolis metro area
                         </p>
                       </div>
                     </div>
@@ -376,10 +506,10 @@ export default function Contact() {
                 </div>
 
                 <div
-                  className="rounded-2xl p-8"
+                  className="rounded-2xl p-8 mb-8"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0.06) 100%)',
-                    border: '1px solid rgba(6, 182, 212, 0.2)',
+                    background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.12) 0%, rgba(5, 150, 105, 0.06) 100%)',
+                    border: '1px solid rgba(5, 150, 105, 0.2)',
                     boxShadow: '0 4px 24px -8px var(--color-accent-glow)'
                   }}
                 >
@@ -391,24 +521,48 @@ export default function Contact() {
                         color: 'var(--color-text-inverse)'
                       }}
                     >
-                      <MessageCircle className="w-5 h-5" />
+                      <Clock className="w-5 h-5" />
                     </div>
                     <h3 className="font-bold" style={{ color: 'var(--color-text-primary)' }}>
-                      Prefer to chat?
+                      Need it fast?
                     </h3>
                   </div>
                   <p className="mb-5" style={{ color: 'var(--color-text-secondary)' }}>
-                    Send us a message on WhatsApp for instant communication
+                    For urgent projects or immediate questions, give us a call. We're here to help.
                   </p>
                   <a
-                    href={`https://wa.me/${businessConfig.whatsapp}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={`tel:${businessConfig.phone}`}
                     className="btn-primary inline-flex w-full justify-center"
                   >
-                    <MessageCircle className="w-5 h-5" />
-                    <span>Chat on WhatsApp</span>
+                    <Phone className="w-5 h-5" />
+                    <span>Call {businessConfig.phone}</span>
                   </a>
+                </div>
+
+                <div
+                  className="rounded-2xl p-6"
+                  style={{
+                    background: 'var(--color-bg-surface)',
+                    border: '1px solid var(--color-border-subtle)'
+                  }}
+                >
+                  <h3 className="font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>
+                    Why Choose Secure Links?
+                  </h3>
+                  <ul className="space-y-3">
+                    {[
+                      'Free, no-obligation estimates',
+                      'Transparent, competitive pricing',
+                      'Licensed & fully insured',
+                      'Residential & commercial expertise',
+                      'Quality materials guaranteed'
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--color-accent)' }} />
+                        <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
