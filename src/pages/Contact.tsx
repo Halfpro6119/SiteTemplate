@@ -39,7 +39,6 @@ export default function Contact() {
 
         if (error) throw error;
       } else {
-        console.log('Contact form submission (no database configured):', formData);
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
 

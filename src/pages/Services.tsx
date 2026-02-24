@@ -1,4 +1,5 @@
 import * as Icons from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
 import ServiceCTABar from '../components/ServiceCTABar';
@@ -29,7 +30,7 @@ export default function Services() {
         <div className="content-width">
           <div className="space-y-24">
             {businessConfig.services.map((service, index) => {
-              const IconComponent = (Icons as any)[service.icon] || Icons.Star;
+              const IconComponent = (Icons as unknown as Record<string, LucideIcon>)[service.icon] || Icons.Star;
               const isEven = index % 2 === 0;
 
               return (
@@ -126,11 +127,11 @@ export default function Services() {
                       <div className="w-full h-full flex items-center justify-center">
                         <div className="text-center p-6">
                           <IconComponent
-                            className="w-24 h-24 mx-auto mb-4 transition-transform duration-500 group-hover:scale-110"
-                            style={{ color: 'var(--color-text-tertiary)' }}
+                            className="w-20 h-20 mx-auto mb-3 transition-transform duration-500 group-hover:scale-110"
+                            style={{ color: 'var(--color-accent)' }}
                           />
-                          <p className="text-sm" style={{ color: 'var(--color-text-tertiary)' }}>
-                            {service.name} Photo Placeholder
+                          <p className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>
+                            {service.name}
                           </p>
                         </div>
                       </div>

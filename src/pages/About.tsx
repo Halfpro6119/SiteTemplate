@@ -1,4 +1,4 @@
-import { Users, Target, Heart, Shield, Award, Building2, Home, CheckCircle } from 'lucide-react';
+import { Target, Heart, Shield, Award, Building2, Home, CheckCircle } from 'lucide-react';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
 import PageHero from '../components/PageHero';
@@ -76,9 +76,13 @@ export default function About() {
                       background: 'radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.15) 0%, transparent 70%)'
                     }}
                   />
-                  <div className="text-center p-6 relative z-10">
-                    <Users className="w-24 h-24 mx-auto mb-4 transition-transform duration-500 group-hover:scale-110" style={{ color: 'var(--color-text-tertiary)' }} />
-                    <p className="text-sm" style={{ color: 'var(--color-text-tertiary)' }}>Team Photo Placeholder</p>
+                  <div className="flex items-center justify-center h-full p-8 relative z-10">
+                    <img 
+                      src="/logo.png" 
+                      alt="Secure Links Fence" 
+                      className="w-48 h-48 object-contain transition-transform duration-500 group-hover:scale-110"
+                      style={{ filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }}
+                    />
                   </div>
                 </div>
               </div>
