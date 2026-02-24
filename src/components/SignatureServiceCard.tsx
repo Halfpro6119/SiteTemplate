@@ -19,7 +19,7 @@ export default function SignatureServiceCard({
   benefits,
   href = '/services'
 }: SignatureServiceCardProps) {
-  const IconComponent = (Icons as any)[icon] || Icons.Star;
+  const IconComponent = (Icons as unknown as Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>>)[icon] || Icons.Star;
 
   return (
     <Link

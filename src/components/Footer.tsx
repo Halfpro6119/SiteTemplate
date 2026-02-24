@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, ChevronDown, ExternalLink } from 'lucide-react';
+import { Phone, Mail, MapPin, ChevronDown, ExternalLink, Facebook } from 'lucide-react';
 import { businessConfig } from '../config';
 import FooterClosingCTA from './FooterClosingCTA';
 import TrustChipRow from './TrustChipRow';
@@ -45,7 +45,7 @@ export default function Footer() {
               primaryText={businessConfig.footer.closingCTA.primaryText}
               primaryHref={businessConfig.footer.closingCTA.primaryHref}
               secondaryText={businessConfig.footer.closingCTA.secondaryText}
-              secondaryHref={`${businessConfig.footer.closingCTA.secondaryHref}${businessConfig.phone}`}
+              secondaryHref={businessConfig.footer.closingCTA.secondaryHref}
             />
           </div>
         )}
@@ -53,22 +53,12 @@ export default function Footer() {
         <div className="container mx-auto px-4 pt-16 pb-8">
           <div className="hidden lg:grid lg:grid-cols-4 gap-12 mb-16">
             <div>
-              <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
-                  </div>
-                </div>
+              <div className="mb-5">
+                <img
+                  src="/logo.png"
+                  alt={`${businessConfig.businessName} - Est. ${businessConfig.foundingYear}`}
+                  className="h-14 w-auto brightness-0 invert"
+                />
               </div>
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
@@ -144,40 +134,38 @@ export default function Footer() {
                 <li>
                   <div className="flex items-start gap-2.5 text-sm text-white/70">
                     <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--color-accent)' }} />
-                    <span>{businessConfig.city}, {businessConfig.state}</span>
+                    <span>{businessConfig.address}</span>
                   </div>
                 </li>
               </ul>
               <p className="text-xs text-white/60 mb-4">{businessConfig.footer.businessHours}</p>
               <div className="flex flex-col gap-2">
-                <PremiumButton variant="primary" size="sm" href="#contact">
+                <PremiumButton variant="primary" size="sm" href="/contact">
                   Get Quote
                 </PremiumButton>
-                <PremiumButton variant="outline" size="sm" href="/contact" className="text-white">
-                  Contact Us
-                </PremiumButton>
+                {businessConfig.footer.socialLinks?.facebook && (
+                  <a
+                    href={businessConfig.footer.socialLinks.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm text-white/70 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition-all"
+                  >
+                    <Facebook className="w-4 h-4" />
+                    <span>Facebook</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>
 
           <div className="lg:hidden space-y-4 mb-12">
             <div>
-              <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
-                  </div>
-                </div>
+              <div className="mb-5">
+                <img
+                  src="/logo.png"
+                  alt={`${businessConfig.businessName} - Est. ${businessConfig.foundingYear}`}
+                  className="h-12 w-auto brightness-0 invert"
+                />
               </div>
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
@@ -209,12 +197,16 @@ export default function Footer() {
               </ul>
               <p className="text-xs text-white/60 mb-4">{businessConfig.footer.businessHours}</p>
               <div className="flex flex-col gap-2">
-                <PremiumButton variant="primary" size="sm" href="#contact">
-                  Get Quote
+                <PremiumButton variant="primary" size="sm" href="/contact">
+                  Get Free Estimate
                 </PremiumButton>
-                <PremiumButton variant="outline" size="sm" href="/contact" className="text-white">
-                  Contact Us
-                </PremiumButton>
+                <a
+                  href={`tel:${businessConfig.phone.replace(/[^0-9]/g, '')}`}
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm text-white/70 hover:text-white bg-white/5 border border-white/10 hover:border-white/20 transition-all"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>Call {businessConfig.phone}</span>
+                </a>
               </div>
             </div>
 

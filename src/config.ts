@@ -1,335 +1,397 @@
-const city = '[City]';
-const businessName = '[Business Name]';
+const city = 'Metro Detroit';
+const businessName = 'American Pest Control';
 
 export const businessConfig = {
   businessName: businessName,
-  businessType: '[Service Type]',
+  businessType: 'Pest Control & Organic Lawn Care',
   city: city,
-  state: '[State]',
+  state: 'Michigan',
 
-  tagline: 'Your Trusted Local Experts',
-  heroHeadline: 'Premium [Service] Services in [City]',
-  heroSubheading: 'Reliable, Professional, and Trusted by Your Community',
+  tagline: '5th Generation Family-Owned Since 1900',
+  heroHeadline: 'Organic Pest Control & Lawn Care Experts in Metro Detroit',
+  heroSubheading: 'Trusted by Michigan families for over 125 years. Board Certified Arborists. Humane, eco-friendly solutions.',
 
-  phone: '(555) 123-4567',
-  whatsapp: '5551234567',
-  email: 'hello@business.com',
+  phone: '(248) 585-2600',
+  tollFree: '(800) 404-3033',
+  whatsapp: '2485852600',
+  email: 'info@organicpestcontrolinmichigan.com',
+  address: '1012 Elmsford Drive, Troy, MI 48083',
 
-  yearsExperience: 15,
-  rating: 4.9,
-  reviewCount: 127,
+  yearsExperience: 125,
+  foundingYear: 1900,
+  rating: 4.8,
+  reviewCount: 150,
+  employeeCount: 55,
+
+  credentials: {
+    arborist: 'Board Certified Consulting Arborist #MI0002',
+    pestManagement: 'General Pest Management Certification',
+    ornamental: 'Ornamental Pest Management Certification',
+    turfgrass: 'Turfgrass Pest Management Certification',
+    miLicense: 'Michigan Department of Agriculture Certification #C 007770057',
+    stateLicenses: ['#159029', '#159208']
+  },
+
+  leadership: {
+    name: 'William "Doc" Pickhardt',
+    title: 'President & Technical Director',
+    expertise: 'Board Certified Consulting Arborist'
+  },
 
   services: [
     {
       id: 1,
-      name: 'Service One',
-      icon: 'Wrench',
-      shortDescription: 'Quick and reliable service that delivers results',
-      fullDescription: 'Comprehensive service description that explains the benefits and what customers can expect from this specific service offering.',
-      benefits: ['Fast response time', 'Quality guaranteed', 'Experienced team'],
-      idealFor: 'Homeowners and businesses looking for reliable solutions'
+      name: 'Organic Pest Control',
+      icon: 'Leaf',
+      shortDescription: 'Eco-friendly pest elimination using botanical products and natural alternatives',
+      fullDescription: 'Our organic pest control program uses EcoSMART botanical products and naturally occurring materials to eliminate pests while protecting your family, pets, and the environment. We apply treatments only where pests are present, not scheduled spraying.',
+      benefits: ['EcoSMART botanical products', 'Safe for families & pets', 'Targeted application only'],
+      idealFor: 'Health-conscious homeowners who want effective pest control without harsh chemicals'
     },
     {
       id: 2,
-      name: 'Service Two',
+      name: 'Integrated Pest Management (IPM)',
       icon: 'Shield',
-      shortDescription: 'Professional service backed by years of expertise',
-      fullDescription: 'Detailed explanation of this service, highlighting the value proposition and why customers should choose this option.',
-      benefits: ['Licensed and insured', 'Competitive pricing', 'Satisfaction guaranteed'],
-      idealFor: 'Anyone needing professional, trustworthy service'
+      shortDescription: 'Science-based approach combining monitoring, prevention, and targeted treatment',
+      fullDescription: 'Our IPM methodology relies on understanding insect life cycles and behavior. We perform thorough inspections, use baiting systems, and apply targeted crack-and-crevice treatments only where needed—never irresponsible scheduled spraying.',
+      benefits: ['Life cycle expertise', 'Monitoring & evaluation', 'Environmentally responsible'],
+      idealFor: 'Those seeking long-term, sustainable pest prevention'
     },
     {
       id: 3,
-      name: 'Service Three',
-      icon: 'Clock',
-      shortDescription: 'Emergency service available when you need it most',
-      fullDescription: 'Complete overview of emergency service capabilities and availability for urgent situations.',
-      benefits: ['24/7 availability', 'Rapid response', 'Emergency specialists'],
-      idealFor: 'Urgent situations requiring immediate attention'
+      name: 'Bed Bug Treatment',
+      icon: 'Bug',
+      shortDescription: 'Effective bed bug elimination using food-grade products',
+      fullDescription: 'We use specialized food-grade products originally developed to protect stored grain. Our bed bug treatment is thorough, safe, and effective for complete elimination.',
+      benefits: ['Food-grade products', 'Complete elimination', 'Safe for occupied spaces'],
+      idealFor: 'Homes and businesses dealing with bed bug infestations'
     },
     {
       id: 4,
-      name: 'Service Four',
-      icon: 'Star',
-      shortDescription: 'Premium service for discerning customers',
-      fullDescription: 'Premium service offering with enhanced features and priority support for customers who expect the best.',
-      benefits: ['Premium quality', 'Priority scheduling', 'Extended warranty'],
-      idealFor: 'Customers seeking the highest quality service'
+      name: 'Humane Critter Removal',
+      icon: 'Heart',
+      shortDescription: 'Ethical wildlife removal and exclusion services',
+      fullDescription: 'We humanely remove raccoons, squirrels, skunks, and other wildlife from your property. Our approach focuses on exclusion and prevention to keep critters out permanently.',
+      benefits: ['Humane methods', 'Exclusion services', 'Prevention focused'],
+      idealFor: 'Property owners with wildlife intrusion issues'
     },
     {
       id: 5,
-      name: 'Service Five',
-      icon: 'Heart',
-      shortDescription: 'Maintenance plans to keep everything running smoothly',
-      fullDescription: 'Regular maintenance service plans designed to prevent problems and ensure optimal performance over time.',
-      benefits: ['Preventive care', 'Cost savings', 'Peace of mind'],
-      idealFor: 'Homeowners wanting ongoing protection'
+      name: 'Organic Lawn Care',
+      icon: 'Trees',
+      shortDescription: 'Natural lawn fertilization and weed control programs',
+      fullDescription: 'Through American Lawn & Tree Arborists, we provide organic lawn care that promotes healthy soil and grass without synthetic chemicals. Our programs improve lawn health naturally.',
+      benefits: ['Organic fertilizers', 'Soil health focus', 'Natural weed control'],
+      idealFor: 'Homeowners wanting a beautiful lawn without chemicals'
     },
     {
       id: 6,
-      name: 'Service Six',
-      icon: 'Award',
-      shortDescription: 'Specialized service for complex situations',
-      fullDescription: 'Advanced service for complex requirements, handled by experienced specialists with proven expertise.',
-      benefits: ['Expert specialists', 'Advanced techniques', 'Proven results'],
-      idealFor: 'Complex projects requiring specialized knowledge'
+      name: 'Tree & Shrub Care',
+      icon: 'TreeDeciduous',
+      shortDescription: 'Board Certified Arborist services for tree health',
+      fullDescription: 'Led by Board Certified Consulting Arborist Doc Pickhardt, our tree care services include health assessments, disease treatment, pest management, and fertilization for optimal tree vitality.',
+      benefits: ['Board Certified expertise', 'Disease treatment', 'Health assessments'],
+      idealFor: 'Property owners invested in their landscape health'
+    },
+    {
+      id: 7,
+      name: 'Mosquito & Tick Control',
+      icon: 'Zap',
+      shortDescription: 'Seasonal protection for your outdoor living spaces',
+      fullDescription: 'Enjoy your yard again with our mosquito and tick control programs. We use targeted treatments to reduce populations and protect your family from disease-carrying pests.',
+      benefits: ['Seasonal programs', 'Yard barrier treatment', 'Disease prevention'],
+      idealFor: 'Families who love spending time outdoors'
+    },
+    {
+      id: 8,
+      name: 'Termite Protection',
+      icon: 'Home',
+      shortDescription: 'Comprehensive termite inspection and treatment',
+      fullDescription: 'Protect your largest investment with our termite services. We provide thorough inspections, effective treatment, and ongoing monitoring to keep termites at bay.',
+      benefits: ['Thorough inspections', 'Effective treatment', 'Ongoing monitoring'],
+      idealFor: 'Homeowners protecting their property investment'
     }
   ],
 
   whyChooseUs: [
     {
-      title: 'Locally Owned & Operated',
-      description: 'We live and work in [City]. Your neighbors trust us, and we take that responsibility seriously.',
-      icon: 'MapPin'
+      title: '5th Generation Family Owned',
+      description: 'Established in 1900, our family has been protecting Michigan homes for over 125 years. Your trust matters to us.',
+      icon: 'Users'
     },
     {
-      title: 'Fast Response Times',
-      description: 'We understand urgency. Count on us for quick, reliable service when you need it most.',
-      icon: 'Zap'
+      title: 'Board Certified Expertise',
+      description: 'Led by Board Certified Consulting Arborist Doc Pickhardt with decades of pest control and arboriculture experience.',
+      icon: 'Award'
     },
     {
-      title: 'Quality Guaranteed',
-      description: 'We stand behind our work with comprehensive warranties and a commitment to excellence.',
-      icon: 'CheckCircle'
+      title: 'Organic & Eco-Friendly',
+      description: 'Our motto: "Honor the earth and its inhabitants." We use organic and botanical products whenever possible.',
+      icon: 'Leaf'
     },
     {
-      title: 'Transparent Pricing',
-      description: 'No surprises, no hidden fees. You will know the cost upfront before we start any work.',
-      icon: 'DollarSign'
+      title: 'IPM Methodology',
+      description: 'Science-based Integrated Pest Management that targets pests effectively while minimizing environmental impact.',
+      icon: 'Target'
     }
   ],
 
   testimonials: [
     {
       id: 1,
-      name: 'Sarah Johnson',
+      name: 'Deborah K.',
       rating: 5,
-      text: 'Absolutely outstanding service! They arrived on time, were professional, and did an excellent job. The technician explained everything clearly and answered all my questions. The pricing was transparent with no hidden fees, and they completed the work faster than expected without compromising quality. I would definitely recommend them to anyone in [City].',
-      date: '2 weeks ago',
-      serviceTags: ['Service One'],
+      text: 'We have been using American Pest Control since 1977. Couldn\'t ask for better people! I would refer them to anyone. Their commitment to organic methods gives us peace of mind with our pets and grandchildren.',
+      date: 'Long-time customer since 1977',
+      serviceTags: ['Organic Pest Control'],
       verified: true,
-      ownerReply: 'Thank you Sarah! We truly appreciate your kind words and are thrilled we could exceed your expectations. Customer satisfaction is our top priority.'
+      yearsAsCustomer: 47,
+      ownerReply: 'Thank you, Deborah! Serving your family for nearly 50 years has been our honor. Your trust means everything to us.'
     },
     {
       id: 2,
-      name: 'Michael Chen',
+      name: 'Michael R.',
       rating: 5,
-      text: 'I have used several companies over the years, but this is by far the best. Great communication throughout the entire process, fair and competitive pricing, and top-quality work that speaks for itself. They really go above and beyond what you would expect from a service company.',
-      date: '1 month ago',
-      serviceTags: ['Service Two'],
-      verified: true
+      text: 'Doc Pickhardt and his team are true professionals. The Board Certified Arborist credentials really show in their work. They diagnosed our oak tree disease that two other companies missed. Saved our 80-year-old tree!',
+      date: '3 months ago',
+      serviceTags: ['Tree Care', 'Arborist Services'],
+      verified: true,
+      ownerReply: 'Michael, we\'re so glad we could save your beautiful oak. Trees like that are irreplaceable treasures.'
     },
     {
       id: 3,
-      name: 'Emily Rodriguez',
+      name: 'Susan & Tom W.',
       rating: 5,
-      text: 'Very impressed with their professionalism and attention to detail. They exceeded my expectations in every way. The team was courteous, respectful of my home, and cleaned up thoroughly after completing the job.',
-      date: '1 month ago',
-      serviceTags: ['Service Three'],
+      text: 'Switched to American Pest Control for their organic approach. After 14 years, we\'re still impressed with their excellent, prompt professional service. They really do honor the earth and its inhabitants.',
+      date: '14-year customer',
+      serviceTags: ['Organic Pest Control', 'Lawn Care'],
       verified: true,
-      ownerReply: 'Emily, thank you for trusting us with your project! We take pride in treating every home with the utmost care and respect.'
+      yearsAsCustomer: 14
     },
     {
       id: 4,
-      name: 'David Thompson',
+      name: 'Jennifer L.',
       rating: 5,
-      text: 'Quick response, excellent service, and reasonable prices. What more could you ask for? They were able to fit me in on short notice and resolved my issue efficiently. The technician was knowledgeable and friendly. Highly recommended!',
+      text: 'Had a serious bed bug problem and was worried about chemicals with my infant. American Pest Control used food-grade products and eliminated the problem completely. Professional, thorough, and safe.',
       date: '2 months ago',
-      serviceTags: ['Service Three'],
+      serviceTags: ['Bed Bug Treatment'],
       verified: true
     },
     {
       id: 5,
-      name: 'Jennifer Martinez',
+      name: 'Robert M.',
       rating: 5,
-      text: 'These guys are the real deal. Professional, knowledgeable, and genuinely care about doing the job right. They did not try to upsell me on services I did not need, which I really appreciated. Honest and trustworthy company.',
-      date: '2 months ago',
-      serviceTags: ['Service Four'],
-      verified: true
+      text: 'The IPM approach is what sold us. No unnecessary spraying—they actually understand insect behavior and target treatments where needed. Our pest problems are gone and we feel good about the methods used.',
+      date: '6 months ago',
+      serviceTags: ['IPM', 'General Pest Control'],
+      verified: true,
+      ownerReply: 'Robert, we appreciate you understanding the value of IPM. It\'s the responsible way to manage pests.'
     },
     {
       id: 6,
-      name: 'Robert Wilson',
+      name: 'Patricia G.',
       rating: 5,
-      text: 'I am so glad I found this company. They were courteous, efficient, and their work quality is exceptional. The entire experience from initial contact to project completion was seamless and stress-free.',
-      date: '3 months ago',
-      serviceTags: ['Service Five'],
-      verified: true,
-      ownerReply: 'We appreciate your trust in us, Robert! Making the experience seamless for our customers is always our goal.'
+      text: 'Raccoons in our attic were a nightmare. American Pest Control removed them humanely and sealed up the entry points. That was 3 years ago and we haven\'t had any issues since. Worth every penny.',
+      date: '3 years ago',
+      serviceTags: ['Critter Removal'],
+      verified: true
     },
     {
       id: 7,
-      name: 'Amanda Foster',
+      name: 'David & Carol T.',
       rating: 5,
-      text: 'Exceptional service from start to finish! The team was punctual, professional, and incredibly skilled. They took the time to explain the work process and made sure I was comfortable with everything before proceeding. The results exceeded my expectations.',
-      date: '3 months ago',
-      serviceTags: ['Service One'],
-      verified: true
+      text: 'We\'ve used their lawn and tree care services for 8 years. Our lawn has never looked better, and they saved two of our mature maples from disease. The organic approach means our kids can play outside safely.',
+      date: '8-year customer',
+      serviceTags: ['Lawn Care', 'Tree Care'],
+      verified: true,
+      yearsAsCustomer: 8
     },
     {
       id: 8,
-      name: 'Carlos Rivera',
-      rating: 4,
-      text: 'Very good experience overall. The work was completed on schedule and the quality was solid. Communication could have been slightly better during the project, but the end result was worth it. Would use them again.',
-      date: '4 months ago',
-      serviceTags: ['Service Six'],
-      verified: true,
-      ownerReply: 'Thank you for your feedback, Carlos. We are always working to improve our communication and appreciate you bringing this to our attention. Glad you are happy with the results!'
+      name: 'Amanda S.',
+      rating: 5,
+      text: 'Same-day service when we discovered carpenter ants. The technician was knowledgeable, explained everything, and solved the problem with targeted organic treatment. 5th generation expertise shows!',
+      date: '1 month ago',
+      serviceTags: ['Organic Pest Control'],
+      verified: true
     },
     {
       id: 9,
-      name: 'Lisa Wang',
+      name: 'Richard B.',
       rating: 5,
-      text: 'Outstanding company! They handled a complex project with expertise and professionalism. The team was knowledgeable, respectful, and delivered exactly what they promised. Pricing was fair and there were no surprise charges.',
+      text: 'As someone with chemical sensitivities, finding American Pest Control was a blessing. Their EcoSMART botanical products work effectively without triggering my allergies. Finally, a pest control company I can trust.',
       date: '4 months ago',
-      serviceTags: ['Service Two'],
-      verified: true
+      serviceTags: ['Organic Pest Control'],
+      verified: true,
+      ownerReply: 'Richard, we\'re glad our organic approach works for your needs. Everyone deserves a pest-free home they can be comfortable in.'
     }
   ],
 
   trustChips: [
-    'Professional Service',
-    'Fast Response',
-    'Transparent Pricing',
-    'Quality Workmanship'
+    '125+ Years Family Owned',
+    'Board Certified Arborist',
+    'Organic & Eco-Friendly',
+    'Same-Day Service Available'
   ],
 
   serviceAreas: [
-    '[City] (Primary)',
-    '[Nearby Town 1]',
-    '[Nearby Town 2]',
-    '[Nearby Town 3]',
-    '[Nearby Town 4]',
-    '[Nearby Town 5]',
-    '[Nearby Town 6]',
-    '[Nearby Town 7]',
-    '[Nearby Town 8]',
-    '[Nearby Town 9]'
+    'Metro Detroit (Primary)',
+    'Oakland County',
+    'Troy',
+    'Rochester',
+    'Birmingham',
+    'Royal Oak',
+    'Bloomfield',
+    'Sterling Heights',
+    'Macomb County',
+    'Farmington Hills',
+    'Southfield',
+    'Livonia',
+    'Lake Orion',
+    'Oxford',
+    'St. Clair',
+    'Wayne County'
   ],
 
-  aboutStory: `With over ${15} years of experience serving the [City] community, [Business Name] has built a reputation for reliability, quality, and exceptional customer service. We started with a simple mission: to provide honest, professional [service] services that local families and businesses can trust.
+  aboutStory: `American Pest Control is a fifth-generation, family-owned company established in 1900. For over 125 years, we've been protecting Michigan homes and businesses with integrity, expertise, and a deep commitment to environmental responsibility.
 
-Today, we are proud to be one of the most trusted names in [City] for [service] services. Our team of experienced professionals is dedicated to delivering outstanding results on every project, big or small.`,
+Our motto—"Honor the earth and its inhabitants"—isn't just words. Every employee must accept and sign this pledge upon employment. It guides everything we do, from the organic and botanical products we choose to our Integrated Pest Management (IPM) approach that targets pests without unnecessary chemical exposure.
+
+Led by President and Technical Director William "Doc" Pickhardt, a Board Certified Consulting Arborist with decades of experience, our team includes entomologists, urban pest managers, and experienced technicians. We understand insect life cycles, tree biology, and ecosystem balance in ways that set us apart.
+
+Through American Lawn & Tree Arborists, we also provide organic lawn care and expert tree services. Our customers stay with us for decades—some since 1977—because we deliver results while honoring our commitment to safety and sustainability.`,
 
   values: [
     {
-      title: 'Integrity',
-      description: 'We do what we say we will do, every single time. Your trust is our most valuable asset.'
+      title: 'Honor the Earth',
+      description: 'Our founding motto guides every decision. We use organic and botanical products whenever possible to protect our environment.'
     },
     {
-      title: 'Excellence',
-      description: 'Good enough is never good enough. We strive for excellence in every aspect of our work.'
+      title: 'Family Legacy',
+      description: 'Five generations of pest control expertise. We treat your home like our own family\'s property.'
     },
     {
-      title: 'Community',
-      description: 'We are part of this community and committed to making [City] an even better place to live.'
+      title: 'Scientific Excellence',
+      description: 'Board Certified credentials and IPM methodology ensure effective, responsible pest management based on science.'
     }
   ],
 
   galleryImages: [
     {
       id: 1,
-      url: 'https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Recent project completion in [City]',
-      category: 'recent'
+      url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80',
+      caption: 'Professional pest inspection services',
+      category: 'services'
     },
     {
       id: 2,
-      url: 'https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Professional service delivery',
-      category: 'recent'
+      url: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&auto=format&fit=crop&q=80',
+      caption: 'Organic lawn care for healthy green spaces',
+      category: 'lawn-care'
     },
     {
       id: 3,
-      url: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Quality workmanship you can trust',
-      category: 'before-after'
+      url: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&auto=format&fit=crop&q=80',
+      caption: 'Protecting Michigan homes since 1900',
+      category: 'residential'
     },
     {
       id: 4,
-      url: 'https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Attention to detail in every project',
-      category: 'recent'
+      url: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop&q=80',
+      caption: 'Eco-friendly pest control solutions',
+      category: 'organic'
     },
     {
       id: 5,
-      url: 'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Transforming spaces in [City]',
-      category: 'before-after'
+      url: 'https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=800&auto=format&fit=crop&q=80',
+      caption: 'Board Certified tree care services',
+      category: 'tree-care'
     },
     {
       id: 6,
-      url: 'https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Expert team at work',
-      category: 'recent'
+      url: 'https://images.unsplash.com/photo-1560749003-f4b1e17e2dff?w=800&auto=format&fit=crop&q=80',
+      caption: 'Family-owned for over 125 years',
+      category: 'company'
+    },
+    {
+      id: 7,
+      url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&auto=format&fit=crop&q=80',
+      caption: 'Humane wildlife removal services',
+      category: 'critter-removal'
+    },
+    {
+      id: 8,
+      url: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&auto=format&fit=crop&q=80',
+      caption: 'Natural botanical products for pest control',
+      category: 'organic'
     }
   ],
 
   ctaTemplates: {
     hero: {
-      primaryText: 'Get a Quote',
-      primaryHref: '#contact',
-      secondaryText: 'Explore Services',
-      secondaryHref: '#services',
+      primaryText: 'Get Free Estimate',
+      primaryHref: '/contact',
+      secondaryText: 'Our Services',
+      secondaryHref: '/services',
       trustChips: [
-        { icon: 'shield', text: 'Certified & Insured' },
-        { icon: 'clock', text: 'Fast Response' },
-        { icon: 'award', text: 'Trusted Locally' }
+        { icon: 'shield' as const, text: 'Board Certified' },
+        { icon: 'leaf' as const, text: 'Organic Options' },
+        { icon: 'award' as const, text: 'Since 1900' }
       ]
     },
     decisionPoint: {
       fastResponse: {
         label: 'Need help today?',
-        title: 'Fast, Professional Service',
-        subtitle: 'Get clear pricing and expert service you can trust.',
-        primaryText: 'Get Free Quote',
+        title: 'Same-Day Service Available',
+        subtitle: 'Our expert technicians are ready to help. Call now or request a free estimate.',
+        primaryText: 'Get Free Estimate',
         secondaryText: 'Call Now'
       },
       premiumQuality: {
-        label: 'Ready to upgrade?',
-        title: 'Premium Quality That Lasts',
-        subtitle: 'Trusted workmanship backed by our satisfaction guarantee.',
-        primaryText: 'Get Started',
-        secondaryText: 'Learn More'
+        label: 'Choose organic',
+        title: 'Eco-Friendly Solutions That Work',
+        subtitle: 'Protect your family and the environment with our organic pest control options.',
+        primaryText: 'Learn About IPM',
+        secondaryText: 'Our Methods'
       },
       localTrust: {
-        label: 'Join our happy customers',
-        title: `Trusted in [City] Since [Year]`,
-        subtitle: 'Reliable service with no hassle and no inflated quotes.',
-        primaryText: 'Get Quote',
-        secondaryText: 'Speak to Us'
+        label: 'Join our family',
+        title: 'Trusted Since 1900',
+        subtitle: '5th generation family business with customers who stay for decades.',
+        primaryText: 'Get Estimate',
+        secondaryText: 'Read Reviews'
       }
     },
     cinematic: {
       fastResponse: {
-        label: 'Get Started Today',
-        headline: 'Ready to Experience the Difference?',
-        subtitle: 'Join hundreds of satisfied customers who trust us with their needs.',
-        primaryText: 'Get a Quote',
-        secondaryText: 'Call Now'
+        label: 'Start Today',
+        headline: 'Ready for a Pest-Free Home?',
+        subtitle: 'Join thousands of satisfied Michigan families who trust American Pest Control.',
+        primaryText: 'Get Free Estimate',
+        secondaryText: 'Call (248) 585-2600'
       },
       premiumQuality: {
-        label: 'Transform Your Space',
-        headline: 'Quality Service You Can Count On',
-        subtitle: 'Professional results delivered with integrity and care.',
-        primaryText: 'Start Your Project',
-        secondaryText: 'Contact Us'
+        label: 'Go Organic',
+        headline: 'Effective Pest Control, Naturally',
+        subtitle: 'Board Certified expertise with organic and eco-friendly solutions.',
+        primaryText: 'Request Quote',
+        secondaryText: 'Our Methods'
       },
       localTrust: {
-        label: 'Choose Local Excellence',
-        headline: `[City]'s Most Trusted Service Provider`,
-        subtitle: 'Serving our community with pride and professionalism.',
-        primaryText: 'Get Free Quote',
+        label: '125+ Years Strong',
+        headline: 'Metro Detroit\'s Trusted Pest Control Experts',
+        subtitle: '5th generation family-owned. Customers since 1977 and counting.',
+        primaryText: 'Get Free Estimate',
         secondaryText: 'Call Today'
       }
     },
     contact: {
-      title: 'Speak to a Specialist',
-      responseTime: 'We usually respond within 1 hour',
+      title: 'Speak with an Expert',
+      responseTime: 'Same-day service available',
       trustChips: [
-        { icon: 'shield', text: 'Certified' },
-        { icon: 'users', text: 'Local' },
-        { icon: 'star', text: 'Trusted' }
+        { icon: 'shield' as const, text: 'Board Certified' },
+        { icon: 'leaf' as const, text: 'Organic Options' },
+        { icon: 'users' as const, text: 'Family Owned' }
       ]
     }
   },
@@ -338,33 +400,32 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
     closingCTA: {
       enabled: true,
       title: 'Ready to Get Started?',
-      subtitle: 'Fast, clear advice and a no-obligation quote.',
-      primaryText: 'Get a Quote',
-      primaryHref: '#contact',
-      secondaryText: 'Call Now',
-      secondaryHref: 'tel:'
+      subtitle: 'Free estimates. Same-day service available. Organic options.',
+      primaryText: 'Get Free Estimate',
+      primaryHref: '/contact',
+      secondaryText: 'Call (248) 585-2600',
+      secondaryHref: 'tel:2485852600'
     },
-    brandStatement: 'Your trusted local experts delivering quality service with integrity and professionalism.',
+    brandStatement: '5th generation family-owned pest control and organic lawn care serving Metro Detroit since 1900. "Honor the earth and its inhabitants."',
     brandTrustChips: [
-      { icon: 'shield', text: 'Certified' },
-      { icon: 'users', text: 'Trusted Locally' },
-      { icon: 'check', text: 'Transparent Pricing' }
+      { icon: 'shield' as const, text: 'Board Certified' },
+      { icon: 'leaf' as const, text: 'Organic Options' },
+      { icon: 'award' as const, text: '125+ Years' }
     ],
     servicesTitle: 'Our Services',
     areasTitle: 'Service Areas',
-    areasDescription: `Proudly serving ${city} and surrounding communities`,
-    contactTitle: 'Get In Touch',
-    businessHours: 'Mon-Fri: 8am-6pm, Sat: 9am-4pm',
+    areasDescription: 'Proudly serving Metro Detroit, Oakland County, and surrounding communities',
+    contactTitle: 'Contact Us',
+    businessHours: 'Mon-Fri: 7am-7pm, Sat: 8am-4pm | 24/7 Emergency Available',
     trustBadges: [
-      'Fully Insured',
-      'Qualified Team',
-      'Quality Workmanship',
-      'Satisfaction Guaranteed'
+      'Board Certified Arborist',
+      'Licensed & Insured',
+      'Organic Products',
+      'Family Owned Since 1900'
     ],
     legalLinks: [
-      { label: 'Privacy Policy', href: '#privacy' },
-      { label: 'Terms of Service', href: '#terms' },
-      { label: 'Cookie Policy', href: '#cookies' }
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Terms of Service', href: '/terms' }
     ],
     sitemap: {
       enabled: true,
@@ -373,31 +434,35 @@ Today, we are proud to be one of the most trusted names in [City] for [service] 
           title: 'Pages',
           links: [
             { label: 'Home', href: '/' },
-            { label: 'About', href: '/about' },
+            { label: 'About Us', href: '/about' },
             { label: 'Services', href: '/services' },
             { label: 'Reviews', href: '/reviews' },
             { label: 'Gallery', href: '/gallery' },
-            { label: 'Locations', href: '/locations' },
+            { label: 'Service Areas', href: '/locations' },
             { label: 'Contact', href: '/contact' }
           ]
         },
         {
-          title: 'Help',
+          title: 'Services',
           links: [
-            { label: 'Request a Quote', href: '#contact' },
-            { label: 'Contact Us', href: '/contact' },
-            { label: 'Privacy Policy', href: '#privacy' },
-            { label: 'Terms of Service', href: '#terms' }
+            { label: 'Organic Pest Control', href: '/services#organic' },
+            { label: 'IPM Program', href: '/services#ipm' },
+            { label: 'Tree & Lawn Care', href: '/services#tree-lawn' },
+            { label: 'Critter Removal', href: '/services#critter' },
+            { label: 'Contact Us', href: '/contact' }
           ]
         }
       ]
+    },
+    socialLinks: {
+      facebook: 'https://www.facebook.com/americanpestcontrolmichigan/'
     }
   },
 
   theme: {
-    primary: '#2563eb',
-    primaryHover: '#1d4ed8',
-    accent: '#10b981',
-    accentHover: '#059669'
+    primary: '#166534',
+    primaryHover: '#14532d',
+    accent: '#059669',
+    accentHover: '#047857'
   }
 };

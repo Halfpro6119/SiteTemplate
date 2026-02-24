@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Shield, Clock, Zap, Award, TrendingUp, Image as ImageIcon } from 'lucide-react';
-import * as Icons from 'lucide-react';
+import { Star, MapPin, Clock, Award, Image as ImageIcon, Leaf, Users } from 'lucide-react';
 import { businessConfig } from '../config';
 import SignatureServiceCard from '../components/SignatureServiceCard';
 import ReviewSnapshotPanel from '../components/ReviewSnapshotPanel';
@@ -37,23 +36,23 @@ export default function Home() {
 
         <div className="absolute top-20 right-10 float-badge-1 hidden lg:block">
           <GlassBadge
-            icon={Clock}
-            title="24/7 Emergency"
-            subtitle="Fast Response"
+            icon={Award}
+            title="Board Certified"
+            subtitle="Consulting Arborist"
           />
         </div>
         <div className="absolute top-32 left-10 float-badge-2 hidden lg:block">
           <GlassBadge
-            icon={Zap}
-            title="30-60 min"
-            subtitle="Response Time"
+            icon={Leaf}
+            title="Organic Options"
+            subtitle="Eco-Friendly"
           />
         </div>
         <div className="absolute bottom-32 right-20 float-badge-3 hidden lg:block">
           <GlassBadge
-            icon={Award}
-            title={`Established ${new Date().getFullYear() - businessConfig.yearsExperience}`}
-            subtitle={`${businessConfig.yearsExperience}+ Years`}
+            icon={Users}
+            title={`Est. ${businessConfig.foundingYear}`}
+            subtitle="5th Generation"
           />
         </div>
 
@@ -100,20 +99,20 @@ export default function Home() {
               </div>
               <div>
                 <span className="font-bold text-lg" style={{ color: 'var(--color-text-primary)' }}>{businessConfig.rating}</span>
-                <span className="text-sm ml-2" style={{ color: 'var(--color-text-tertiary)' }}>({businessConfig.reviewCount} reviews)</span>
+                <span className="text-sm ml-2" style={{ color: 'var(--color-text-tertiary)' }}>({businessConfig.reviewCount}+ reviews)</span>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Shield className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fully Insured & Certified</span>
+              <Award className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Board Certified Arborist</span>
             </div>
             <div className="flex items-center gap-3">
-              <MapPin className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Serving {businessConfig.city} & Surrounding Areas</span>
+              <Leaf className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Organic & IPM Methods</span>
             </div>
             <div className="flex items-center gap-3">
-              <Zap className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
-              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Fast Response Times</span>
+              <Clock className="w-6 h-6" style={{ color: 'var(--color-accent)' }} />
+              <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>Same-Day Service Available</span>
             </div>
           </div>
         </div>
@@ -159,9 +158,9 @@ export default function Home() {
               title={businessConfig.ctaTemplates.decisionPoint.fastResponse.title}
               subtitle={businessConfig.ctaTemplates.decisionPoint.fastResponse.subtitle}
               primaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.primaryText}
-              primaryHref="#contact"
+              primaryHref="/contact"
               secondaryText={businessConfig.ctaTemplates.decisionPoint.fastResponse.secondaryText}
-              secondaryHref={`tel:${businessConfig.phone}`}
+              secondaryHref={`tel:${businessConfig.phone.replace(/[^0-9]/g, '')}`}
               tertiaryText="View Our Reviews"
               tertiaryHref="/reviews"
             />
@@ -173,35 +172,35 @@ export default function Home() {
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Results That Matter
+              Why Choose American Pest Control
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              We deliver fast, reliable solutions that make a real difference
+              125+ years of expertise, organic solutions, and customers who stay for decades
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="scroll-reveal" style={{ transitionDelay: '0ms' }}>
               <ImpactBlock
-                icon={Zap}
-                title="Fast Emergency Response"
-                description="When emergencies strike, every minute counts. Our rapid response team is ready to help 24/7, arriving within 30-60 minutes to handle urgent situations."
+                icon={Award}
+                title="Board Certified Expertise"
+                description="Led by Board Certified Consulting Arborist Doc Pickhardt with decades of experience. Our team includes entomologists and certified pest managers."
                 index={0}
               />
             </div>
             <div className="scroll-reveal" style={{ transitionDelay: '100ms' }}>
               <ImpactBlock
-                icon={Shield}
-                title="Reliable Long-Term Solutions"
-                description="We don't just fix problems temporarily. Our expert solutions are built to last, backed by comprehensive warranties and ongoing support."
+                icon={Leaf}
+                title="Organic & IPM Solutions"
+                description="We use botanical products and Integrated Pest Management—targeting pests where they live, not wasteful scheduled spraying. Safe for families and pets."
                 index={1}
               />
             </div>
             <div className="scroll-reveal" style={{ transitionDelay: '200ms' }}>
               <ImpactBlock
-                icon={TrendingUp}
-                title="Transparent Pricing"
-                description="No hidden fees, no surprises. You'll know exactly what to expect before we start any work, with competitive rates and honest service."
+                icon={Users}
+                title="5th Generation Family Trust"
+                description="Established in 1900, customers have trusted us for over 125 years. Some families have been with us since 1977—that's the loyalty we earn."
                 index={2}
               />
             </div>
@@ -213,11 +212,11 @@ export default function Home() {
         <div className="content-width">
           <div className="text-center mb-20 scroll-reveal">
             <h2 className="section-title text-balance chapter-heading">
-              Our Work in Action
+              Protecting Michigan Homes & Landscapes
             </h2>
             <LuxuryDivider />
             <p className="section-subtitle">
-              See the quality and craftsmanship that sets us apart
+              From pest control to tree care, see the organic solutions we provide
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
@@ -345,13 +344,13 @@ export default function Home() {
       </section>
 
       <CinematicCTA
-        label={businessConfig.ctaTemplates.cinematic.fastResponse.label}
-        headline={businessConfig.ctaTemplates.cinematic.fastResponse.headline}
-        subtitle={businessConfig.ctaTemplates.cinematic.fastResponse.subtitle}
-        primaryText={businessConfig.ctaTemplates.cinematic.fastResponse.primaryText}
-        primaryHref="#contact"
-        secondaryText={businessConfig.ctaTemplates.cinematic.fastResponse.secondaryText}
-        secondaryHref={`tel:${businessConfig.phone}`}
+        label={businessConfig.ctaTemplates.cinematic.localTrust.label}
+        headline={businessConfig.ctaTemplates.cinematic.localTrust.headline}
+        subtitle={businessConfig.ctaTemplates.cinematic.localTrust.subtitle}
+        primaryText={businessConfig.ctaTemplates.cinematic.localTrust.primaryText}
+        primaryHref="/contact"
+        secondaryText={businessConfig.ctaTemplates.cinematic.localTrust.secondaryText}
+        secondaryHref={`tel:${businessConfig.phone.replace(/[^0-9]/g, '')}`}
         trustChips={businessConfig.ctaTemplates.contact.trustChips}
       />
     </div>
