@@ -336,28 +336,39 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {businessConfig.galleryImages.slice(0, 6).map((image, index) => (
-              <div
+              <Link
                 key={image.id}
-                className="scroll-reveal group relative overflow-hidden rounded-2xl"
+                to="/gallery"
+                className="scroll-reveal group relative overflow-hidden rounded-2xl cursor-pointer"
                 style={{
                   transitionDelay: `${index * 80}ms`,
                   aspectRatio: '4/3'
                 }}
               >
-                <div 
-                  className="w-full h-full flex items-center justify-center"
-                  style={{ 
-                    background: 'linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg-panel) 100%)',
-                    border: '1px solid var(--color-border-subtle)'
-                  }}
-                >
-                  <div className="text-center p-6">
-                    <ImageIcon className="w-12 h-12 mx-auto mb-3" style={{ color: 'var(--color-text-tertiary)' }} />
-                    <p className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>{image.caption}</p>
-                    <p className="text-sm mt-1" style={{ color: 'var(--color-text-tertiary)' }}>{image.projectType}</p>
+                <img 
+                  src={image.url}
+                  alt={image.caption}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end">
+                  <div className="p-4 text-white">
+                    <p className="font-semibold">{image.caption}</p>
+                    <p className="text-sm text-white/80">{image.projectType}</p>
                   </div>
                 </div>
-              </div>
+                <div 
+                  className="absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-semibold"
+                  style={{
+                    background: image.category === 'commercial' 
+                      ? 'rgba(30, 64, 175, 0.9)' 
+                      : 'rgba(5, 150, 105, 0.9)',
+                    color: 'white'
+                  }}
+                >
+                  {image.category === 'commercial' ? 'Commercial' : 'Residential'}
+                </div>
+              </Link>
             ))}
           </div>
           <div className="text-center scroll-reveal">

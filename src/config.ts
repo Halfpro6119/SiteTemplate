@@ -158,45 +158,91 @@ We believe in transparent pricing, quality materials, and workmanship you can co
   galleryImages: [
     {
       id: 1,
-      url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800',
-      caption: 'Residential Wood Privacy Fence',
+      url: '/gallery/project-1-privacy-fence.jpg',
+      caption: 'EverGuard Estate Privacy Fence',
       category: 'residential',
-      projectType: 'Wood Fencing'
+      projectType: 'Wood Fencing',
+      location: 'Indianapolis Area'
     },
     {
       id: 2,
-      url: 'https://images.unsplash.com/photo-1621972750749-0fbb1abb7736?w=800',
-      caption: 'Commercial Chain Link Security',
+      url: '/gallery/project-2-warehouse-fencing.jpg',
+      caption: 'Commercial Wire Cage Installation',
       category: 'commercial',
-      projectType: 'Chain Link Fencing'
+      projectType: 'Commercial Fencing',
+      location: 'Whiteland, IN'
     },
     {
       id: 3,
-      url: 'https://images.unsplash.com/photo-1595877244574-e90ce41ce089?w=800',
-      caption: 'Ornamental Aluminum Pool Fence',
-      category: 'residential',
-      projectType: 'Ornamental Aluminum'
+      url: '/gallery/project-3-wood-bollards.jpg',
+      caption: 'Custom Wood Bollards',
+      category: 'commercial',
+      projectType: 'Custom Fencing Solutions',
+      location: 'Zionsville, IN'
     },
     {
       id: 4,
-      url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
-      caption: 'Industrial Perimeter Fencing',
-      category: 'commercial',
-      projectType: 'Commercial Fencing'
+      url: '/gallery/project-4-aluminum-fence.jpg',
+      caption: 'Catalyst Aluminum Fence',
+      category: 'residential',
+      projectType: 'Ornamental Aluminum',
+      location: 'Carmel, IN'
     },
     {
       id: 5,
-      url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
-      caption: 'Vinyl Privacy Fence Installation',
+      url: '/gallery/project-5-hoa-fence.jpg',
+      caption: '4\' Manchester Style HOA Fence',
       category: 'residential',
-      projectType: 'Vinyl Fencing'
+      projectType: 'Vinyl Fencing',
+      location: 'Indianapolis, IN'
     },
     {
       id: 6,
-      url: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800',
-      caption: 'Custom Cedar Fence Design',
+      url: '/gallery/project-6-chain-link.jpg',
+      caption: 'Black Chain Link Installation',
+      category: 'commercial',
+      projectType: 'Chain Link Fencing',
+      location: 'Greenfield, IN'
+    },
+    {
+      id: 7,
+      url: '/gallery/project-7-residential.jpg',
+      caption: '4\' Scalloped Melrose Fence',
       category: 'residential',
-      projectType: 'Custom Fencing Solutions'
+      projectType: 'Vinyl Fencing',
+      location: 'Indianapolis Area'
+    },
+    {
+      id: 8,
+      url: '/gallery/project-8-utility-fence.jpg',
+      caption: '6\' Galvanized Chain Link - Transformer Enclosure',
+      category: 'commercial',
+      projectType: 'Chain Link Fencing',
+      location: 'Buzzi Unicem USA'
+    },
+    {
+      id: 9,
+      url: '/gallery/project-9-pickleball-court.jpg',
+      caption: 'Black Chain Link Pickleball Court',
+      category: 'commercial',
+      projectType: 'Chain Link Fencing',
+      location: 'Bartholomew County Dunn Park'
+    },
+    {
+      id: 10,
+      url: '/gallery/project-10-vinyl-fence.jpg',
+      caption: 'Vinyl Privacy Fence Installation',
+      category: 'residential',
+      projectType: 'Vinyl Fencing',
+      location: 'Indianapolis Area'
+    },
+    {
+      id: 11,
+      url: '/gallery/project-11-wood-fence.jpg',
+      caption: '8\' Treated Pine Board on Board Fence',
+      category: 'commercial',
+      projectType: 'Wood Fencing',
+      location: 'Southern Indiana'
     }
   ],
 

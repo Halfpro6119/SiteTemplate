@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, ChevronLeft, ChevronRight, Filter, Image as ImageIcon, Home, Building2 } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Filter, Image as ImageIcon, Home, Building2, CheckCircle } from 'lucide-react';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
 import PageHero from '../components/PageHero';
@@ -112,27 +112,21 @@ export default function Gallery() {
                       boxShadow: 'var(--shadow-luxury-md)'
                     }}
                   >
-                    <div 
-                      className="w-full h-full flex items-center justify-center transition-transform duration-700 group-hover:scale-105"
-                      style={{ 
-                        background: 'linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg-panel) 100%)',
-                        border: '1px solid var(--color-border-subtle)'
-                      }}
-                    >
-                      <div className="text-center p-6">
-                        <ImageIcon className="w-16 h-16 mx-auto mb-3" style={{ color: 'var(--color-text-tertiary)' }} />
-                        <p className="text-sm" style={{ color: 'var(--color-text-tertiary)' }}>Project Photo Placeholder</p>
-                      </div>
-                    </div>
+                    <img 
+                      src={image.url}
+                      alt={image.caption}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
                     
                     <div 
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center"
-                      style={{
-                        background: 'rgba(5, 150, 105, 0.9)'
-                      }}
+                      className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end"
                     >
-                      <div className="text-center text-white p-4">
-                        <span className="text-lg font-semibold">View Details</span>
+                      <div className="p-4 text-white w-full">
+                        <p className="font-semibold">{image.caption}</p>
+                        {image.location && (
+                          <p className="text-sm text-white/80">{image.location}</p>
+                        )}
                       </div>
                     </div>
 
@@ -157,7 +151,7 @@ export default function Gallery() {
                       {image.caption}
                     </h3>
                     <p className="text-sm" style={{ color: 'var(--color-text-tertiary)' }}>
-                      {image.projectType}
+                      {image.projectType} {image.location && `• ${image.location}`}
                     </p>
                   </div>
                 </div>
@@ -172,20 +166,20 @@ export default function Gallery() {
               border: '1px solid var(--color-border-subtle)'
             }}
           >
-            <ImageIcon className="w-12 h-12 mx-auto mb-4" style={{ color: 'var(--color-accent)' }} />
+            <CheckCircle className="w-12 h-12 mx-auto mb-4" style={{ color: 'var(--color-accent)' }} />
             <h3 
               className="text-xl font-bold mb-2"
               style={{ color: 'var(--color-text-primary)' }}
             >
-              Gallery Photos Coming Soon
+              Real Projects. Real Results.
             </h3>
             <p className="mb-4" style={{ color: 'var(--color-text-secondary)' }}>
-              We're adding photos of our latest residential and commercial fence installations. 
-              Check back soon to see examples of our work, or contact us to discuss your project.
+              Every photo in our gallery showcases actual fence installations completed by 
+              Secure Links Fence across the Indianapolis metro area.
             </p>
             <p className="text-sm" style={{ color: 'var(--color-text-tertiary)' }}>
-              Want to see specific project examples? Give us a call and we can share photos 
-              relevant to your fencing needs.
+              Have a similar project in mind? Contact us for a free estimate and see how 
+              we can bring quality fencing to your property.
             </p>
           </div>
         </div>
@@ -307,24 +301,19 @@ export default function Gallery() {
             className="max-w-4xl w-full relative animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
-            <div 
-              className="w-full flex items-center justify-center rounded-lg overflow-hidden"
-              style={{ 
-                aspectRatio: '16/10',
-                background: 'linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg-panel) 100%)'
-              }}
-            >
-              <div className="text-center p-8">
-                <ImageIcon className="w-20 h-20 mx-auto mb-4" style={{ color: 'var(--color-text-tertiary)' }} />
-                <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>Project Photo Placeholder</p>
-              </div>
-            </div>
+            <img
+              src={filteredImages[selectedImage].url}
+              alt={filteredImages[selectedImage].caption}
+              className="w-full rounded-t-lg object-cover"
+              style={{ maxHeight: '70vh' }}
+            />
             <div className="bg-gradient-to-t from-black/90 to-black/60 p-6 rounded-b-lg">
               <p className="text-white text-xl font-semibold mb-1">
                 {filteredImages[selectedImage].caption}
               </p>
               <p className="text-white/70">
                 {filteredImages[selectedImage].projectType} • {filteredImages[selectedImage].category === 'commercial' ? 'Commercial' : 'Residential'} Project
+                {filteredImages[selectedImage].location && ` • ${filteredImages[selectedImage].location}`}
               </p>
             </div>
           </div>
