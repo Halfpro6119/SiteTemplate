@@ -19,7 +19,7 @@ export default function SignatureServiceCard({
   benefits,
   href = '/services'
 }: SignatureServiceCardProps) {
-  const IconComponent = (Icons as any)[icon] || Icons.Star;
+  const IconComponent = (Icons as unknown as Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>>)[icon] || Icons.Star;
 
   return (
     <Link
@@ -37,7 +37,7 @@ export default function SignatureServiceCard({
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 70%)'
+            background: 'radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.15) 0%, transparent 70%)'
           }}
         />
 
@@ -53,7 +53,7 @@ export default function SignatureServiceCard({
             <div
               className="relative flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-110"
               style={{
-                background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+                background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.08) 100%)',
                 border: '1px solid var(--color-border-medium)',
                 boxShadow: '0 0 24px -8px var(--color-accent-glow)'
               }}
