@@ -1,5 +1,5 @@
 import * as Icons from 'lucide-react';
-import { businessConfig } from '../config';
+import { LucideIcon } from 'lucide-react';
 
 interface ServiceCardProps {
   icon: string;
@@ -8,7 +8,7 @@ interface ServiceCardProps {
 }
 
 export default function ServiceCard({ icon, title, description }: ServiceCardProps) {
-  const IconComponent = (Icons as any)[icon] || Icons.Star;
+  const IconComponent = (Icons as unknown as Record<string, LucideIcon>)[icon] || Icons.Star;
 
   return (
     <div className="group floating-card-3d h-full">

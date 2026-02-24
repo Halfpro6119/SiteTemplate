@@ -147,7 +147,7 @@ export default function Locations() {
             <div
               className="rounded-2xl p-8 md:p-12 text-center"
               style={{
-                background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(6, 182, 212, 0.12) 100%)'
+                background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(5, 150, 105, 0.12) 100%)'
               }}
             >
               <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>

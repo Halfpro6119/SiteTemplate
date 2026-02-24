@@ -36,7 +36,7 @@ export default function ReviewSnapshotPanel({ size = 'default' }: ReviewSnapshot
               <Star
                 key={i}
                 className={`${isLarge ? 'w-7 h-7' : 'w-6 h-6'} ${
-                  i < Math.floor(businessConfig.rating)
+                  businessConfig.rating && i < Math.floor(businessConfig.rating)
                     ? 'fill-yellow-400 text-yellow-400'
                     : 'fill-gray-300 text-gray-300'
                 }`}
