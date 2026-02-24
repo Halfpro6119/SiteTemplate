@@ -43,17 +43,15 @@ export default function Header() {
       <div className="content-width">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl transition-all duration-500 group-hover:scale-105"
+            <img
+              src="/logo.png"
+              alt={`${businessConfig.businessName} Logo`}
+              className="h-12 w-auto transition-all duration-500 group-hover:scale-105"
               style={{
-                background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)',
-                color: 'var(--color-text-inverse)',
-                boxShadow: '0 0 24px -8px var(--color-accent-glow)'
+                filter: 'drop-shadow(0 0 8px rgba(5, 150, 105, 0.3))'
               }}
-            >
-              {businessConfig.businessName.charAt(0)}
-            </div>
-            <div>
+            />
+            <div className="hidden sm:block">
               <div
                 className="font-bold text-lg leading-tight transition-colors duration-300"
                 style={{

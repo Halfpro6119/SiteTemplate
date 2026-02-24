@@ -54,16 +54,14 @@ export default function Footer() {
           <div className="hidden lg:grid lg:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
+                <img
+                  src="/logo.png"
+                  alt={`${businessConfig.businessName} Logo`}
+                  className="h-12 w-auto"
                   style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
+                    filter: 'drop-shadow(0 0 8px rgba(5, 150, 105, 0.4))'
                   }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
+                />
                 <div>
                   <div className="font-bold text-lg text-white">
                     {businessConfig.businessName}
@@ -163,16 +161,14 @@ export default function Footer() {
           <div className="lg:hidden space-y-4 mb-12">
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center font-semibold text-xl"
+                <img
+                  src="/logo.png"
+                  alt={`${businessConfig.businessName} Logo`}
+                  className="h-12 w-auto"
                   style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%)',
-                    color: 'white',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
+                    filter: 'drop-shadow(0 0 8px rgba(5, 150, 105, 0.4))'
                   }}
-                >
-                  {businessConfig.businessName.charAt(0)}
-                </div>
+                />
                 <div>
                   <div className="font-bold text-lg text-white">
                     {businessConfig.businessName}
