@@ -1,5 +1,4 @@
 import * as Icons from 'lucide-react';
-import { LucideIcon } from 'lucide-react';
 import { businessConfig } from '../config';
 import CTASection from '../components/CTASection';
 import ServiceCTABar from '../components/ServiceCTABar';
@@ -32,7 +31,7 @@ export default function Services() {
         <div className="content-width">
           <div className="space-y-12">
             {businessConfig.services.map((service, index) => {
-              const IconComponent = (Icons as Record<string, LucideIcon>)[service.icon] || Icons.Star;
+              const IconComponent = (Icons as unknown as Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>>)[service.icon] || Icons.Star;
               const isEven = index % 2 === 0;
 
               return (

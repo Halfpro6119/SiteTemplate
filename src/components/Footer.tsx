@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, ChevronDown, ExternalLink, Leaf, Facebook } from 'lucide-react';
+import { Phone, Mail, MapPin, ChevronDown, ExternalLink, Facebook } from 'lucide-react';
 import { businessConfig } from '../config';
 import FooterClosingCTA from './FooterClosingCTA';
 import TrustChipRow from './TrustChipRow';
@@ -53,24 +53,12 @@ export default function Footer() {
         <div className="container mx-auto px-4 pt-16 pb-8">
           <div className="hidden lg:grid lg:grid-cols-4 gap-12 mb-16">
             <div>
-              <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  <Leaf className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
-                  </div>
-                  <div className="text-xs" style={{ color: 'var(--color-accent)' }}>
-                    Est. {businessConfig.foundingYear}
-                  </div>
-                </div>
+              <div className="mb-5">
+                <img
+                  src="/logo.png"
+                  alt={`${businessConfig.businessName} - Est. ${businessConfig.foundingYear}`}
+                  className="h-14 w-auto brightness-0 invert"
+                />
               </div>
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}
@@ -172,24 +160,12 @@ export default function Footer() {
 
           <div className="lg:hidden space-y-4 mb-12">
             <div>
-              <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)',
-                    boxShadow: '0 0 24px -8px var(--color-accent)'
-                  }}
-                >
-                  <Leaf className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-white">
-                    {businessConfig.businessName}
-                  </div>
-                  <div className="text-xs" style={{ color: 'var(--color-accent)' }}>
-                    Est. {businessConfig.foundingYear}
-                  </div>
-                </div>
+              <div className="mb-5">
+                <img
+                  src="/logo.png"
+                  alt={`${businessConfig.businessName} - Est. ${businessConfig.foundingYear}`}
+                  className="h-12 w-auto brightness-0 invert"
+                />
               </div>
               <p className="text-sm text-white/70 mb-6 leading-relaxed">
                 {businessConfig.footer.brandStatement}

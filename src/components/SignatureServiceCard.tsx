@@ -1,5 +1,5 @@
 import * as Icons from 'lucide-react';
-import { ArrowRight, LucideIcon } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface SignatureServiceCardProps {
@@ -19,7 +19,7 @@ export default function SignatureServiceCard({
   benefits,
   href = '/services'
 }: SignatureServiceCardProps) {
-  const IconComponent = (Icons as Record<string, LucideIcon>)[icon] || Icons.Star;
+  const IconComponent = (Icons as unknown as Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>>)[icon] || Icons.Star;
 
   return (
     <Link

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, MessageSquare, Leaf } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare } from 'lucide-react';
 import { businessConfig } from '../config';
 
 export default function Header() {
@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-header ${
-        isScrolled ? 'py-3' : 'py-4'
+        isScrolled ? 'py-2' : 'py-3'
       }`}
       style={{
         boxShadow: isScrolled ? 'var(--shadow-luxury-lg)' : 'none'
@@ -42,31 +42,12 @@ export default function Header() {
     >
       <div className="content-width">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
-            <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-105"
-              style={{
-                background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)',
-                boxShadow: '0 0 24px -8px var(--color-accent-glow)'
-              }}
-            >
-              <Leaf className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <div
-                className="font-bold text-lg leading-tight transition-colors duration-300"
-                style={{
-                  fontFamily: 'Plus Jakarta Sans, sans-serif',
-                  color: 'var(--color-text-primary)',
-                  letterSpacing: '0.01em'
-                }}
-              >
-                {businessConfig.businessName}
-              </div>
-              <div className="text-xs" style={{ color: 'var(--color-accent)' }}>
-                Est. {businessConfig.foundingYear} • Family Owned
-              </div>
-            </div>
+          <Link to="/" className="flex items-center group">
+            <img
+              src="/logo.png"
+              alt={`${businessConfig.businessName} - Est. ${businessConfig.foundingYear}`}
+              className="h-14 md:h-16 w-auto transition-transform duration-500 group-hover:scale-105"
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-9">
