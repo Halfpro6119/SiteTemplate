@@ -6,20 +6,20 @@
 
 @layer base {
   :root {
-    --color-bg-base: #0a0a0a;
-    --color-bg-surface: #141414;
-    --color-bg-elevated: #1a1a1a;
-    --color-bg-panel: #1f1f1f;
+    --color-bg-base: #0c1220;
+    --color-bg-surface: #151d2e;
+    --color-bg-elevated: #1a2438;
+    --color-bg-panel: #1f2942;
 
-    --color-text-primary: #e8e8e8;
-    --color-text-secondary: #a3a3a3;
-    --color-text-tertiary: #737373;
-    --color-text-inverse: #0a0a0a;
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #94a3b8;
+    --color-text-tertiary: #64748b;
+    --color-text-inverse: #0c1220;
 
-    --color-accent: #06b6d4;
-    --color-accent-dark: #0891b2;
-    --color-accent-light: #22d3ee;
-    --color-accent-glow: rgba(6, 182, 212, 0.4);
+    --color-accent: #059669;
+    --color-accent-dark: #047857;
+    --color-accent-light: #10b981;
+    --color-accent-glow: rgba(5, 150, 105, 0.4);
 
     --color-border-subtle: rgba(255, 255, 255, 0.08);
     --color-border-medium: rgba(255, 255, 255, 0.12);
@@ -407,8 +407,8 @@
     inset: 0;
     background: radial-gradient(
       ellipse 1200px 800px at 50% 30%,
-      rgba(6, 182, 212, 0.15) 0%,
-      rgba(6, 182, 212, 0.05) 40%,
+      rgba(5, 150, 105, 0.15) 0%,
+      rgba(5, 150, 105, 0.05) 40%,
       transparent 70%
     );
     pointer-events: none;
@@ -542,8 +542,8 @@
     inset: 0;
     background: radial-gradient(
       circle at center,
-      rgba(6, 182, 212, 0.12) 0%,
-      rgba(6, 182, 212, 0.06) 30%,
+      rgba(5, 150, 105, 0.12) 0%,
+      rgba(5, 150, 105, 0.06) 30%,
       transparent 70%
     );
     filter: blur(80px);
@@ -576,8 +576,8 @@
     transform: translate(-50%, -50%);
     background: radial-gradient(
       ellipse 1000px 700px at center,
-      rgba(6, 182, 212, 0.15) 0%,
-      rgba(6, 182, 212, 0.08) 35%,
+      rgba(5, 150, 105, 0.15) 0%,
+      rgba(5, 150, 105, 0.08) 35%,
       transparent 70%
     );
     pointer-events: none;
@@ -844,7 +844,7 @@
     background:
       radial-gradient(
         ellipse 1000px 700px at 50% 50%,
-        rgba(6, 182, 212, 0.15) 0%,
+        rgba(5, 150, 105, 0.15) 0%,
         transparent 65%
       );
     pointer-events: none;
